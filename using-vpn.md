@@ -120,7 +120,7 @@ Optionally, you can create a VPN gateway using the UI. Steps can be found in the
 {: #step-1-create-a-vpn-gateway-in-your-vpc-subnet}
 
 ```bash
-curl -H "Authorization: $iam_token" -X POST "$rias_endpoint/v1/vpn_gateways?version=2019-01-01&generation=1" \
+curl -H "Authorization: $iam_token" -X POST "$rias_endpoint/v1/vpn_gateways?version=2019-05-31&generation=1" \
     -d '{
             "name": "vpn-gateway-1",
             "subnet": {"id": $subnet1}
@@ -164,7 +164,7 @@ The gateway status appears as `pending` while the VPN gateway is being created, 
 You can check the gateway's status with the following command:
 
 ```bash
-curl -H "Authorization: $iam_token" -X GET "$rias_endpoint/v1/vpn_gateways/$gwid1?version=2019-01-01&generation=1"
+curl -H "Authorization: $iam_token" -X GET "$rias_endpoint/v1/vpn_gateways/$gwid1?version=2019-05-31&generation=1"
 ```
 {: codeblock}
 
@@ -172,7 +172,7 @@ curl -H "Authorization: $iam_token" -X GET "$rias_endpoint/v1/vpn_gateways/$gwid
 {: #step-2-create-a-second-vpn-gateway-on-a-different-vpc}
 
 ```bash
-curl -H "Authorization: $iam_token" -X POST "$rias_endpoint/v1/vpn_gateways?version=2019-01-01&generation=1" \
+curl -H "Authorization: $iam_token" -X POST "$rias_endpoint/v1/vpn_gateways?version=2019-05-31&generation=1" \
         -d '{
                 "name": "vpn-gateway-2",
                 "subnet": {"id": $subnet2}
@@ -216,7 +216,7 @@ Be sure to save the following fields for subsequent steps.
 When you're creating the connection, set `local_cidrs` to the subnet on **VPC one** and `peer_cidrs` to the subnet on **VPC two**.
 
 ```bash
-curl -H "Authorization: $iam_token" -X POST "$rias_endpoint/v1/vpn_gateways/$gwid1/connections?version=2019-01-01&generation=1" \
+curl -H "Authorization: $iam_token" -X POST "$rias_endpoint/v1/vpn_gateways/$gwid1/connections?version=2019-05-31&generation=1" \
         -d '{
                 "name": "vpn-connection-to-vpn-gateway-2",
                 "peer_address": $gwaddress2,
@@ -261,7 +261,7 @@ Sample output:
 When you're creating the connection, set `local_cidrs` to the subnet on **VPC two** and `peer_cidrs` to the subnet on **VPC one**.
 
 ```bash
-curl -H "Authorization: $iam_token" -X POST "$rias_endpoint/v1/vpn_gateways/$gwid2/connections?version=2019-01-01&generation=1" \
+curl -H "Authorization: $iam_token" -X POST "$rias_endpoint/v1/vpn_gateways/$gwid2/connections?version=2019-05-31&generation=1" \
         -d '{
                 "name": "vpn-connection-to-vpn-gateway-1",
                 "peer_address": $gwaddress1,
@@ -307,7 +307,7 @@ Once the VPN connection is established, you will be able to reach your instances
 
 You can check the status of the VPN connection as follows:
 ```bash
-curl -H "Authorization: $iam_token" -X GET "$rias_endpoint/v1/vpn_gateways/$gwid1/connections?version=2019-01-01&generation=1"
+curl -H "Authorization: $iam_token" -X GET "$rias_endpoint/v1/vpn_gateways/$gwid1/connections?version=2019-05-31&generation=1"
 ```
 {: codeblock}
 

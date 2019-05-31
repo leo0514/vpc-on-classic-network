@@ -240,7 +240,7 @@ To create a load balancer, you'll need access to a resource group. The user who 
 ## Activity tracker integration
 {: #activity-tracker-integration}
 
-Load balancer service is integrated with **IBM Cloud Activity Tracker**, which records events, in a manner compliant with the CADF standard, as triggered by user-initiated activities that change the state of service in the cloud.
+Load balancer service is integrated with **IBM Cloud Activity Tracker with LogDNA**, which records events, in a manner compliant with the CADF standard, as triggered by user-initiated activities that change the state of service in the cloud.
 
 The following actions on the load balancer service instances are recorded as auditing events:
 
@@ -265,75 +265,82 @@ The following actions on the load balancer service instances are recorded as aud
 | Rule |  is.load-balancer.load-balancer.listener.policy.rule.update | Rule was updated |
 | Rule |  is.load-balancer.load-balancer.listener.policy.rule.delete | Rule was deleted |
 
-All auditing events are recorded to IBM Cloud Activity Tracker in the `us-south` region. It does not matter in which region the load balancer service is provisioned.
+All auditing events are recorded to "IBM Cloud Activity Tracker with LogDNA" in the `us-south` region. It does not matter in which region the load balancer service is provisioned.
 {:note}
 
-To view events, a user must have an IAM policy that grants the **Reader** role on the Log Analysis service.
+To view events, you must provision an "IBM Cloud Activity Tracker with LogDNA" instance in the`us-south` region under your account. Users in your account must have an IAM policy that grants the **Viewer** platform access role and **Reader** service access role on the "IBM Cloud Activity Tracker with LogDNA" instance.
+
 More information on granting access is available at [Granting permissions to see account events. ![External link icon](../icons/launch-glyph.svg "External link icon")](https://cloud.ibm.com/docs/services/cloud-activity-tracker/how-to/grant_permissions.html#grant_permissions){: new_window}
 
-Users can monitor account-level operations performed on the load balancer service.
+IBM Cloud account users can monitor account-level operations performed on the load balancer service.
+{: tip}
 
-1. Navigate to IBM cloud log analysis interface in `us-south`, [IBM Cloud Log Analysis Service ![External link icon](../../icons/launch-glyph.svg "External link icon")](https://logging.ng.bluemix.net){:new_window}
-2. Select **Domain** as Account.
-3. Select the **Account** name.
-4. Operations specific to the Load balancer can be found by using the search keyword `load_balancers`.
+Follow these steps to provision an "IBM Cloud Activity Tracker with LogDNA" instance under your account:
+
+1. Log into the IBM Cloud console. [Log in to IBM Cloud console. ![External link icon](../icons/launch-glyph.svg "External link icon")](https://cloud.ibm.com/){: new_window}
+2. Click on the ![Menu icon](../../icons/icon_hamburger.svg) in the upper left. From there, select **Observability > Activity Tracker**.
+3. In the upper right, click **Create Instance**.
+4. Define a service name.
+5. Select `us-south` as the region and choose the resource group
+6. Choose a plan other than `lite` if you have a paid account.
+7. Click **Create**.
 
 Here is the sample activity tracker message for a **Create Listener** operation:
-
 ```bash
-"message": {
-   "id":         "09debf32b30a9c961abc79c1a8436974",
-   "typeURI":    "http://schemas.dmtf.org/cloud/audit/1.0/event",
-   "eventType":  "activity",
-   "eventTime":  "2019-03-05 18:53:25.504276583   +0000 UTC m=+318902.860688179",
-   "action":     "is.load-balancer.load-balancer.listener.create",
-   "outcome":    "success",
-   "initiator":{
-      "typeURI": "service/security/account/user",
-      "name":    <USER_ID>,
-      "host":{
-         "address": <CLIENT_IP>,
-         "agent":   "IBM_One_Cloud_IS_UI/2.4.2"
-      },
-      "project_id": <ACCOUNT_ID>
-   },
-   "target":{
-      "id":      "crn:v1:bluemix:public:is:us-south:a/822bd195e9fd4f0db40ac2e1bffef3e0::load-balancer:59aae82b-27a1-40d0-9c99-ac852c47dcb1",
-      "typeURI": "/v1/load_balancers/59aae82b-27a1-40d0-9c99-ac852c47dcb1/listeners",
-      "host":{
-         "address": <API_END_POINT>
-      }
-   },
-   "observer":{
-      "typeURI": "service/security/edge/activity-tracker",
-      "name":    "ActivityTracker",
-      "host":{
-         "address":  "activity-tracker.ng.bluemix.net"
-      }
-   },
-   "requestPath":  "/v1/load_balancers/59aae82b-27a1-40d0-9c99-ac852c47dcb1/listeners",
-   "reason":{
-      "reasonCode": 201,
-      "reasonType": "https://www.iana.org/assignments/http-status-codes/http-status-codes.xml"
-   },
-   "severity":  "normal",
-   "requestData":{
-      "headers":{
-         "RayID":  "4c2a2337cbf8202a"
-      }
-   }
-},
-"type": "ActivityTracker",
-"event_uuid": "ccb5e8d8-a30c-4449-b01b-b38444baa9c9",
-"requestPath_str": "/v1/load_balancers/59aae82b-27a1-40d0-9c99-ac852c47dcb1/listeners",
-"action_str": "is.load-balancer.load-balancer.listener.create",
-"target":{
-   "id_str": "crn:v1:bluemix:public:is:us-south:a/822bd195e9fd4f0db40ac2e1bffef3e0::load-balancer:59aae82b-27a1-40d0-9c99-ac852c47dcb1",
-   "typeURI_str": "/v1/load_balancers/59aae82b-27a1-40d0-9c99-ac852c47dcb1/listeners",
-   "host_hash":{
-      "address_str": <API_END_POINT>
-   }
- }
+{
+    "logSourceCRN": "crn:v1:bluemix:public:is:eu-gb:a/<ACCOUNT_ID>::load-balancer:4633518f-8aac-48a1-a694-d15ee6bd70e3",
+    "meta": {
+        "serviceProviderName": "is-load-balancer",
+        "serviceProviderProjectId": "48a7a7b7-6642-4aa1-8af9-c1be4ef82050",
+        "serviceProviderRegion": "ng",
+        "userAccountIds": [
+            <ACCOUNT_ID>
+        ]
+    },
+    "payload": {
+        "action": "is.load-balancer.load-balancer.listener.create",
+        "eventTime": "2019-05-30T18:42:48.96+0000",
+        "eventType": "activity",
+        "id": "e4ee1906d01a35efe8bd8303ce0a734e",
+        "initiator": {
+            "credential": {
+                "type": "token"
+            },
+            "host": {
+                "address": <CLIENT_IP>,
+                "agent": "python-requests/2.19.1"
+            },
+            "id": <USER-ID>,
+            "name": <USER_ID>,
+            "project_id": <ACCOUNT_ID>,
+            "typeURI": "service/security/account/user"
+        },
+        "message": "is.load-balancer: create listener 4633518f-8aac-48a1-a694-d15ee6bd70e3 success",
+        "observer": {
+            "id": "activity-tracker.ng.bluemix.net",
+            "name": "ActivityTracker",
+            "typeURI": "security/edge/activity-tracker"
+        },
+        "outcome": "success",
+        "reason": {
+            "reasonCode": 201,
+            "reasonType": "https://www.iana.org/assignments/http-status-codes/http-status-codes.xml"
+        },
+        "requestData": "{\"headers\":{\"RayID\":\"4df2d9911a3ac2bd\"},\"extraData\":{\"resourceName\":\"4633518f-8aac-48a1-a694-d15ee6bd70e3\"}}",
+        "requestPath": "/v1/load_balancers/4633518f-8aac-48a1-a694-d15ee6bd70e3/listeners",
+        "severity": "normal",
+        "target": {
+            "host": {
+                "address": <API_END_POINT>
+            },
+            "id": "crn:v1:bluemix:public:is:eu-gb:a/<ACCOUNT_ID>::load-balancer:4633518f-8aac-48a1-a694-d15ee6bd70e3",
+            "name": "4633518f-8aac-48a1-a694-d15ee6bd70e3",
+            "typeURI": "/v1/load_balancers/4633518f-8aac-48a1-a694-d15ee6bd70e3/listeners"
+        },
+        "typeURI": "http://schemas.dmtf.org/cloud/audit/1.0/event"
+    },
+    "saveServiceCopy": true
+}
 ```
 
 ## APIs available
@@ -342,7 +349,7 @@ Here is the sample activity tracker message for a **Create Listener** operation:
 To make API calls, you must use some form of REST client. For example, you can use the `curl` command to retrieve all existing load balancers:
 
 ```
-curl -X GET "$rias_endpoint/v1/load_balancers?version=2019-01-01&generation=1" -H "Authorization: $iam_token"
+curl -X GET "$rias_endpoint/v1/load_balancers?version=2019-05-31&generation=1" -H "Authorization: $iam_token"
 ```
 {: pre}
 
@@ -400,7 +407,7 @@ The load balancer example steps also can be run using the [CLI](/docs/cli/refere
 
 ```bash
 curl -H "Authorization: $iam_token" -X POST
-"$rias_endpoint/v1/load_balancers?version=2019-01-01&generation=1" \
+"$rias_endpoint/v1/load_balancers?version=2019-05-31&generation=1" \
     -d '{
         "name": "example-balancer",
         "is_public": true,
@@ -507,7 +514,7 @@ lbid=dd754295-e9e0-4c9d-bf6c-58fbc59e5727
 **Step 2. Get a load balancer**
 
 ```
-curl -H "Authorization: $iam_token" -X GET "$rias_endpoint/v1/load_balancers/$lbid?version=2019-01-01&generation=1"
+curl -H "Authorization: $iam_token" -X GET "$rias_endpoint/v1/load_balancers/$lbid?version=2019-05-31&generation=1"
 ```
 {: pre}
 
@@ -572,7 +579,7 @@ Sample output:
 **Step 3. Delete a load balancer**
 
 ```bash
-curl -H "Authorization: $iam_token" -X DELETE "$rias_endpoint/v1/load_balancers/$lbid?version=2019-01-01&generation=1"
+curl -H "Authorization: $iam_token" -X DELETE "$rias_endpoint/v1/load_balancers/$lbid?version=2019-05-31&generation=1"
 ```
 {: pre}
 
