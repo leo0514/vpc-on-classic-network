@@ -48,4 +48,3 @@ Networking for Virtual Private Cloud
     {: .navgroup id="help"}
     /vpc/vpc-getting-help-and-support
     {: .navgroup-end}
-

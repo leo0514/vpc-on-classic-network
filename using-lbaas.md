@@ -110,7 +110,7 @@ Property  | Description
 ------------- | -------------
 Name | The name of the policy. The name must be unique within the listener.
 Action | The action to take when all policy rules match. The acceptable values are `reject`, `redirect`, and `forward`. A policy with `reject` action is always evaluated first, regardless of its priority. Policies with `redirect` actions are evaluated next, followed by policies with `redirect` action.
-Priority | Policies are evaluated based on ascending order of priority. 
+Priority | Policies are evaluated based on ascending order of priority.
 URL | The URL to which the request is redirected, if the action is set to `redirect`.
 HTTP Status Code | Status code of the response returned by the load balancer when action is set to `redirect`. The acceptable values are: 301, 302, 303, 307 or 308.
 Target | The back-end pool of server instances to which the request is forwarded, if the action is set to `forward`.
@@ -400,7 +400,7 @@ In the following example, you'll use the API to create a load balancer in front 
 
 The example steps that follow skip the prerequisite steps of using the [IBM Cloud UI](/docs/vpc-on-classic?topic=vpc-on-classic-creating-a-vpc-using-the-ibm-cloud-console), [CLI](/docs/vpc-on-classic?topic=vpc-on-classic-creating-a-vpc-using-the-ibm-cloud-cli), or [VPC on Classic API](/docs/vpc-on-classic?topic=vpc-on-classic-creating-a-vpc-using-the-rest-apis) to provision a VPC, subnets, and instances.
 
-The load balancer example steps also can be run using the [CLI](/docs/cli/reference/ibmcloud?topic=infrastructure-service-cli-vpc-reference).
+The load balancer example steps also can be run using the [CLI](/docs/vpc-on-classic?topic=vpc-infrastructure-cli-plugin-vpc-reference).
 {: note}
 
 **Step 1. Create a load balancer with listener, pool, and attached server instances (pool members)**
@@ -673,7 +673,7 @@ curl -H "Authorization: $iam_token" -X POST
 ```
 {: codeblock}
 
-### Example 2: Create policies with action `Forward` to pools and associate it with an existing listener 
+### Example 2: Create policies with action `Forward` to pools and associate it with an existing listener
 ```
 bash
 curl -H "Authorization: $iam_token" -X POST

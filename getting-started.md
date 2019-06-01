@@ -38,7 +38,7 @@ To get started with networking for {{site.data.keyword.cloud}} Virtual Private C
 The provisioning and managing of VPC network resources can be done through the UI, CLI or REST API.
 
 * For access through the user interface, log into the [IBM Cloud Console ![External link icon](../../icons/launch-glyph.svg "External link icon")]( https://{DomainName}/vpc){: new_window}. Follow the [UI guide](/docs/vpc-on-classic?topic=vpc-on-classic-creating-a-vpc-using-the-ibm-cloud-console) if you need help.
-* To use the command line interface, use the [infrastructure-service](/docs/infrastructure-service-cli-plugin/vpc-cli-reference.html) plugin of the [IBM Cloud CLI](/docs/cli/reference/ibmcloud?topic=cloud-cli-overview) and follow the [Hello World](/docs/vpc-on-classic?topic=vpc-on-classic-creating-a-vpc-using-the-ibm-cloud-cli) example.
+* To use the command line interface, follow the [Hello World](/docs/vpc-on-classic?topic=vpc-on-classic-creating-a-vpc-using-the-ibm-cloud-cli) example.
 * For more advanced users, you can call the [REST APIs](https://{DomainName}/apidocs/vpc-on-classic) directly. Follow the [example code](/docs/vpc-on-classic?topic=vpc-on-classic-creating-a-vpc-using-the-rest-apis) tutorial to get started with the REST APIs.
 
 ## Next steps
