@@ -40,8 +40,11 @@ Networking for Virtual Private Cloud
     {: .navgroup-end}
 
     {: .navgroup id="reference"}
-    api-doc-wrapper.md 
+    [API reference for VPC](https://cloud.ibm.com/apidocs/vpc-on-classic)
     /vpc-infrastructure-cli-plugin/vpc-infrastructure-cli-plugin-vpc-reference
+    [Go and Python Example Code](https://github.com/IBM-Cloud/vpc-api-samples)
+    [Terraform](https://ibm-cloud.github.io/tf-ibm-docs/index.html)
+    [Exporter Tool](https://github.com/l2fprod/vpc-diagram-exporter)
     step-by-step-pages.md
     {: .navgroup-end}
 

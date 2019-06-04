@@ -22,6 +22,7 @@ subcollection: vpc-on-classic-network
 
 # Understanding IP address ranges, address prefixes, regions, and subnets
 {: #working-with-ip-address-ranges-address-prefixes-regions-and-subnets}
+[comment]: # (linked help topic)
 
 This document discusses the relationships among regions, address prefixes, and subnets for {{site.data.keyword.cloud}} VPC:
 

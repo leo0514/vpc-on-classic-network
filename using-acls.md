@@ -23,6 +23,7 @@ subcollection: vpc-on-classic-network
 
 # Setting up Network ACLs
 {: #setting-up-network-acls}
+[comment]: # (linked help topic)
 
 With the Access Control List (ACL) functionality available in {{site.data.keyword.cloud}} Virtual Private Cloud, you can control all incoming and outgoing traffic related to your critical business workloads on the cloud. An ACL is a built-in, virtual firewall, similar to a security group. In contrast to security groups, ACL rules control traffic to and from the _subnets_, rather than to and from the _instances_.
 
