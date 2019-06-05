@@ -28,11 +28,11 @@ This page presents a more detailed conceptual picture of what's happening "behin
 ## Network isolation
 {: #network-isolation}
 
-VPC network isolation takes place at three levels: 
+VPC network isolation takes place at three levels:
 
 * **Hypervisor**: The VSIs (virtual server instances) are isolated by the hypervisor itself. A VSI can not directly reach other VSIs hosted by the same hypervisor if they are not in the same VPC.
 
-* **Network**: Isolation occurs at the network level through the use of **virtual network identifiers** (VNIs). These identifiers are scoped to the local zone. These VNIs are added to all data packets entering any zone of the VPC: entering either from the hypervisor, when sent by a VSI, or entering the zone from the cloud, when sent by the implicit routing function. 
+* **Network**: Isolation occurs at the network level through the use of **virtual network identifiers** (VNIs). These identifiers are scoped to the local zone. These VNIs are added to all data packets entering any zone of the VPC: entering either from the hypervisor, when sent by a VSI, or entering the zone from the cloud, when sent by the implicit routing function.
 
 A packet leaving a zone has the VNI stripped off. When the packet reaches its destination zone, entering through the implicit routing function, the implicit router always adds the proper VNI for that zone.
 {: note}
@@ -76,4 +76,4 @@ After NAT translation, the implicit router forwards these Internet-destined pack
 ## Classic access
 {: #classic-access}
 
-The [**Classic access**](/docs/infrastructure/vpc/classic-access.html) feature for VPC is accomplished by re-using the VRF identifier from the {{site.data.keyword.cloud}} Classic Infrastructure Account as the VRF identifier for VPC. This implementation allows the VPC's implicit router function to join the same MPLS VPN that is used by the Classic Infrastructure Account. Thus, the VPC has access to classic resources and to anything else that's reachable by means of existing Direct Link connections.
+The [**Classic access**](/docs/vpc-on-classic?topic=vpc-on-classic-setting-up-access-to-your-classic-infrastructure-from-vpc) feature for VPC is accomplished by re-using the VRF identifier from the {{site.data.keyword.cloud}} Classic Infrastructure Account as the VRF identifier for VPC. This implementation allows the VPC's implicit router function to join the same MPLS VPN that is used by the Classic Infrastructure Account. Thus, the VPC has access to classic resources and to anything else that's reachable by means of existing Direct Link connections.

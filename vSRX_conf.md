@@ -33,7 +33,7 @@ The example steps that follow skip the prerequisite steps of using {{site.data.k
 ## Example steps
 {: #vsrx-example-steps}
 
-The topology for connecting to the remote Juniper vSRX peer is similar to [creating a VPN connection between two VPCs](/docs/vpc-on-classic-network?topic=vpc-on-classic-network---beta-using-vpn-with-your-vpc). However, one side of the connection is replaced by the Juniper vSRX unit.
+The topology for connecting to the remote Juniper vSRX peer is similar to [creating a VPN connection between two VPCs](/docs/vpc-on-classic-network?topic=vpc-on-classic-network---using-vpn-with-your-vpc). However, one side of the connection is replaced by the Juniper vSRX unit.
 
 ![enter image description here](./images/vpc-vpn-vsrx-figure.png)
 

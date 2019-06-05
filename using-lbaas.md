@@ -353,7 +353,7 @@ curl -X GET "$rias_endpoint/v1/load_balancers?version=2019-05-31&generation=1" -
 ```
 {: pre}
 
-The following section gives details about APIs you can use for load balancers in your VPC environment. For the full spec, see the [VPC on Classic API reference](https://{DomainName}/apidocs/vpc-on-classic#retrieves-all-load-balancers).
+The following section gives details about APIs you can use for load balancers in your VPC environment. For the full spec, see the [VPC on Classic API reference](https://{DomainName}/apidocs/vpc-on-classic#list-all-load-balancers).
 
 | Description | API |
 |-------------|-----|

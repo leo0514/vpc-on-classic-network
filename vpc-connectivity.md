@@ -31,7 +31,7 @@ As shown in the figure:
 * Subnets can connect to the public internet through an optional Public Gateway (PGW).
 * You can assign a Floating IP address (FIP) to any VSI to reach it from the internet, or vice versa.
 * Subnets in the IBM Cloud VPC offer private connectivity; they can talk to each other over a private link. You do not need to set up any routes.
-* For more information, see our [About VPC Infrastructure](/docs/vpc-on-classic?topic=vpc-on-classic-about-ibm-cloud-virtual-private-cloud-vpc-infrastructure).
+* For more information, see our [About VPC Infrastructure](/docs/vpc-on-classic?topic=vpc-on-classic-about).
 
 ## Terminology
 {: #terminology}

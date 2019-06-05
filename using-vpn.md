@@ -51,7 +51,7 @@ For the current {{site.data.keyword.cloud}} VPC release, only policy-based routi
 ## APIs available
 {: #apis-available}
 
-The following section gives details about APIs you can use for VPN in your IBM Cloud VPC environment. Please see the [VPC REST APIs](https://{DomainName}/apidocs/vpc-on-classic#retrieves-all-ike-policies) page for more details.
+The following section gives details about APIs you can use for VPN in your IBM Cloud VPC environment. Please see the [VPC REST APIs](https://{DomainName}/apidocs/vpc-on-classic#list-all-ike-policies) page for more details.
 
 ### VPN gateways and VPN connections
 {: #vpn-gateways-and-vpn-connections}
