@@ -459,4 +459,4 @@ Only PSK authentication is supported.
 
 **Can you use VPN for VPC as a VPN Gateway for your IBM Cloud Infrastructure Classic?**
 
-No, in order to use VPN Gateway in your IBM Cloud Infrastructure Classic environment, you must use the [IPsec VPN] (https://cloud.ibm.com/catalog/infrastructure/ipsec-vpn).
+No, in order to use VPN Gateway in your IBM Cloud Infrastructure Classic environment, you must use the [IPsec VPN](https://cloud.ibm.com/catalog/infrastructure/ipsec-vpn).
