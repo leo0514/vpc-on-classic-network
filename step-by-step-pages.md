@@ -34,8 +34,9 @@ Use these comprehensive guides to begin building and customizing your {{site.dat
 * [Deploy isolated workloads across multiple locations and zones](/docs/vpc-on-classic?topic=solution-tutorials-vpc-multi-region)
 * [Use a VPC/VPN gateway for secure and private on-premises access to cloud resources](/docs/vpc-on-classic?topic=solution-tutorials-vpc-site2site-vpn)
 * [Securely access remote instances with a bastion host](/docs/vpc-on-classic?topic=solution-tutorials-vpc-secure-management-bastion-server)
-* [Basic 3-Tier Web App (with LB)](https://github.com/ibm-cloud-architecture/tutorial-vpc-3tier-networking)
-* [Running a Windows deployment](https://github.com/ibm-cloud-architecture/tutorial-vpc-windows_server)
-* [IoT Application](https://github.com/ibm-cloud-architecture/tutorial-vpc-IoT_service)
+* [Architecture Center VPC Solutions](https://www.ibm.com/cloud/garage/architectures/public-cloud/allvpcsolutions)
+    * [Basic 3-Tier Web App (with LB)](https://github.com/ibm-cloud-architecture/tutorial-vpc-3tier-networking)
+    * [Running a Windows deployment](https://github.com/ibm-cloud-architecture/tutorial-vpc-windows_server)
+    * [IoT Application](https://github.com/ibm-cloud-architecture/tutorial-vpc-IoT_service)
  
    

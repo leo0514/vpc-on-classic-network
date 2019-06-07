@@ -26,12 +26,11 @@ Networking for Virtual Private Cloud
         security-group-usage-examples.md
         
     using-acls.md
-    using-vpn.md
     using-lbaas.md
-    /vpc/vpc-setting-up-access-to-your-classic-infrastructure-from-vpc
+    using-vpn.md
 
     {: .topicgroup}
-    (Beta) Peering securely to an appliance
+    Setting up a VPN
         Vyatta_Conf.md
         Strongswan_Conf.md
         Fortigate_300C_Conf.md
@@ -49,5 +48,5 @@ Networking for Virtual Private Cloud
     {: .navgroup-end}
 
     {: .navgroup id="help"}
-    /vpc/vpc-getting-help-and-support
+    /vpc-on-classic/vpc-on-classic-getting-help-and-support
     {: .navgroup-end}

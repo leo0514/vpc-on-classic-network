@@ -2,9 +2,9 @@
 
 copyright:
   years: 2018, 2019
-lastupdated: "2019-05-29"
+lastupdated: "2019-06-07"
 
-keywords: address prefix, region, subnet, zone, reserved, IP, ranges, deleting, creating, CIDR
+keywords: vpc, address prefix, region, subnet, zone, reserved, IP, ranges, deleting, creating, CIDR
 
 subcollection: vpc-on-classic-network
 
@@ -50,7 +50,11 @@ Each {{site.data.keyword.cloud_notm}} VPC can have up to five address prefixes f
 ### VPC default address prefixes
 {: #default-vpc-address-prefixes}
 
-When a new VPC is created, the default address prefixes are assigned as follows, based on the region and zone:
+When a new VPC is created, the default address prefixes are assigned as follows, based on the region and zone.
+
+[Classic Access
+VPCs](/docs/vpc-on-classic?topic=vpc-on-classic-setting-up-access-to-your-classic-infrastructure-from-vpc#classic-access-default-address-prefixes) have a different set of default address prefixes.
+{: important}
 
 Zone         | Address Prefix
 ---------------|---------------
@@ -64,11 +68,7 @@ Zone         | Address Prefix
 `jp-tok-2`     | `10.244.64.0/18`
 `jp-tok-3`     | `10.244.128.0/18`
 
-
 Different default prefixes will be assigned to new zones or regions.
-
-[Classic Access
-VPCs](/docs/vpc-on-classic?topic=vpc-on-classic-setting-up-access-to-your-classic-infrastructure-from-vpc#classic-access-default-address-prefixes) have a different set of default address prefixes.
 
 ### Address prefixes and the IBM Cloud console UI
 {: #address-prefixes-and-the-ibm-cloud-console-ui}
