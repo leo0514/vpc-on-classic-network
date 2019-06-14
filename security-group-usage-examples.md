@@ -21,7 +21,7 @@ subcollection: vpc-on-classic-network
 # Setting up security groups using the APIs
 {: #setting-up-security-groups-using-the-apis}
 
-The following example demonstrates how to create and manage security groups, using the {{site.data.keyword.cloud}} Regional APIs (RIAS).
+The following example demonstrates how to create and manage security groups, using the {{site.data.keyword.cloud}} VPC APIs.
 
 ## Prerequisites
 {: #security-group-prerequisites}
@@ -36,7 +36,7 @@ Instructions for creating a VPC and a subnet are available in our [Creating a VP
 Create a security group named `my-security-group` in your {{site.data.keyword.cloud_notm}} VPC.
 
 ```
-curl -X POST "$rias_endpoint/v1/security_groups?version=2019-01-01&generation=1" \
+curl -X POST "$rias_endpoint/v1/security_groups?version=2019-05-31&generation=1" \
   -H "Authorization: $iam_token" \
   -d '{
         "name": "my-security-group",
@@ -58,7 +58,7 @@ sg=2d364f0a-a870-42c3-a554-000000632953
 Create a rule on the security group that will allow inbound connections on port 22.
 
 ```
-curl -X POST "$rias_endpoint/v1/security_groups/$sg/rules?version=2019-01-01&generation=1" \
+curl -X POST "$rias_endpoint/v1/security_groups/$sg/rules?version=2019-05-31&generation=1" \
   -H "Authorization: $iam_token" \
   -d '{
         "direction": "inbound",
@@ -75,7 +75,7 @@ curl -X POST "$rias_endpoint/v1/security_groups/$sg/rules?version=2019-01-01&gen
 To clean up the security group, it cannot be associated with any network interfaces, and it cannot be referenced by a rule in a different security group.
 
 ```
-curl -X DELETE "$rias_endpoint/v1/security_groups/$sg?version=2019-01-01&generation=1" \
+curl -X DELETE "$rias_endpoint/v1/security_groups/$sg?version=2019-05-31&generation=1" \
   -H "Authorization: $iam_token"
 ```
 {: pre}

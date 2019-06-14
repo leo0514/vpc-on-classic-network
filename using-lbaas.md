@@ -3,7 +3,7 @@
 
 copyright:
   years: 2018, 2019
-lastupdated: "2019-05-29"
+lastupdated: "2019-06-12"
 
 keywords: load balancer, public, listener, back-end, front-end, pool, round-robin, weighted, connections, methods, policies, APIs, access, ports
 
@@ -194,7 +194,7 @@ For all incoming HTTPS connections, the load balancer service terminates the SSL
 
 An SSL certificate is required for the load balancer to perform SSL offloading tasks. You may manage the SSL certificates through [IBM Certificate Manager ![External link icon](../icons/launch-glyph.svg "External link icon")](/docs/services/certificate-manager?topic=certificate-manager-gettingstarted){: new_window}.
 
-To give a load balancer access to your SSL certificate, you must enable **service-to-service authorization**, which grants your load balancer service instance access to your certificate manager instance. You may manage such an authorization by following this documentation [Granting access between services ![External link icon](../icons/launch-glyph.svg "External link icon")](/docs/iam?topic=iam-serviceauth#create-auth){: new_window}. Make sure to choose **Infrastructure Service** as the source service, **Load Balancer for VPC** as the resource type, **Certificate Manager** as the target service, and assign the **Writer** service access role.
+To give a load balancer access to your SSL certificate, you must enable **service-to-service authorization**, which grants your load balancer service instance access to your certificate manager instance. You may manage such an authorization by following this documentation [Granting access between services ![External link icon](../icons/launch-glyph.svg "External link icon")](/docs/iam?topic=iam-serviceauth#create-auth){: new_window}. Make sure to choose **VPC Infrastructure** as the source service, **Load Balancer for VPC** as the resource type, **Certificate Manager** as the target service, and assign the **Writer** service access role.
 
 If the required authorization is removed, errors may occur for your load balancer.
 {: note}
@@ -231,7 +231,7 @@ To create a load balancer, you'll need access to a resource group. The user who 
 2. Select the name of the user to whom you want to assign an access policy. If the user is not shown, click **Invite users** to add the user to your IBM Cloud account.
 3. Select **Assign access**.
 4. Select **Assign access to resources**.
-5. From the **Services** drop-down list, select **Infrastructure Service**.
+5. From the **Services** drop-down list, select **VPC Infrastructure**.
 6. From the **Resource type** drop-down list, select **Load Balancer for VPC**.
 7. From the **Load Balancer ID** drop-down list, select a Load Balancer instance ID, or use the default value, **All load balancers**.
 8. Assign a platform access role to the user.
@@ -242,28 +242,7 @@ To create a load balancer, you'll need access to a resource group. The user who 
 
 Load balancer service is integrated with **IBM Cloud Activity Tracker with LogDNA**, which records events, in a manner compliant with the CADF standard, as triggered by user-initiated activities that change the state of service in the cloud.
 
-The following actions on the load balancer service instances are recorded as auditing events:
-
-| Resource | Action | Description |
-|--------|-------|-------|
-| Load balancer |  is.load-balancer.load-balancer.create | Load balancer was created |
-| Load balancer |  is.load-balancer.load-balancer.update | Load balancer was updated |
-| Load balancer |  is.load-balancer.load-balancer.delete | Load balancer was deleted |
-| Listener |  is.load-balancer.load-balancer.listener.create | Listener was created |
-| Listener |  is.load-balancer.load-balancer.listener.update | Listener was updated |
-| Listener |  is.load-balancer.load-balancer.listener.delete | Listener was deleted |
-| Pool |  is.load-balancer.load-balancer.pool.create | Pool was created |
-| Pool |  is.load-balancer.load-balancer.pool.update | Pool was updated |
-| Pool |  is.load-balancer.load-balancer.pool.delete | Pool was deleted |
-| Member |  is.load-balancer.load-balancer.pool.member.create | Member was created |
-| Member |  is.load-balancer.load-balancer.pool.member.update | Member was updated |
-| Member |  is.load-balancer.load-balancer.pool.member.delete | Member was deleted |
-| Policy |  is.load-balancer.load-balancer.listener.policy.create | Policy was created |
-| Policy |  is.load-balancer.load-balancer.listener.policy.update | Policy was updated |
-| Policy |  is.load-balancer.load-balancer.listener.policy.delete | Policy was deleted |
-| Rule |  is.load-balancer.load-balancer.listener.policy.rule.create | Rule was created |
-| Rule |  is.load-balancer.load-balancer.listener.policy.rule.update | Rule was updated |
-| Rule |  is.load-balancer.load-balancer.listener.policy.rule.delete | Rule was deleted |
+For a detailed list of actions that are recorded as auditing events on the load balancer service instances, refer to [Activity tracker with LogDNA events](/docs/vpc-on-classic?topic=vpc-on-classic-at-events#events-load-balancers).
 
 All auditing events are recorded to "IBM Cloud Activity Tracker with LogDNA" in the `us-south` region. It does not matter in which region the load balancer service is provisioned.
 {:note}
@@ -353,7 +332,7 @@ curl -X GET "$rias_endpoint/v1/load_balancers?version=2019-05-31&generation=1" -
 ```
 {: pre}
 
-The following section gives details about APIs you can use for load balancers in your VPC environment. For the full spec, see the [VPC on Classic API reference](https://{DomainName}/apidocs/vpc-on-classic#retrieves-all-load-balancers).
+The following section gives details about APIs you can use for load balancers in your VPC environment. For the full spec, see the [VPC on Classic API reference](https://{DomainName}/apidocs/vpc-on-classic#list-all-load-balancers).
 
 | Description | API |
 |-------------|-----|

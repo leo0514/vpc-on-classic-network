@@ -4,7 +4,7 @@
 
 copyright:
   years: 2017,2018, 2019
-lastupdated: "2019-05-28"
+lastupdated: "2019-06-04"
 
 keywords: VPN, network, encryption, authentication, algorithm, IKE, IPsec, policies, gateway, auto-negotiation
 
@@ -26,6 +26,7 @@ subcollection: vpc-on-classic-network
 
 # Using VPN with your VPC
 {: #--using-vpn-with-your-vpc}
+[comment]: # (linked help topic)
 
 The {{site.data.keyword.cloud}} VPC VPN service allows you to connect private networks in a secure fashion. You can use VPN to set up an IPsec site-to-site tunnel between your VPC and your on-premise private network or another VPC.
 
@@ -50,7 +51,7 @@ For the current {{site.data.keyword.cloud}} VPC release, only policy-based routi
 ## APIs available
 {: #apis-available}
 
-The following section gives details about APIs you can use for VPN in your IBM Cloud VPC environment. Please see the [VPC REST APIs](https://{DomainName}/apidocs/vpc-on-classic#retrieves-all-ike-policies) page for more details.
+The following section gives details about APIs you can use for VPN in your IBM Cloud VPC environment. Please see the [VPC REST APIs](https://{DomainName}/apidocs/vpc-on-classic#list-all-ike-policies) page for more details.
 
 ### VPN gateways and VPN connections
 {: #vpn-gateways-and-vpn-connections}
@@ -455,3 +456,7 @@ We support up to 650 Mbps of throughput.
 **Is PSK and Certificate based IKE authentication supported for VPNaaS?**
 
 Only PSK authentication is supported.
+
+**Can you use VPN for VPC as a VPN Gateway for your IBM Cloud Infrastructure Classic?**
+
+No, in order to use VPN Gateway in your IBM Cloud Infrastructure Classic environment, you must use the [IPsec VPN](https://cloud.ibm.com/catalog/infrastructure/ipsec-vpn).

@@ -23,6 +23,7 @@ subcollection: vpc-on-classic-network
 
 # Using security groups
 {: #using-security-groups}
+[comment]: # (linked help topic)
 
 Security groups give you a convenient way to apply rules that establish filtering to each network interface of a virtual server instance (VSI), based on IP address. When you create a new security group resource, you will update it to create the network traffic patterns you desire.
 

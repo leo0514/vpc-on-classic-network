@@ -3,7 +3,7 @@
 copyright:
   years: 2019
 
-lastupdated: "2019-05-17"
+lastupdated: "2019-06-11"
 
 keywords: ACLs, network, CLI, example, tutorial, firewall, subnet, inbound, outbound, rule
 
@@ -23,6 +23,7 @@ subcollection: vpc-on-classic-network
 
 # Setting up Network ACLs
 {: #setting-up-network-acls}
+[comment]: # (linked help topic)
 
 With the Access Control List (ACL) functionality available in {{site.data.keyword.cloud}} Virtual Private Cloud, you can control all incoming and outgoing traffic related to your critical business workloads on the cloud. An ACL is a built-in, virtual firewall, similar to a security group. In contrast to security groups, ACL rules control traffic to and from the _subnets_, rather than to and from the _instances_.
 
@@ -41,13 +42,17 @@ You can set up and manage ACLs through the API, CLI, or UI.
 
 * See [Configuring the ACL using the UI](/docs/vpc-on-classic?topic=vpc-on-classic-creating-a-vpc-using-the-ibm-cloud-console#configuring-the-acl) for information about how to set up ACLs in {{site.data.keyword.cloud_notm}} console.
 
+ACL rules control traffic to and from the _subnets_. It appears that the VPC API, CLI, and UI provide support to customize the **destination IP range** for inbound rules and **source IP range** for outbound rules, however these addresses are not customizable. **The destination IP range of inbound ACL rules and the source IP range of outbound ACL rules are each tied to the attached subnets**. Therefore, in practice, **0.0.0.0/0** should be used as the destination IP of inbound rules and source IP of outbound rules.
+{: note}
+
 ## Working with ACLs and ACL rules
 {: #working-with-acls-and-acl-rules}
 
 To make your ACLs effective, you'll create rules that determine how to handle your inbound and outbound network traffic. You can create multiple inbound and outbound rules. See [Quotas](/docs/vpc-on-classic?topic=vpc-on-classic-quotas) for specific information about how many rules you can create.
 
-* With inbound and outbound rules, you can allow or deny traffic from a source IP range or to a destination IP range, with specified protocols and ports.  
-* ACL rules are considered in sequence. Low-priority rules are evaluated only when the higher-priority rules do not match.
+* With inbound rules, you can allow or deny traffic from a source IP range, with specified protocols and ports. The destination IP range is determined by the attached subnet.
+* With outbound rules, you can allow or deny traffic to a destination IP range, with specified protocols and ports. The source IP range is determined by the attached subnet.
+* ACL rules are considered in sequence. Rules with a greater priority number (such as 2) are evaluated only if rules with a lower priority number (such as 1) do not match.
 * Inbound rules are separated from outbound rules.
 * The protocols currently supported are TCP, UDP, and ICMP. You also can use the **all** option to designate _all_ or _other_ protocols (if a rule with a higher priority is specified).
 
@@ -80,28 +85,28 @@ As a best practice, it's recommended that you give fine-grained rules a higher p
 
 **ACL-1 example rules**:
 
-| Inbound/Outbound| Allow/Deny | Source/Destination IP | Protocol | Port | Description|
-|--------------|-----------|------|------|------------------|-------|
-| Inbound | Allow | 0.0.0.0/0 | TCP| 80 | Allow HTTP traffic from the Internet|
-| Inbound | Allow | 0.0.0.0/0 | TCP | 443 | Allow HTTPS traffic from the Internet|
-| Inbound | Allow| 10.10.20.0/24 |all| all| Allow all inbound traffic from the subnet 10.10.20.0/24 where the backend servers are placed|
-| Inbound | Deny| 0.0.0.0/0|all| all| Deny all other traffic inbound|
-| Outbound | Allow | 0.0.0.0/0 | TCP|80 | Allow HTTP traffic to the Internet|
-| Outbound | Allow | 0.0.0.0/0 | TCP|443 | Allow HTTPS traffic to the Internet|
-| Outbound | Allow| 10.10.20.0/24 |all| all| Allow all outbound traffic to the subnet 10.10.20.0/24 where the backend servers are placed|
-| Outbound | Deny| 0.0.0.0/0|all| all| Deny all other traffic outbound|
+| Inbound/Outbound| Allow/Deny | Source IP | Destination IP | Protocol | Port | Description|
+|--------------|-----------|------|------|------|------------------|-------|
+| Inbound | Allow | 0.0.0.0/0 | 0.0.0.0/0 | TCP| 80 | Allow HTTP traffic from the Internet|
+| Inbound | Allow | 0.0.0.0/0 | 0.0.0.0/0 | TCP | 443 | Allow HTTPS traffic from the Internet|
+| Inbound | Allow| 10.10.20.0/24 | 0.0.0.0/0 |all| all| Allow all inbound traffic from the subnet 10.10.20.0/24 where the backend servers are placed|
+| Inbound | Deny| 0.0.0.0/0| 0.0.0.0/0 |all| all| Deny all other traffic inbound|
+| Outbound | Allow | 0.0.0.0/0 | 0.0.0.0/0 | TCP|80 | Allow HTTP traffic to the Internet|
+| Outbound | Allow | 0.0.0.0/0 | 0.0.0.0/0 | TCP|443 | Allow HTTPS traffic to the Internet|
+| Outbound | Allow| 0.0.0.0/0 | 10.10.20.0/24 |all| all| Allow all outbound traffic to the subnet 10.10.20.0/24 where the backend servers are placed|
+| Outbound | Deny| 0.0.0.0/0 | 0.0.0.0/0|all| all| Deny all other traffic outbound|
 
 
 **ACL-2 example rules**:
 
-| Inbound/Outbound| Allow/Deny | Source/Destination IP | Protocol| Port | Description|
-|--------------|-----------|------|------|------------------|--------|
-| Inbound | Allow| 10.10.10.0/24 |all| all| Allow all inbound traffic from the subnet 10.10.10.0/24 where the web servers are placed|
-| Inbound | Deny| 0.0.0.0/0|all| all| Deny all other traffic inbound|
-| Outbound | Allow | 0.0.0.0/0 | TCP| 80 | Allow HTTP traffic to the Internet|
-| Outbound | Allow | 0.0.0.0/0 | TCP| 443 | Allow HTTPS traffic to the Internet|
-| Outbound | Allow| 10.10.10.0/24 |all| all| Allow all outbound traffic to the subnet 10.10.10.0/24 where the web servers are placed|
-| Outbound | Deny| 0.0.0.0/0|all| all| Deny all other traffic outbound|
+| Inbound/Outbound| Allow/Deny | Source IP | Destination IP | Protocol| Port | Description|
+|--------------|-----------|------|------|------|------------------|--------|
+| Inbound | Allow| 10.10.10.0/24 | 0.0.0.0/0 |all| all| Allow all inbound traffic from the subnet 10.10.10.0/24 where the web servers are placed|
+| Inbound | Deny| 0.0.0.0/0| 0.0.0.0/0 |all| all| Deny all other traffic inbound|
+| Outbound | Allow | 0.0.0.0/0 | 0.0.0.0/0 | TCP| 80 | Allow HTTP traffic to the Internet|
+| Outbound | Allow | 0.0.0.0/0 | 0.0.0.0/0 | TCP| 443 | Allow HTTPS traffic to the Internet|
+| Outbound | Allow| 0.0.0.0/0 | 10.10.10.0/24 |all| all| Allow all outbound traffic to the subnet 10.10.10.0/24 where the web servers are placed|
+| Outbound | Deny| 0.0.0.0/0 | 0.0.0.0/0|all| all| Deny all other traffic outbound|
 
 This example illustrates general cases only. In your scenarios, you also may want to have more granular control over the traffic:
 
@@ -216,10 +221,10 @@ acl200e="11110627-1a1d-447b-859f-ac9431986b6f"
 ibmcloud is network-acl-rule-add my_web_acl_rule100e $webacl allow outbound all 0.0.0.0/0 10.10.20.0/24 \
 --before-rule $acl200e
 acl100e="22220627-1a1d-447b-859f-ac9431986b6f"
-ibmcloud is network-acl-rule-add my_web_acl_rule20e $webacl allow outbound tcp 0.0.0.0/0 10.10.20.0/24 \
+ibmcloud is network-acl-rule-add my_web_acl_rule20e $webacl allow outbound tcp 0.0.0.0/0 0.0.0.0/0 \
 --port-max 443 --port-min 443 --before-rule $acl100e
 acl20e="33330627-1a1d-447b-859f-ac9431986b6f"
-ibmcloud is network-acl-rule-add my_web_acl_rule10e $webacl allow outbound tcp 0.0.0.0/0 10.10.20.0/24 \
+ibmcloud is network-acl-rule-add my_web_acl_rule10e $webacl allow outbound tcp 0.0.0.0/0 0.0.0.0/0 \
 --port-max 80 --port-min 80 --before-rule $acl20e
 ```
 {: codeblock}
