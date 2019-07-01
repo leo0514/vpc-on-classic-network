@@ -5,7 +5,7 @@ copyright:
 
 lastupdated: "2019-05-14"
 
-keywords: API, CLI, commands, comparison, security groups, ACL
+keywords: API, CLI, commands, comparison, security groups, ACL, vpc
 
 subcollection: vpc-on-classic-network
 

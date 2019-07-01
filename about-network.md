@@ -4,7 +4,7 @@ copyright:
   years: 2017, 2018, 2019
 lastupdated: "2019-05-14"
 
-keywords: secure, region, zone, subnet, terminology, public gateway, floating IP, NAT
+keywords: vpc, vpc network, secure, region, zone, subnet, terminology, public gateway, floating IP, NAT
 
 subcollection: vpc-on-classic-network
 

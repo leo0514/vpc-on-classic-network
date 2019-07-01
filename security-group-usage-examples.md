@@ -4,7 +4,7 @@ copyright:
   years: 2017, 2018, 2019
 lastupdated: "2019-05-14"
 
-keywords: security groups, RIAS, API, delete, create
+keywords: security groups, RIAS, API, delete, create, vpc, vpc network
 
 subcollection: vpc-on-classic-network
 

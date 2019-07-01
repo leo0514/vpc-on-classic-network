@@ -4,7 +4,7 @@ copyright:
   years: 2018, 2019
 lastupdated: "2019-06-07"
 
-keywords: vpc, address prefix, region, subnet, zone, reserved, IP, ranges, deleting, creating, CIDR
+keywords: vpc, address prefix, region, subnet, zone, reserved, IP, ranges, deleting, creating, CIDR, vpc network
 
 subcollection: vpc-on-classic-network
 
@@ -125,4 +125,3 @@ You can specify a subnet for your VPC in two ways:
 
 As an example of how to specify a 1024 block using CIDR, if you're specifying a CIDR range rather than a subnet size, the IPv4 block `192.168.100.0/22` represents the 1024 IPv4 addresses from `192.168.100.0` to `192.168.103.255`.
 {:tip}
-

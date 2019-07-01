@@ -5,7 +5,7 @@ copyright:
   years: 2018, 2019
 lastupdated: "2019-06-12"
 
-keywords: load balancer, public, listener, back-end, front-end, pool, round-robin, weighted, connections, methods, policies, APIs, access, ports
+keywords: load balancer, public, listener, back-end, front-end, pool, round-robin, weighted, connections, methods, policies, APIs, access, ports, vpc, vpc network
 
 subcollection: vpc-on-classic-network
 

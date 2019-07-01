@@ -5,7 +5,7 @@ copyright:
 
 lastupdated: "2019-05-14"
 
-keywords: default, security group, asynchronous, rules
+keywords: default, security group, asynchronous, rules, vpc, vpc network
 
 subcollection: vpc-on-classic-network
 
@@ -63,8 +63,8 @@ Inbound rules to allow ping and SSH are not automatically added to the default s
    ```
    {: pre}
 
-   The default security group name is shown under the column `Default Security Group`. Note the name of it so that you can find the `ID` when you list the security groups (next). 
-   
+   The default security group name is shown under the column `Default Security Group`. Note the name of it so that you can find the `ID` when you list the security groups (next).
+
    Now list all the security groups in the VPC:
 
    ```
@@ -85,7 +85,7 @@ Inbound rules to allow ping and SSH are not automatically added to the default s
    ibmcloud is security-group $sg
    ```
    {: pre}
-   
+
    Alternatively, you could insert the actual ID value in place of the variable `$sg`.
 
 3. Update the default security group -- add rules allowing SSH and PING

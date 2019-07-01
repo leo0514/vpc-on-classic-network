@@ -4,7 +4,7 @@ copyright:
   years: 2017, 2018, 2019
 lastupdated: "2019-06-06"
 
-keywords: provisioning, resources, permissions
+keywords: vpc, vpc network, provisioning, resources, permissions
 
 subcollection: vpc-on-classic-network
 

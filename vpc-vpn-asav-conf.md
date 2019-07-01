@@ -4,18 +4,18 @@ copyright:
   years: 2018, 2019
 lastupdated: "2019-05-14"
 
-keywords: peering, Cisco, ASAv, connection, secure, remote
+keywords: peering, Cisco, ASAv, connection, secure, remote, vpc, vpc network
 
 subcollection: vpc-on-classic-network
 
 ---
 
-{:shortdesc: .shortdesc} 
-{:new_window: target="_blank"} 
-{:DomainName: data-hd-keyref="DomainName"} 
-{:note: .note} 
-{:important: .important} 
-{:deprecated: .deprecated} 
+{:shortdesc: .shortdesc}
+{:new_window: target="_blank"}
+{:DomainName: data-hd-keyref="DomainName"}
+{:note: .note}
+{:important: .important}
+{:deprecated: .deprecated}
 {:generic: data-hd-programlang="generic"}
 
 # Creating a secure connection with a remote Cisco ASAv peer
@@ -54,12 +54,12 @@ Create an Internet Key Exchange (IKE) version 2 proposal object. IKEv2 proposal 
 contain the parameters required for creating IKEv2 proposals when defining remote access and
 site-to-site VPN policies. IKE is a key management protocol that facilitates the management of
 IPsec-based communications. It is used to authenticate IPsec peers, negotiate and distribute
-IPsec encryption keys, and automatically establish IPsec security associations (SAs). 
+IPsec encryption keys, and automatically establish IPsec security associations (SAs).
 
 ```
 group-policy GroupPolicy_161.156.80.10 internal
 group-policy GroupPolicy_161.156.80.10 attributes
- vpn-tunnel-protocol ikev1 ikev2 
+ vpn-tunnel-protocol ikev1 ikev2
 tunnel-group 161.156.80.10 type ipsec-l2l
 tunnel-group 161.156.80.10 general-attributes
  default-group-policy GroupPolicy_161.156.80.10
@@ -99,9 +99,9 @@ lifetime seconds 36000
 * Define the access list and crypto map for VPN:
 
 ```
-access-list outside_cryptomap_1 extended permit ip object NETWORK_OBJ_192.168.236.0_24 object vpc 
+access-list outside_cryptomap_1 extended permit ip object NETWORK_OBJ_192.168.236.0_24 object vpc
 crypto map outside_map 1 match address outside_cryptomap_1
-crypto map outside_map 1 set peer 161.156.80.10 
+crypto map outside_map 1 set peer 161.156.80.10
 crypto map outside_map 1 set ikev1 transform-set ESP-AES-128-SHA ESP-AES-128-MD5 ESP-AES-192-SHA ESP-AES-192-MD5 ESP-AES-256-SHA ESP-AES-256-MD5 ESP-3DES-SHA ESP-3DES-MD5 ESP-DES-SHA ESP-DES-MD5
 crypto map outside_map 1 set ikev2 ipsec-proposal AES256 AES192 AES 3DES DES
 crypto map outside_map interface outside
@@ -115,7 +115,7 @@ To create a secure connection, you'll create the VPN connection within your VPC,
 
 * Create a VPN gateway on your VPC subnet  along with a VPN connection between the VPC and the Cisco ASAv, setting `local_cidrs` to the subnet value on the VPC, and `peer_cidrs` to the subnet value on the Cisco ASAv.
 
-The gateway status appears as `pending` while the VPN gateway is being created, and the status becomes `available` once creation is complete. Creation may take some time. 
+The gateway status appears as `pending` while the VPN gateway is being created, and the status becomes `available` once creation is complete. Creation may take some time.
 {:note}
 
 

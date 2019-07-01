@@ -5,7 +5,7 @@ copyright:
 
 lastupdated: "2019-05-14"
 
-keywords: security group, VSI, ping, TCP, outbound, SG4, rules, metadata, setting up
+keywords: security group, VSI, ping, TCP, outbound, SG4, rules, metadata, setting up, vpc, vpc network
 
 subcollection: vpc-on-classic-network
 

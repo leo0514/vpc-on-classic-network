@@ -4,7 +4,7 @@ copyright:
   years: 2018, 2019
 lastupdated: "2019-05-29"
 
-keywords: security, ACLs, security groups, traffic, subnet, instance, VSI, firewall, encryption
+keywords: security, ACLs, security groups, traffic, subnet, instance, VSI, firewall, encryption, vpc, vpc network
 
 subcollection: vpc-on-classic-network
 

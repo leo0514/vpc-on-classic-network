@@ -4,7 +4,7 @@ copyright:
   years: 2017, 2018, 2019
 lastupdated: "2019-05-14"
 
-keywords: VPC, subnet, address prefixes, design, addressing
+keywords: VPC, subnet, address prefixes, design, addressing, vpc network
 
 subcollection: vpc-on-classic-network
 
@@ -21,13 +21,13 @@ subcollection: vpc-on-classic-network
 {:download: .download}
 
 
-# Designing an Addressing Plan for a VPC 
+# Designing an Addressing Plan for a VPC
 {: #vpc-addressing-plan-design}
 
 The first step in designing your VPC should be to design your addressing plan. A properly executed addressing plan has two goals:
 
 * It meets the communication requirements of VPC instances.
-* It maintains flexibility for future growth. 
+* It maintains flexibility for future growth.
 
 This document gives an example of designing the addressing plan for a three-tiered web application, in which each tier is supported by multiple zones.
 
@@ -65,17 +65,17 @@ The next step is to determine each tier's subnet size (in terms of available add
 
 Here are the considerations we are using when planning each tier's subnet size:
 
-* The database tier (the back end) is the least likely one to need dynamic scaling, so these subnets can be the smallest. That is, these subnets may contain the least number of available addresses. 
+* The database tier (the back end) is the least likely one to need dynamic scaling, so these subnets can be the smallest. That is, these subnets may contain the least number of available addresses.
     * _This example uses a `/27` CIDR block, which allows for 27 addresses in this tier._
-* The middle tier is the most likely to need dynamic scaling, so these subnets will be the largest. That is, they must contain the greatest number of available addresses. 
+* The middle tier is the most likely to need dynamic scaling, so these subnets will be the largest. That is, they must contain the greatest number of available addresses.
     * _This example uses a `/25` CIDR block, which allows for 123 addresses in this tier._
-* The front-end tier fits in between; it won't need as many addresses as the middle tier, but it needs more than the database tier does. 
+* The front-end tier fits in between; it won't need as many addresses as the middle tier, but it needs more than the database tier does.
     * _This example uses a `/26` CIDR block, which allows for 59 addresses in this tier._
 
 ## Combining the subnets and selecting the address prefixes
 {: #combining-the-subnets-and-selecting-the-address-prefixes}
 
-To select an acceptable address prefix for each zone, you'll need a subnet size that's large enough to accommodate all three of the subnets in each tier, and still leave room for horizontal scaling and future expansion. 
+To select an acceptable address prefix for each zone, you'll need a subnet size that's large enough to accommodate all three of the subnets in each tier, and still leave room for horizontal scaling and future expansion.
 
 A `/24` address prefix is the smallest prefix into which these three subnets can be combined (27 + 123 + 59). As a best practice, it is recommended to select the next larger subnet size, not the smallest. Assigning the next larger subnet size (`/23`) allows for horizontal scaling beyond the limits given previously, because it allows for adding new subnets to each layer, from within the same address prefix.
 

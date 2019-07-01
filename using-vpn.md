@@ -6,7 +6,7 @@ copyright:
   years: 2017,2018, 2019
 lastupdated: "2019-06-04"
 
-keywords: VPN, network, encryption, authentication, algorithm, IKE, IPsec, policies, gateway, auto-negotiation
+keywords: VPN, network, encryption, authentication, algorithm, IKE, IPsec, policies, gateway, auto-negotiation, vpc, vpc network
 
 subcollection: vpc-on-classic-network
 
@@ -356,7 +356,7 @@ See our [VPC Quotas](/docs/vpc-on-classic?topic=vpc-on-classic-quotas#vpn-quotas
 ## Policy auto-negotiation
 {: #policy-auto-negotiation}
 
-The use of IKE and IPsec policies to configure a VPN connection is optional. When no policy is selected, default proposals are chosen automatically for a process referred to as _auto-negotiation_. 
+The use of IKE and IPsec policies to configure a VPN connection is optional. When no policy is selected, default proposals are chosen automatically for a process referred to as _auto-negotiation_.
 
 The IBM Cloud auto-negotiation uses **IKEv2** and therefore, the on-premise device must also use **IKEv2**. Use a customized IKE policy if your on-premise device does not support **IKEv2**.
 {: note}

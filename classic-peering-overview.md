@@ -4,7 +4,7 @@ copyright:
   years: 2017, 2018, 2019
 lastupdated: "2019-05-29"
 
-keywords: peering, classic, infrastructure, VRF, resources
+keywords: vpc, vpc network, peering, classic, infrastructure, VRF, resources
 
 subcollection: vpc-on-classic-network
 

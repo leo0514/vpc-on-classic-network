@@ -5,7 +5,7 @@ copyright:
 
 lastupdated: "2019-06-11"
 
-keywords: ACLs, network, CLI, example, tutorial, firewall, subnet, inbound, outbound, rule
+keywords: ACLs, network, CLI, example, tutorial, firewall, subnet, inbound, outbound, rule, vpc, vpc network
 
 subcollection: vpc-on-classic-network
 

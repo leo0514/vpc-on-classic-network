@@ -4,7 +4,7 @@ copyright:
   years: 2017, 2018, 2019
 lastupdated: "2019-05-14"
 
-keywords: peering, StrongSwan, connection, secure, Linux, remote
+keywords: peering, StrongSwan, connection, secure, Linux, remote, vpc, vpc network
 
 subcollection: vpc-on-classic-network
 

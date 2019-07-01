@@ -3,7 +3,7 @@ copyright:
   years: 2019
 lastupdated: "2019-05-14"
 
-keywords: security groups, traffic, firewall, stateful, filtering, access, control, list, ACL, stateless, traffic, resource
+keywords: security groups, traffic, firewall, stateful, filtering, access, control, list, ACL, stateless, traffic, resource, vpc, security
 
 subcollection: vpc-on-classic-network
 ---

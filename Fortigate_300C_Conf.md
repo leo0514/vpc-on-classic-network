@@ -4,7 +4,7 @@ copyright:
   years: 2017, 2018, 2019
 lastupdated: "2019-05-14"
 
-keywords: peering, FortiGate, connection, secure
+keywords: peering, FortiGate, connection, secure, vpc
 
 subcollection: vpc-on-classic-network
 
