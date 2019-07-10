@@ -1,0 +1,52 @@
+{:navgroup: .navgroup}
+{:topicgroup: .topicgroup}
+
+{: .toc subcollection="vpc-on-classic-network" category="vpc,network" audience="service" arm="4135753" href="/docs/vpc-on-classic-network?topic=vpc-on-classic-network-getting-started" path="vpc-on-classic-network"}
+가상 사설 클라우드의 네트워킹
+
+    {: .navgroup id="learn"}
+    getting-started.md
+    about-network.md
+    vpc-networking-concepts.md
+    vpc-security.md
+    classic-peering-overview.md
+    vpc-regions-and-subnets.md
+    compare-sg-acl.md
+    {: .navgroup-end}
+
+    {: .navgroup id="howto"}
+    how-to-design-your-vpc.md
+    how-to-choose-ipv4.md
+
+    {: .topicgroup}
+    보안 그룹
+        security-groups.md
+        security-groups-default.md
+        security-groups-example.md
+        security-group-usage-examples.md
+        
+    using-acls.md
+    using-lbaas.md
+    using-vpn.md
+
+    {: .topicgroup}
+    VPN 설정
+        Vyatta_Conf.md
+        Strongswan_Conf.md
+        Fortigate_300C_Conf.md
+        vSRX_conf.md
+        vpc-vpn-asav-conf.md
+    {: .navgroup-end}
+
+    {: .navgroup id="reference"}
+    [VPC에 대한 API 참조](https://cloud.ibm.com/apidocs/vpc-on-classic)
+    /vpc-infrastructure-cli-plugin/vpc-infrastructure-cli-plugin-vpc-reference
+    [Go 및 Python 예제 코드](https://github.com/IBM-Cloud/vpc-api-samples)
+    [Terraform](https://ibm-cloud.github.io/tf-ibm-docs/index.html)
+    [내보내기 프로그램 도구](https://github.com/l2fprod/vpc-diagram-exporter)
+    step-by-step-pages.md
+    {: .navgroup-end}
+
+    {: .navgroup id="help"}
+    /vpc-on-classic/vpc-on-classic-getting-help-and-support
+    {: .navgroup-end}
