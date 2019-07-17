@@ -11,6 +11,7 @@ Networking for Virtual Private Cloud
     vpc-security.md
     classic-peering-overview.md
     vpc-regions-and-subnets.md
+    advanced-vpc-routing.md
     compare-sg-acl.md
     {: .navgroup-end}
 
