@@ -19,12 +19,13 @@ subcollection: vpc-on-classic-network
 {:note: .note}
 {:important: .important}
 {:download: .download}
+{:DomainName: data-hd-keyref="DomainName"}
 
 
 
 # Setting Up Advanced Routing in VPC
 
-The {{site.data.keyword.cloud}} VPC Routes API allows you to control the flow of network traffic in your VPC.  It allows you to specify the next hop for packets, filtered by their destination addresses.
+The {{site.data.keyword.vpc_short}} [Routes API](https://{DomainName}/apidocs/vpc-on-classic#create-a-route-on-your-vpc) allows you to control the flow of network traffic in your VPC.  It allows you to specify the next hop for packets, filtered by their destination addresses.
 
 ## Routing structure
 

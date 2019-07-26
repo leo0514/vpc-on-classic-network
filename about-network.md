@@ -19,6 +19,7 @@ subcollection: vpc-on-classic-network
 {:note: .note}
 {:important: .important}
 {:download: .download}
+{:external: target="_blank" .external}
 
 # About Networking for VPC
 {: #about-networking-for-vpc}
@@ -114,7 +115,7 @@ A public gateway is created in a VPC, but the gateway does nothing until it is a
 ## Limitations of subnets
 {: #limitations-of-subnets}
 
-For a complete list of known limitations and features not currently supported, please refer to the [Known Limitations](/docs/vpc-on-classic?topic=vpc-on-classic-known-limitations) document.
+For a complete list of known limitations and features not currently supported, please refer to the [Known Limitations](/docs/vpc-on-classic?topic=vpc-on-classic-known-limitations).
 
 ### Restrictions on deleting a subnet
 {: #restrictions-on-deleting-a-subnet}
@@ -146,7 +147,7 @@ Your Floating IP address cannot be associated with multiple interfaces. You mus
 * **Currently, Floating IP supports only IPv4 addresses.**
 * **You cannot bring your own public IP address to use as a floating IP.**
 
-For more information about NAT operations, please refer to [the related Internet RFC document ![External link icon](../../icons/launch-glyph.svg "External link icon")](http://www.faqs.org/rfcs/rfc1631.html){: new_window}.
+For more information about NAT operations, please refer to [the related Internet RFC document](http://www.faqs.org/rfcs/rfc1631.html){: external}.
 
 ### Use VPN for secure external connectivity
 {: #use-vpn}

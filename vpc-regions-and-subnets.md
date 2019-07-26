@@ -19,6 +19,7 @@ subcollection: vpc-on-classic-network
 {:note: .note}
 {:important: .important}
 {:download: .download}
+{:external: target="_blank" .external}
 
 # Understanding IP address ranges, address prefixes, regions, and subnets
 {: #working-with-ip-address-ranges-address-prefixes-regions-and-subnets}
@@ -30,7 +31,7 @@ This document discusses the relationships among regions, address prefixes, and s
 * Within that one region, VPCs can span multiple zones.
 * Address prefixes enable communication between the zones a VPC spans. Each VPC gets a short-cut default address prefix for each zone it spans.
 * Subnets are created within the scope of an address prefix, meaning that a subnet must be contained completely within a single, existing address prefix.
-* If you use an IP range outside of those ranges defined by [RFC 1918](https://tools.ietf.org/html/rfc1918) (`10.0.0.0/8`, `172.16.0.0/12`, or `192.168.0.0/16`) for a subnet, the instances attached to that subnet may be unable to reach parts of the public Internet.
+* If you use an IP range outside of those ranges defined by [RFC 1918](https://tools.ietf.org/html/rfc1918){: external} (`10.0.0.0/8`, `172.16.0.0/12`, or `192.168.0.0/16`) for a subnet, the instances attached to that subnet may be unable to reach parts of the public Internet.
 
 ## IBM Cloud VPC and regions
 {: #ibm-cloud-vpc-and-regions}

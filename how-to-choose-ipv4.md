@@ -19,6 +19,7 @@ subcollection: vpc-on-classic-network
 {:note: .note}
 {:table: .aria-labeledby="caption"}
 {:download: .download}
+{:external: target="_blank" .external}
 
 
 # Choosing IP Ranges for your VPC
@@ -30,10 +31,10 @@ Use CIDR notation such as:
 
 You'll want to reserve the last 16 bits (65,536 addresses) of the IPv4 as 0s so that you can use them for various subnet IP addresses within the same {{site.data.keyword.cloud}} VPC (Subnet IP address example: 10.10.1.0/24).
 
-CIDR notation is defined in [RFC 1518](https://tools.ietf.org/html/rfc1518) and [RFC 1519](https://tools.ietf.org/html/rfc1519).
+CIDR notation is defined in [RFC 1518](https://tools.ietf.org/html/rfc1518){: external} and [RFC 1519](https://tools.ietf.org/html/rfc1519){: external}.
 {: note}
 
-If you use an IP range outside of those ranges defined by [RFC 1918](https://tools.ietf.org/html/rfc1918) (`10.0.0.0/8`, `172.16.0.0/12`, or `192.168.0.0/16`) for a subnet, the instances attached to that subnet may be unable to reach parts of the public Internet.
+If you use an IP range outside of those ranges defined by [RFC 1918](https://tools.ietf.org/html/rfc1918){: external} (`10.0.0.0/8`, `172.16.0.0/12`, or `192.168.0.0/16`) for a subnet, the instances attached to that subnet may be unable to reach parts of the public Internet.
 
 Remember, just in case you are new to CIDR notation, the smaller the number after the slash, the **more** IP addresses you are allocating, because the number after the slash represents the number of leading 1 bits in the subnet's prefix mask.
 

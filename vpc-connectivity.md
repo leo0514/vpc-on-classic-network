@@ -18,6 +18,7 @@ subcollection: vpc-on-classic-network
 {:tip: .tip}
 {:download: .download}
 {:DomainName: data-hd-keyref="DomainName"}
+{:external: target="_blank" .external}
 
 # About Networking for VPC
 {: #about-networking-for-vpc}
@@ -87,7 +88,7 @@ Your Floating IP address cannot be associated with multiple interfaces. You mus
 * **Currently, Floating IP supports only IPv4 addresses.**
 * **You cannot bring your own public IP address to use as a Floating IP.**
 
-For more information about NAT operations, please refer to [the related Internet RFC document ![External link icon](../../icons/launch-glyph.svg "External link icon")](http://www.faqs.org/rfcs/rfc1631.html){: new_window}.
+For more information about NAT operations, please refer to [the related Internet RFC document](http://www.faqs.org/rfcs/rfc1631.html){: external}.
 
 ### Use a VPN for secure external connectivity
 {: #use-a-vpn-for-secure-external-connectivity}

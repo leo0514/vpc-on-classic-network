@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2018, 2019
-lastupdated: "2019-06-06"
+lastupdated: "2019-07-22"
 
 keywords: vpc, vpc network, provisioning, resources, permissions
 
@@ -19,11 +19,12 @@ subcollection: vpc-on-classic-network
 {:important: .important}
 {:download: .download}
 {:DomainName: data-hd-keyref="DomainName"}
+{:external: target="_blank" .external}
 
-# Getting started tutorial
+# Getting started with Networking for VPC on Classic
 {: #getting-started}
 
-To get started with networking for {{site.data.keyword.cloud}} Virtual Private Cloud:
+To get started with networking for {{site.data.keyword.vpc_full}}:
 
 1. Create a Virtual Private Cloud.
 2. Create one or more subnets in the Virtual Private Cloud in one or more zones.
@@ -37,15 +38,16 @@ To get started with networking for {{site.data.keyword.cloud}} Virtual Private C
 
 The provisioning and managing of VPC network resources can be done through the UI, CLI or REST API.
 
-* For access through the user interface, log into the [IBM Cloud Console ![External link icon](../../icons/launch-glyph.svg "External link icon")]( https://{DomainName}/vpc){: new_window}. Follow the [UI guide](/docs/vpc-on-classic?topic=vpc-on-classic-creating-a-vpc-using-the-ibm-cloud-console) if you need help.
+* For access through the user interface, log into the [IBM Cloud Console](https://{DomainName}/vpc){: external}. Follow the [UI guide](/docs/vpc-on-classic?topic=vpc-on-classic-creating-a-vpc-using-the-ibm-cloud-console) if you need help.
 * To use the command line interface, follow the [Hello World](/docs/vpc-on-classic?topic=vpc-on-classic-creating-a-vpc-using-the-ibm-cloud-cli) example.
-* For more advanced users, you can call the [REST APIs](https://{DomainName}/apidocs/vpc-on-classic) directly. Follow the [example code](/docs/vpc-on-classic?topic=vpc-on-classic-creating-a-vpc-using-the-rest-apis) tutorial to get started with the REST APIs.
+* For more advanced users, you can call the [REST APIs](https://{DomainName}/apidocs/vpc-on-classic){: external} directly. Follow the [example code](/docs/vpc-on-classic?topic=vpc-on-classic-creating-a-vpc-using-the-rest-apis) tutorial to get started with the REST APIs.
 
 ## Next steps
 
 After your Virtual Private Cloud networking has been provisioned, explore more.
 
 * [Creating and managing virtual server instances](/docs/vpc-on-classic?topic=vpc-on-classic-creating-and-managing-virtual-server-instances)
+* [Creating block storage volumes](/docs/vpc-on-classic-block-storage?topic=vpc-on-classic-block-storage-creating-block-storage)
 * [Using Security Groups](/docs/vpc-on-classic-network?topic=vpc-on-classic-network-setting-up-security-groups-using-the-cli)
 * [Using Network ACLs](/docs/vpc-on-classic-network?topic=vpc-on-classic-network-setting-up-network-acls)
 * [Using VPN](/docs/vpc-on-classic-network?topic=vpc-on-classic-network---using-vpn-with-your-vpc)

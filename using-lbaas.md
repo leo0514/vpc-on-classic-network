@@ -23,6 +23,7 @@ subcollection: vpc-on-classic-network
 {:important: .important}
 {:download: .download}
 {:DomainName: data-hd-keyref="DomainName"}
+{:external: target="_blank" .external}
 
 # Using Load Balancers for VPC
 {: #--using-load-balancers-in-ibm-cloud-vpc}
@@ -39,7 +40,7 @@ Over time, these public IP addresses and the number of public IP addresses may c
 ## Private Load Balancer
 {: #private-load-balancer}
 
-The private load balancer is accessible only to internal clients on your private subnets, within the same region and VPC. The private load balancer accepts traffic only from [RFC1918 ![External link icon](../icons/launch-glyph.svg "External link icon")](https://tools.ietf.org/html/rfc1918){: new_window} address spaces.
+The private load balancer is accessible only to internal clients on your private subnets, within the same region and VPC. The private load balancer accepts traffic only from [RFC1918](https://tools.ietf.org/html/rfc1918){: external} address spaces.
 
 Similar to a public load balancer, your private load balancer service instance is assigned a fully qualified domain name (FQDN). However, this domain name is registered with one or more private IP addresses.
 
@@ -192,9 +193,9 @@ The default health check interval is 5 seconds, the default timeout against a he
 
 For all incoming HTTPS connections, the load balancer service terminates the SSL connection and establishes a plain-text HTTP communication with the back-end server instance. With this technique, CPU-intensive SSL handshakes and encryption or decryption tasks are shifted away from the back-end server instances, thereby allowing them to use all their CPU cycles for processing application traffic.
 
-An SSL certificate is required for the load balancer to perform SSL offloading tasks. You may manage the SSL certificates through [IBM Certificate Manager ![External link icon](../icons/launch-glyph.svg "External link icon")](/docs/services/certificate-manager?topic=certificate-manager-gettingstarted){: new_window}.
+An SSL certificate is required for the load balancer to perform SSL offloading tasks. You may manage the SSL certificates through [IBM Certificate Manager](/docs/services/certificate-manager?topic=certificate-manager-getting-started).
 
-To give a load balancer access to your SSL certificate, you must enable **service-to-service authorization**, which grants your load balancer service instance access to your certificate manager instance. You may manage such an authorization by following this documentation [Granting access between services ![External link icon](../icons/launch-glyph.svg "External link icon")](/docs/iam?topic=iam-serviceauth#create-auth){: new_window}. Make sure to choose **VPC Infrastructure** as the source service, **Load Balancer for VPC** as the resource type, **Certificate Manager** as the target service, and assign the **Writer** service access role.
+To give a load balancer access to your SSL certificate, you must enable **service-to-service authorization**, which grants your load balancer service instance access to your certificate manager instance. You may manage such an authorization by following this documentation [Granting access between services](/docs/iam?topic=iam-serviceauth#create-auth). Make sure to choose **VPC Infrastructure** as the source service, **Load Balancer for VPC** as the resource type, **Certificate Manager** as the target service, and assign the **Writer** service access role.
 
 If the required authorization is removed, errors may occur for your load balancer.
 {: note}
@@ -202,7 +203,7 @@ If the required authorization is removed, errors may occur for your load balance
 ## Identity and access management (IAM)
 {: #identity-and-access-management-iam}
 
-You can configure access policies for a **Load Balancer for VPC** instance. To manage your user access policies, visit [Managing access to resources ![External link icon](../icons/launch-glyph.svg "External link icon")](/docs/services/iam?topic=iam-iammanidaccser#resourceaccess){: new_window} for more information on Identity and access management.
+You can configure access policies for a **Load Balancer for VPC** instance. To manage your user access policies, visit [Managing access to resource](/docs/services/iam?topic=iam-iammanidaccser#resourceaccess) for more information on Identity and access management.
 
 ### Configuring resource group access policies for users
 {: #configuring-resource-group-access-policies-for-users}
@@ -249,14 +250,14 @@ All auditing events are recorded to "IBM Cloud Activity Tracker with LogDNA" in 
 
 To view events, you must provision an "IBM Cloud Activity Tracker with LogDNA" instance in the`us-south` region under your account. Users in your account must have an IAM policy that grants the **Viewer** platform access role and **Reader** service access role on the "IBM Cloud Activity Tracker with LogDNA" instance.
 
-More information on granting access is available at [Granting permissions to see account events. ![External link icon](../icons/launch-glyph.svg "External link icon")](https://cloud.ibm.com/docs/services/cloud-activity-tracker/how-to/grant_permissions.html#grant_permissions){: new_window}
+More information on granting access is available at [Granting permissions to see account events](/docs/services/cloud-activity-tracker/how-to?topic=cloud-activity-tracker-grant_permissions).
 
 IBM Cloud account users can monitor account-level operations performed on the load balancer service.
 {: tip}
 
 Follow these steps to provision an "IBM Cloud Activity Tracker with LogDNA" instance under your account:
 
-1. Log into the IBM Cloud console. [Log in to IBM Cloud console. ![External link icon](../icons/launch-glyph.svg "External link icon")](https://cloud.ibm.com/){: new_window}
+1. Log into the IBM Cloud console. [Log in to IBM Cloud console](https://{DomainName}/){: external}.
 2. Click on the ![Menu icon](../../icons/icon_hamburger.svg) in the upper left. From there, select **Observability > Activity Tracker**.
 3. In the upper right, click **Create Instance**.
 4. Define a service name.

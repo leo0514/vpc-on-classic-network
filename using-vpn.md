@@ -4,7 +4,7 @@
 
 copyright:
   years: 2017,2018, 2019
-lastupdated: "2019-06-04"
+lastupdated: "2019-07-23"
 
 keywords: VPN, network, encryption, authentication, algorithm, IKE, IPsec, policies, gateway, auto-negotiation, vpc, vpc network
 
@@ -23,6 +23,7 @@ subcollection: vpc-on-classic-network
 {:note: .note}
 {:download: .download}
 {:DomainName: data-hd-keyref="DomainName"}
+{:external: target="_blank" .external}
 
 # Using VPN with your VPC
 {: #--using-vpn-with-your-vpc}
@@ -51,7 +52,7 @@ For the current {{site.data.keyword.cloud}} VPC release, only policy-based routi
 ## APIs available
 {: #apis-available}
 
-The following section gives details about APIs you can use for VPN in your IBM Cloud VPC environment. Please see the [VPC REST APIs](https://{DomainName}/apidocs/vpc-on-classic#list-all-ike-policies) page for more details.
+The following section gives details about APIs you can use for VPN in your IBM Cloud VPC environment. Please see the [VPC REST APIs](https://{DomainName}/apidocs/vpc-on-classic#list-all-ike-policies){: external} page for more details.
 
 ### VPN gateways and VPN connections
 {: #vpn-gateways-and-vpn-connections}
@@ -115,7 +116,7 @@ Here is what the scenario looks like (with some VMs added in each VPC):
 
 The example steps that follow skip the prerequisite steps of using IBM Cloud API or CLI to create VPCs. For more information, see [Getting Started](/docs/vpc-on-classic?topic=vpc-on-classic-getting-started) and [VPC setup with APIs](/docs/vpc-on-classic?topic=vpc-on-classic-creating-a-vpc-using-the-rest-apis).
 
-Optionally, you can create a VPN gateway using the UI. Steps can be found in the [Console Tutorial document](/docs/vpc-on-classic?topic=vpc-on-classic-creating-a-vpc-using-the-ibm-cloud-console#creating-a-vpn).
+Optionally, you can create a VPN gateway using the UI. Steps can be found in [Creating a VPC using the IBM Cloud console](/docs/vpc-on-classic?topic=vpc-on-classic-creating-a-vpc-using-the-ibm-cloud-console#creating-a-vpn).
 
 #### Step 1. Create a VPN gateway in your VPC subnet
 {: #step-1-create-a-vpn-gateway-in-your-vpc-subnet}
@@ -459,4 +460,8 @@ Only PSK authentication is supported.
 
 **Can you use VPN for VPC as a VPN Gateway for your IBM Cloud Infrastructure Classic?**
 
-No, in order to use VPN Gateway in your IBM Cloud Infrastructure Classic environment, you must use the [IPsec VPN](https://cloud.ibm.com/catalog/infrastructure/ipsec-vpn).
+No, in order to use VPN Gateway in your IBM Cloud Infrastructure Classic environment, you must use the [IPsec VPN](https://{DomainName}/catalog/infrastructure/ipsec-vpn){: external}.
+
+**What will rekey collision cause?**
+
+If you use IKEv1, rekey collision will delete the IKE/IPsec SA. To recreate the IKE/IPsec SA, set the connection admin state to `down` and then `up` again. You can use IKEv2 to minimize rekey collisions.

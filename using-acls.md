@@ -19,6 +19,7 @@ subcollection: vpc-on-classic-network
 {:tip: .tip}
 {:download: .download}
 {:DomainName: data-hd-keyref="DomainName"}
+{:external: target="_blank" .external}
 
 
 # Setting up Network ACLs
@@ -36,7 +37,7 @@ The example given in this document shows how to create network ACLs in your VPC 
 
 You can set up and manage ACLs through the API, CLI, or UI.
 
-* See the [API Reference](https://{DomainName}/apidocs/vpc-on-classic) for the parameters, request body, and response details for each API.
+* See the [API Reference](https://{DomainName}/apidocs/vpc-on-classic){: external} for the parameters, request body, and response details for each API.
 
 * See this [CLI example](/docs/vpc-on-classic?topic=vpc-on-classic-creating-a-vpc-using-the-ibm-cloud-cli) to get command details, steps for installing the CLI plugin, and the prerequisite steps of using the VPC CLI.
 

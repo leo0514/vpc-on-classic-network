@@ -2,22 +2,22 @@
 {:topicgroup: .topicgroup}
 
 {: .toc subcollection="vpc-on-classic-network" category="vpc,network" audience="service" arm="4135753" href="/docs/vpc-on-classic-network?topic=vpc-on-classic-network-getting-started" path="vpc-on-classic-network"}
-Networking for Virtual Private Cloud
+Networking for Virtual Private Cloud on Classic
 
     {: .navgroup id="learn"}
     getting-started.md
     about-network.md
     vpc-networking-concepts.md
     vpc-security.md
-    classic-peering-overview.md
     vpc-regions-and-subnets.md
-    advanced-vpc-routing.md
     compare-sg-acl.md
     {: .navgroup-end}
 
     {: .navgroup id="howto"}
     how-to-design-your-vpc.md
     how-to-choose-ipv4.md
+    /vpc-on-classic/vpc-on-classic-setting-up-access-to-your-classic-infrastructure-from-vpc
+    advanced-vpc-routing.md
 
     {: .topicgroup}
     Security groups
@@ -25,7 +25,7 @@ Networking for Virtual Private Cloud
         security-groups-default.md
         security-groups-example.md
         security-group-usage-examples.md
-        
+
     using-acls.md
     using-lbaas.md
     using-vpn.md
