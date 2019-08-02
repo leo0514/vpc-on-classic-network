@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019
-lastupdated: "2019-07-01"
+lastupdated: "2019-08-02"
 
 keywords: vpc, secure, region, zone, subnet, routing, terminology, public gateway, floating IP, NAT, API
 
@@ -56,6 +56,10 @@ The figure that follows shows an instance running in IBM Cloud VPC in `Zone1`, w
 The figure that follows shows how we've addressed a previous limitation. With a VPN connection between 2 VPCs, one could not send traffic from one zone within a VPC through a VPN in another zone to another VPC. By adding a VPC Route to the VPC in zone `us-south-2`, we are able to route traffic from `us-south-2` to `us-south-1` through the VPN to the destination VSI.
 
 ![VPCRoutes_MZ_VPN](./images/VPCRoutes_MZ_VPN.png)
+
+The encrypted traffic between the VPC Gateways traverses the public Internet
+and will incur charges.
+{: note}
 
 ## Limitations
 

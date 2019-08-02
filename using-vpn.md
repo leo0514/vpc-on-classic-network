@@ -4,7 +4,7 @@
 
 copyright:
   years: 2017,2018, 2019
-lastupdated: "2019-07-23"
+lastupdated: "2019-08-02"
 
 keywords: VPN, network, encryption, authentication, algorithm, IKE, IPsec, policies, gateway, auto-negotiation, vpc, vpc network
 
@@ -110,6 +110,11 @@ subnets in two separate VPCs as if they were a single network. The IP addresses 
 Here is what the scenario looks like (with some VMs added in each VPC):
 
 ![VPN for IBM VPC](images/vpc-vpn.svg "VPN for IBM VPC"){: caption="Figure: VPN for IBM VPC" caption-side="top"}
+
+While the diagram above does not show them, the VPN Gateways use Floating IPs
+(FIPs) to communicate across regions. This means that the encrypted traffic
+will traverse the public internet and will incur charges.
+{: note}
 
 ### Example steps
 {: #vpn-example-steps}
@@ -384,6 +389,15 @@ The following encryption and authentication options may be used in any combinati
 | 2  | aes256 | sha256 | disabled  |
 | 3  | 3des   | md5    | disabled  |
 
+## Access service endpoints using VPN
+{: #build-se-connectivity-using-vpn}
+
+VPC allows access to your service endpoint (SE) from an on-premise network, by means of a virtual private network (VPN). Here are the steps for setting up access to a service endpoint:
+
+* **Step 1:** Get the IP of your service endpoint. IBM Cloud supports two types of service endpoints: Infrastructure as a Service (IaaS) endpoints and Cloud Service Endpoints (CSE). The IaaS endpoints are hosted in the IP address ranges 161.26.0.0/16; cloud service endpoints are hosted in the IP address ranges 166.8.0.0/14.
+* **Step 2:** Create a VPN gateway. If you already have one, you can skip this step.
+* **Step 3:** Create a VPN connection. Your local subnets should belong to the range 166.8.0.0/14 or 161.26.0.0/16.
+
 ## FAQ
 {: #vpn-faq}
 
@@ -461,6 +475,10 @@ Only PSK authentication is supported.
 **Can you use VPN for VPC as a VPN Gateway for your IBM Cloud Infrastructure Classic?**
 
 No, in order to use VPN Gateway in your IBM Cloud Infrastructure Classic environment, you must use the [IPsec VPN](https://{DomainName}/catalog/infrastructure/ipsec-vpn){: external}.
+
+**Can VPN for VPC, along with a Classic Access VPC, access IBM Cloud Infrastructure Classic Resources?**
+
+Not at this time.
 
 **What will rekey collision cause?**
 
