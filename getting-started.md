@@ -30,7 +30,7 @@ To get started with networking for {{site.data.keyword.vpc_full}}:
 2. Create one or more subnets in the Virtual Private Cloud in one or more zones.
 3. Create a public gateway (PGW) on a subnet if you want resources on your subnet to have access to the internet or vice-versa.
 
-## Prerequisites
+## Before you begin
 
  * **User Permissions**: Be sure that your user has sufficient permissions to create and manage resources in your VPC. For a list of required permissions, see [Granting permissions needed for VPC users](/docs/vpc-on-classic?topic=vpc-on-classic-managing-user-permissions-for-vpc-resources).
 
