@@ -37,14 +37,6 @@ A VPC Route has three main components: the destination CIDR, the next hop, and t
 
 ## Use cases
 
-### Adding a VPC Route to let a VPC instance connect to an enterprise application over a VPN gateway
-
-With VPC Routes, you may configure a VPC to route certain traffic through a VPN gateway instead of over the public gateway.
-
-![VPCRoutesUC1](./images/VPCRoutesUC1.png)
-
-Traffic from Instance 1 with destination 192.168.4.1 will be routed by the VPC Router through the VPN gateway, because there is the VPC Route(Destination: 192.168.4.0/24 NextHop: 10.0.0.4 Zone: Zone1). Then, from the VPN gateway, traffic will arrive at the enterprise application.
-
 ### Load balance traffic across two VPN Gateways to create redundant connections
 
 The figure that follows shows an instance running in IBM Cloud VPC in `Zone1`, where it sends a message to the enterprise application on a private subnet. A redundant connection exists from the IBM Cloud VPC to the enterprise private subnet. The router for the VPC in `Zone1` is configured with two VPC Routes that both have equally specific destinations, but different `next_hops`.  Traffic in this situation will be round-robin distributed across both zones.
