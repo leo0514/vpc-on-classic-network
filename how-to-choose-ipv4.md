@@ -36,6 +36,9 @@ CIDR notation is defined in [RFC 1518](https://tools.ietf.org/html/rfc1518){: ex
 
 If you use an IP range outside of those ranges defined by [RFC 1918](https://tools.ietf.org/html/rfc1918){: external} (`10.0.0.0/8`, `172.16.0.0/12`, or `192.168.0.0/16`) for a subnet, the instances attached to that subnet may be unable to reach parts of the public Internet.
 
+When choosing IP ranges for a Classic Access VPC, remember that all subnets will be shared into the Classic Infrastructure VRF, which uses IP addresses in the `10.0.0.0/8` space. To avoid IP address conflicts, **do not use** IP addresses on the `10.0.0.0/8` space when creating subnets in a Classic Access VPC.
+{: important}
+
 Remember, just in case you are new to CIDR notation, the smaller the number after the slash, the **more** IP addresses you are allocating, because the number after the slash represents the number of leading 1 bits in the subnet's prefix mask.
 
 The following table lists the number of available addresses in a subnet, based on its specified CIDR block size:

@@ -46,7 +46,7 @@ Address prefixes enable communication between VPC instances in different zones. 
 The _implicit router_ is the inherent network connectivity between all subnets created within a VPC.
 {: note}
 
-Each VPC can have up to five address prefixes for each zone. To help you get started, {{site.data.keyword.vpc_short}} defines a default address prefix for each zone (see the table that follows), however, as a best practice, you should design a VPC addressing plan before deploying one.
+Each VPC can have up to five address prefixes for each zone. To help you get started, {{site.data.keyword.vpc_short}} defines a default address prefix for each zone (see the table that follows), however, as a best practice, you should [design a VPC addressing plan](/docs/vpc-on-classic-network?topic=vpc-on-classic-network-vpc-addressing-plan-design) before deploying one.
 
 ### VPC default address prefixes
 {: #default-vpc-address-prefixes}
@@ -77,6 +77,9 @@ Zone         | Address Prefix
 
 Different default prefixes will be assigned to new zones as they become available.
 
+Starting with API version `2019-08-27`, a VPC can be created without a default address prefix using the [API](https://{DomainName}/apidocs/vpc-on-classic#create-a-vpc){: external} by specifying the option `address_prefix_management=manual` in the request.
+{: note}
+
 ### Address prefixes and the IBM Cloud console UI
 {: #address-prefixes-and-the-ibm-cloud-console-ui}
 
@@ -84,6 +87,10 @@ When you create a VPC using the IBM Cloud Console UI, the system selects your ad
 
 This workaround is needed to use BYOIP through the IBM Cloud Console UI.
 {:note}
+
+<!-- TODO: Replace with this when UI is ready:
+When you create a VPC using the IBM Cloud Console UI, the system gives you the option to select your address prefix automatically and create a subnet within that default prefix or delay creating address prefixes so you can create the specific prefixes that meet your requirements.
+-->
 
 ## IBM Cloud VPC and subnets
 {: #ibm-cloud-vpc-and-subnets}

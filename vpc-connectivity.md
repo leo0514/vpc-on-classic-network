@@ -88,12 +88,12 @@ Your Floating IP address cannot be associated with multiple interfaces. You mus
 * **Currently, Floating IP supports only IPv4 addresses.**
 * **You cannot bring your own public IP address to use as a Floating IP.**
 
-For more information about NAT operations, please refer to [the related Internet RFC document](http://www.faqs.org/rfcs/rfc1631.html){: external}.
+For more information about NAT operations, refer to [the related Internet RFC document](http://www.faqs.org/rfcs/rfc1631.html){: external}.
 
 ### Use a VPN for secure external connectivity
 {: #use-a-vpn-for-secure-external-connectivity}
 
-Virtual Private Network (VPN) service is available for users to connect to their IBM Cloud VPC from the internet, securely. For step-by-step instructions, please see our [IBM Console UI guide](/docs/vpc-on-classic?topic=vpc-on-classic-creating-a-vpc-using-the-ibm-cloud-console).
+Virtual Private Network (VPN) service is available for users to connect to their IBM Cloud VPC from the internet, securely. For step-by-step instructions, see our [IBM Console UI guide](/docs/vpc-on-classic?topic=vpc-on-classic-creating-a-vpc-using-the-ibm-cloud-console).
 
 **VPN Capabilities**
   * Ability to CRUD (Create, Read, Update and Delete) VPN service (site-to-site IPSEC VPN) for handling data transfer.

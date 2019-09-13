@@ -75,7 +75,7 @@ Here are the considerations we are using when planning each tier's subnet size:
 ## Combining the subnets and selecting the address prefixes
 {: #combining-the-subnets-and-selecting-the-address-prefixes}
 
-To select an acceptable address prefix for each zone, you'll need a subnet size that's large enough to accommodate all three of the subnets in each tier, and still leave room for horizontal scaling and future expansion.
+To select an acceptable address prefix for each zone, you'll need a prefix size that's large enough to accommodate all three of the subnets in each tier, and still leave room for horizontal scaling and future expansion.
 
 A `/24` address prefix is the smallest prefix into which these three subnets can be combined (27 + 123 + 59). As a best practice, it is recommended to select the next larger subnet size, not the smallest. Assigning the next larger subnet size (`/23`) allows for horizontal scaling beyond the limits given previously, because it allows for adding new subnets to each layer, from within the same address prefix.
 

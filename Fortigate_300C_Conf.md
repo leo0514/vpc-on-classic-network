@@ -66,26 +66,6 @@ To connect to the IBM Cloud VPC's VPN capability, we recommend the following con
 6. Input your subnet's information in Phase 2
 7. The remaining parameters keep their default values.
 
-![enter image description here](./images/vpc-vpn-fg-network.JPG)
-
-### Network parameters
-{: #fortigate-network-parameters}
-
-![enter image description here](./images/vpc-vpn-fg-authentication.JPG)
-
-### Authentication parameters
-{: #fortigate-authentication-parameters}
-
-![enter image description here](./images/vpc-vpn-fg-phase1.JPG)
-
-### Phase 1 parameters
-{: #fortigate-phase-1-parameters}
-
-![enter image description here](./images/vpc-vpn-fg-phase2.JPG)
-
-### Phase 2 parameters
-{: #fortigate-phase-2-parameters}
-
 ## To create a secure connection with the local IBM Cloud VPC
 {: #fortigate-to-create-a-secure-connection-with-the-local-ibm-cloud-vpc}
 

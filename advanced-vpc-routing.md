@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019
-lastupdated: "2019-08-02"
+lastupdated: "2019-09-10"
 
 keywords: vpc, secure, region, zone, subnet, routing, terminology, public gateway, floating IP, NAT, API
 
@@ -36,6 +36,18 @@ In the network structure of a VPC, one route table exists for each zone used by 
 A VPC Route has three main components: the destination CIDR, the next hop, and the zone. The traffic that originates in a VPC in the zone whose destination address falls within the destination CIDR will be routed to the next hop. However, if the destination address falls within the destination CIDR for two routes, the most specific one will apply. Furthermore, if there are two or more, equally specific routes, the traffic will be round-robin distributed across each of the route's next hop.
 
 ## Use cases
+
+### Load balance workloads running in Classic Infrastructure
+
+Workloads running on Classic Infrastructure can use VPC Infrastructure to help scale. In this
+scenario, you can create a Classic Access VPC in a region and deploy a
+load balancer into zone 1. You can then deploy load balancer pool members to zones 2 and 3 of the region.
+If you require return traffic from the pool members to pass through the load balancer (e.g. you are not
+using Direct Server Return (DSR)), then you can use the VPC route feature to create routes in zones 2 and 3
+that will direct traffic destined for classic infrastructure (in this case, `10.171.161.0/26`)
+through the load balancer in zone 1 (`192.168.1.10`).
+
+![ClassicAccess_LB](./images/ClassicAccess_LB.png)
 
 ### Load balance traffic across two VPN Gateways to create redundant connections
 

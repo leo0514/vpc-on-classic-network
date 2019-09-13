@@ -115,7 +115,7 @@ A public gateway is created in a VPC, but the gateway does nothing until it is a
 ## Limitations of subnets
 {: #limitations-of-subnets}
 
-For a complete list of known limitations and features not currently supported, please refer to the [Known Limitations](/docs/vpc-on-classic?topic=vpc-on-classic-known-limitations).
+For a complete list of known limitations and features not currently supported, refer to the [Known Limitations](/docs/vpc-on-classic?topic=vpc-on-classic-known-limitations).
 
 ### Restrictions on deleting a subnet
 {: #restrictions-on-deleting-a-subnet}
@@ -150,7 +150,7 @@ There are costs associated with a Floating IP even when the Floating IP is not a
 * **Currently, Floating IP supports only IPv4 addresses.**
 * **You cannot bring your own public IP address to use as a floating IP.**
 
-For more information about NAT operations, please refer to [the related Internet RFC document](http://www.faqs.org/rfcs/rfc1631.html){: external}.
+For more information about NAT operations, refer to [the related Internet RFC document](http://www.faqs.org/rfcs/rfc1631.html){: external}.
 
 ### Use VPN for secure external connectivity
 {: #use-vpn}

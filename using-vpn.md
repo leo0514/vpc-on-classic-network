@@ -4,9 +4,9 @@
 
 copyright:
   years: 2017,2018, 2019
-lastupdated: "2019-08-02"
+lastupdated: "2019-09-06"
 
-keywords: VPN, network, encryption, authentication, algorithm, IKE, IPsec, policies, gateway, auto-negotiation, vpc, vpc network
+keywords: vpn, vpn for vpc, network, encryption, authentication, algorithm, IKE, IPsec, policies, gateway, auto-negotiation
 
 subcollection: vpc-on-classic-network
 
@@ -29,9 +29,8 @@ subcollection: vpc-on-classic-network
 {: #--using-vpn-with-your-vpc}
 [comment]: # (linked help topic)
 
-The {{site.data.keyword.cloud}} VPC VPN service allows you to connect private networks in a secure fashion. You can use VPN to set up an IPsec site-to-site tunnel between your VPC and your on-premise private network or another VPC.
-
-For the current {{site.data.keyword.cloud}} VPC release, only policy-based routing is supported.
+The {{site.data.keyword.cloud}} VPN for Virtual Private Cloud allows you to connect private networks in a secure fashion. You can use VPN to set up an IPsec site-to-site tunnel between your VPC and your on-premise private network or another VPC.
+{: shortdesc}
 
 ## Features
 {: #vpn-features}
@@ -48,59 +47,6 @@ For the current {{site.data.keyword.cloud}} VPC release, only policy-based routi
 * Routing: Policy-based
 * Authentication Mode: Pre-shared key
 * HA Support in Active/Standby mode only
-
-## APIs available
-{: #apis-available}
-
-The following section gives details about APIs you can use for VPN in your IBM Cloud VPC environment. Please see the [VPC REST APIs](https://{DomainName}/apidocs/vpc-on-classic#list-all-ike-policies){: external} page for more details.
-
-### VPN gateways and VPN connections
-{: #vpn-gateways-and-vpn-connections}
-
-| Description | API |
-|----------------------------|-------------|
-| Creates a VPN gateway | POST /vpn_gateways |
-| Retrieves VPN gateways | GET /vpn_gateways |
-| Retrieves a VPN gateway | GET /vpn_gateways/{id} |
-| Deletes a VPN gateway | DELETE /vpn_gateways/{id} |
-| Updates a VPN gateway | PATCH /vpn_gateways/{id} |
-| Creates a new VPN connection | POST /vpn_gateways/{vpn_gateway_id}/connections |
-| Retrieves VPN connections | GET /vpn_gateways/{vpn_gateway_id}/connections |
-| Retrieves a VPN connection | GET /vpn_gateways/{vpn_gateway_id}/connections/{id} |
-| Deletes a VPN connection | DELETE /vpn_gateways/{vpn_gateway_id}/connections/{id} |
-| Updates a VPN connection | PATCH /vpn_gateways/{vpn_gateway_id}/connections/{id} |
-| Retrieves all local CIDRs for a VPN connection | GET /vpn_gateways/{vpn_gateway_id}/connections/{id}/local_cidrs |
-| Deletes a local CIDR from a VPN connection | DELETE /vpn_gateways/{vpn_gateway_id}/connections/{id}/local_cidrs/{prefix_address}/{prefix_length} |
-| Checks if a specific local CIDR exists on a VPN connection | GET /vpn_gateways/{vpn_gateway_id}/connections/{id}/local_cidrs/{prefix_address}/{prefix_length} |
-| Sets a local CIDR on a VPN connection | PUT /vpn_gateways/{vpn_gateway_id}/connections/{id}/local_cidrs/{prefix_address}/{prefix_length} |
-| Retrieves all peer CIDRs for a VPN connection | GET /vpn_gateways/{vpn_gateway_id}/connections/{id}/peer_cidrs |
-| Deletes a peer CIDR from a VPN connection | DELETE /vpn_gateways/{vpn_gateway_id}/connections/{id}/peer_cidrs/{prefix_address}/{prefix_length} |
-| Checks if a specific peer CIDR exists on a VPN connection | GET /vpn_gateways/{vpn_gateway_id}/connections/{id}/peer_cidrs/{prefix_address}/{prefix_length} |
-| Sets a peer CIDR on a VPN connection | PUT /vpn_gateways/{vpn_gateway_id}/connections/{id}/peer_cidrs/{prefix_address}/{prefix_length} |
-
-### IKE policies
-{: #ike-policies}
-
-| Description | API |
-|-----------------------------|--------------|
-| Retrieves all IKE policies | GET /ike_policies |
-| Creates an IKE policy | POST /ike_policies |
-| Deletes an IKE policy | DELETE /ike_policies/{id} |
-| Retrieves an IKE policy | GET /ike_policies/{id} |
-| Updates an IKE policy | PATCH /ike_policies/{id} |
-| Retrieves all the connections that use the specified IKE policy | GET /ike_policies/{id}/connections |
-
-### IPsec policies
-{: #ipsec-policies}
-
-| Description | API |
-|---------------------|-------------|
-| Retrieves all IPSec policies | GET /ipsec_policies |
-| Creates an IPSec policy | POST /ipsec_policies |
-| Deletes an IPSec policy | DELETE /ipsec_policies/{id} |
-| Retrieves an IPSec policy | GET /ipsec_policies/{id} |
-| Updates an IPSec policy | PATCH /ipsec_policies/{id} |
-| Retrieves all the connections that use the specified IPsec policy | GET /ipsec_policies/{id}/connections |
 
 ## VPN example
 {: #vpn-example}
@@ -354,11 +300,6 @@ Sample output:
 ```
 {: screen}
 
-## Quotas
-{: #see-vpn-quotas}
-
-See our [VPC Quotas](/docs/vpc-on-classic?topic=vpc-on-classic-quotas#vpn-quotas) topic for VPN quotas.
-
 ## Policy auto-negotiation
 {: #policy-auto-negotiation}
 
@@ -397,6 +338,39 @@ VPC allows access to your service endpoint (SE) from an on-premise network, by m
 * **Step 1:** Get the IP of your service endpoint. IBM Cloud supports two types of service endpoints: Infrastructure as a Service (IaaS) endpoints and Cloud Service Endpoints (CSE). The IaaS endpoints are hosted in the IP address ranges 161.26.0.0/16; cloud service endpoints are hosted in the IP address ranges 166.8.0.0/14.
 * **Step 2:** Create a VPN gateway. If you already have one, you can skip this step.
 * **Step 3:** Create a VPN connection. Your local subnets should belong to the range 166.8.0.0/14 or 161.26.0.0/16.
+
+## Limitations
+{: #vpn-limitations}
+
+* See our [VPC Quotas](/docs/vpc-on-classic?topic=vpc-on-classic-quotas#vpn-quotas) topic for VPN quotas.
+* Only policy based routing is supported at this time (not route based). IBM VPN is following these industry standards, and all compatible devices with these RFCs should be interoperable with IBM VPN using policy based VPN mode:
+  * [RFC 4109](http://www.faqs.org/rfcs/rfc4109.html){: external}, 
+  * [RFC 7296](http://www.faqs.org/rfcs/rfc7296.html){: external}, 
+  * [RFC 3947](http://www.faqs.org/rfcs/rfc3947.html){: external}, 
+  * [RFC 7383](http://www.faqs.org/rfcs/rfc7383.html){: external}, 
+  * [RFC 3706](http://www.faqs.org/rfcs/rfc3706.html){: external}. 
+
+## Troubleshooting
+{: #vpn-troubleshooting}
+
+We are sorry you are having technical problems with your VPN Gateway. If the following suggestions do not resolve your problem, [contact support](/docs/vpc-on-classic-network?topic=vpc-on-classic-getting-help-and-support) and be ready to provide the IBM VPN gateway ID, public IPs, connection names, subnet information (to and from), device types, and the VPN gateway configuration on the peer side.
+
+### VPN gateway goes from status of `pending` to status of `failed` after 30 minutes
+{: #vpn-ts-failed}
+
+Check the network ACLs of the subnet where the VPN gateway was provisioned. The subnet traffic rules may be blocking the successful provision of the VPN gateway. If necessary, permit all traffic on both inbound and outbound during provisioning.
+
+### VPN gateway is available, but the VPN connection is down
+
+- A VPN gateway will initiate the VPN connection negotiation when a new connection is added and will retry up to 5 times. If the connection remains down, try initiating the connection again.
+- Make sure the peer VPN gateway is using matched IKE/IPsec policy and pre-shared key. See [IKE auto-negotiation (Phase 1)](#ike-auto-negotiation-phase-1) and [IPsec auto-negotiation (Phase 2)](#ipsec-auto-negotiation-phase-2) for options.
+- Make sure traffic is not blocked by firewall between IBM VPN gateway and peer VPN gateway. Use tools, like ping, to test the network connectivity between the gateways.
+
+### The connection is up but you cannot access resources in VPC from on-premise network
+
+- Check the routing configuration on the on-premise network and make sure the traffic to IBM VPC is routed to peer VPN gateway properly.
+- Make sure firewall rules on the peer VPN gateway allow traffic between the subnet in IBM and on-premise network.
+- Make sure network ACLs and security group rules in IBM VPC allow traffic between subnet in IBM and on-premise network.
 
 ## FAQ
 {: #vpn-faq}
@@ -483,3 +457,7 @@ Not at this time.
 **What will rekey collision cause?**
 
 If you use IKEv1, rekey collision will delete the IKE/IPsec SA. To recreate the IKE/IPsec SA, set the connection admin state to `down` and then `up` again. You can use IKEv2 to minimize rekey collisions.
+
+**Is it possible to connect to route based VPNs with multiple tunnels?**
+
+Not at this time.
