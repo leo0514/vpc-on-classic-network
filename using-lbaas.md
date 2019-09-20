@@ -3,7 +3,7 @@
 
 copyright:
   years: 2018, 2019
-lastupdated: "2019-06-12"
+lastupdated: "2019-09-17"
 
 keywords: load balancer, public, listener, back-end, front-end, pool, round-robin, weighted, connections, methods, policies, APIs, access, ports, vpc, vpc network
 
@@ -37,6 +37,9 @@ Your load balancer service instance is assigned a publicly-accessible, fully qua
 
 Over time, these public IP addresses and the number of public IP addresses may change, due to maintenance and scaling activities. The back-end server instances (VSIs) hosting your application must run in the same region, and under the same VPC.
 
+Remember to use the assigned FQDN to send traffic to the public load balancer to avoid connectivity problems to your applications during system maintenance or scaling down activities.
+{: important}
+
 ## Private Load Balancer
 {: #private-load-balancer}
 
@@ -54,6 +57,9 @@ See the following table for a summary comparison of features:
 | Accepts all traffic? | Yes | No, RFC 1918 only |
 | Number of private IPs | changes over time | changes over time |
 | How is domain name registered? | public IP addresses | private IP addresses |
+
+Remember to use the assigned FQDN to send traffic to the private load balancer to avoid connectivity problems to your applications during system maintenance or scaling down activities.
+{: important}
 
 ## Front-end listeners and back-end pools
 {: #front-end-listeners-and-back-end-pools}
@@ -811,7 +817,7 @@ The health check response timeout value must always be less than the health chec
 ### Are the load balancer IP addresses fixed?
 {: #are-the-load-balancer-ip-addresses-fixed}
 
-Load balancer IP addresses are not guaranteed to be fixed, due to the built-in elasticity of the service. During horizontal scaling, you will see changes in the available IPs associated with the FQDN of your load balancer.
+Load balancer IP addresses are not guaranteed to be fixed. During system maintenance or horizontal scaling, you will see changes in the available IPs associated with the FQDN of your load balancer.
 
 Use FQDN, rather than cached IP addresses.
 {:note}
