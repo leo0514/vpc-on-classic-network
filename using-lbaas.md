@@ -386,7 +386,7 @@ In the following example, you'll use the API to create a load balancer in front 
 
 The example steps that follow skip the prerequisite steps of using the [IBM Cloud UI](/docs/vpc-on-classic?topic=vpc-on-classic-creating-a-vpc-using-the-ibm-cloud-console), [CLI](/docs/vpc-on-classic?topic=vpc-on-classic-creating-a-vpc-using-the-ibm-cloud-cli), or [VPC on Classic API](/docs/vpc-on-classic?topic=vpc-on-classic-creating-a-vpc-using-the-rest-apis) to provision a VPC, subnets, and instances.
 
-The load balancer example steps also can be run using the [CLI](/docs/vpc-on-classic?topic=vpc-infrastructure-cli-plugin-vpc-reference).
+The load balancer example steps also can be run using the [CLI](/docs/vpc-on-classic?topic=vpc-on-classic-vpc-reference#load-balancer).
 {: note}
 
 **Step 1. Create a load balancer with listener, pool, and attached server instances (pool members)**
