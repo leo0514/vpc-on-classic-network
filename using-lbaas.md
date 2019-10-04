@@ -339,7 +339,7 @@ curl -X GET "$rias_endpoint/v1/load_balancers?version=2019-05-31&generation=1" -
 ```
 {: pre}
 
-The following section gives details about APIs you can use for load balancers in your VPC environment. For the full spec, see the [VPC on Classic API reference](https://{DomainName}/apidocs/vpc-on-classic#list-all-load-balancers).
+The following section gives details about APIs you can use for load balancers in your VPC environment. For the full spec, see the [VPC API reference](https://{DomainName}/apidocs/vpc-on-classic#list-all-load-balancers).
 
 | Description | API |
 |-------------|-----|
@@ -384,7 +384,7 @@ In the following example, you'll use the API to create a load balancer in front 
 ### Example steps
 {: #lbaas-example-steps}
 
-The example steps that follow skip the prerequisite steps of using the [IBM Cloud UI](/docs/vpc-on-classic?topic=vpc-on-classic-creating-a-vpc-using-the-ibm-cloud-console), [CLI](/docs/vpc-on-classic?topic=vpc-on-classic-creating-a-vpc-using-the-ibm-cloud-cli), or [VPC on Classic API](/docs/vpc-on-classic?topic=vpc-on-classic-creating-a-vpc-using-the-rest-apis) to provision a VPC, subnets, and instances.
+The example steps that follow skip the prerequisite steps of using the [IBM Cloud UI](/docs/vpc-on-classic?topic=vpc-on-classic-creating-a-vpc-using-the-ibm-cloud-console), [CLI](/docs/vpc-on-classic?topic=vpc-on-classic-creating-a-vpc-using-the-ibm-cloud-cli), or [VPC API](/docs/vpc-on-classic?topic=vpc-on-classic-creating-a-vpc-using-the-rest-apis) to provision a VPC, subnets, and instances.
 
 The load balancer example steps also can be run using the [CLI](/docs/vpc-on-classic?topic=vpc-on-classic-vpc-reference#load-balancer).
 {: note}
