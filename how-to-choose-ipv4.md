@@ -17,6 +17,7 @@ subcollection: vpc-on-classic-network
 {:pre: .pre}
 {:tip: .tip}
 {:note: .note}
+{:important: .important}
 {:table: .aria-labeledby="caption"}
 {:download: .download}
 {:external: target="_blank" .external}
