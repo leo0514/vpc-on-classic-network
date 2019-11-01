@@ -29,7 +29,7 @@ You can control the flow of network traffic in your VPC by configuring VPC route
 
 ## Routing structure
 
-In the network structure of a VPC, one route table exists for each zone used by a VPC in a region. When an IP packet leaves a subnet, it is evaluated against the route table in the subnet's zone, to determine where to send the packet next. Each router has a default route, but the VPC Routes API allows you to provide custom static routes to your routing tables.
+In the network structure of a VPC, one route table exists for each zone used by a VPC in a region. When an IP packet leaves a subnet, it is evaluated against the route table in the subnet's zone, to determine where to send the packet next. Each router has a default route, but the VPC Routes allow you to provide custom static routes to your routing tables.
 
 ## VPC Route structure and behavior
 
@@ -38,9 +38,9 @@ A VPC Route has three main components: the destination CIDR, the next hop, and t
 ## Managing VPC routes
 
 You can manage your VPC routes using the user interface, CLI or API:
-- Using the [IBM cloud console](https://{DomainName}/vpc), go to the details page for a VPC and click **Routes** in the navigation.
-- Using the CLI [ibmcloud is vpc-routes](/docs/vpc-on-classic?topic=vpc-on-classic-vpc-reference#vpc-route-create) command.
-- Using the [routes API](https://{DomainName}/apidocs/vpc-on-classic#list-all-user-defined-routes-for-a-vpc).
+- Using the [IBM cloud console](https://{DomainName}/vpc/network/vpcs), go to the details page for a VPC and click **Routes** in the navigation.
+- Using the CLI [ibmcloud is vpc-route-create](/docs/vpc-on-classic?topic=vpc-on-classic-vpc-reference#vpc-route-create) command.
+- Using the [routes API](https://{DomainName}/apidocs/vpc-on-classic#create-a-route-on-your-vpc).
 
 ## Limitations
 
