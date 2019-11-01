@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019
-lastupdated: "2019-09-10"
+lastupdated: "2019-11-01"
 
 keywords: vpc, secure, region, zone, subnet, routing, terminology, public gateway, floating IP, NAT, API
 
@@ -21,11 +21,11 @@ subcollection: vpc-on-classic-network
 {:download: .download}
 {:DomainName: data-hd-keyref="DomainName"}
 
-
-
 # Setting Up Advanced Routing in VPC
+{: #setting-up-advanced-routing-in-vpc}
 
-The {{site.data.keyword.vpc_short}} [Routes API](https://{DomainName}/apidocs/vpc-on-classic#create-a-route-on-your-vpc) allows you to control the flow of network traffic in your VPC.  It allows you to specify the next hop for packets, filtered by their destination addresses.
+You can control the flow of network traffic in your VPC by configuring VPC routes. Use VPC routes to specify the next hop for packets, based on their destination addresses.
+{:shortdesc}
 
 ## Routing structure
 
@@ -35,35 +35,12 @@ In the network structure of a VPC, one route table exists for each zone used by 
 
 A VPC Route has three main components: the destination CIDR, the next hop, and the zone. The traffic that originates in a VPC in the zone whose destination address falls within the destination CIDR will be routed to the next hop. However, if the destination address falls within the destination CIDR for two routes, the most specific one will apply. Furthermore, if there are two or more, equally specific routes, the traffic will be round-robin distributed across each of the route's next hop.
 
-## Use cases
+## Managing VPC routes
 
-### Load balance workloads running in Classic Infrastructure
-
-Workloads running on Classic Infrastructure can use VPC Infrastructure to help scale. In this
-scenario, you can create a Classic Access VPC in a region and deploy a
-load balancer into zone 1. You can then deploy load balancer pool members to zones 2 and 3 of the region.
-If you require return traffic from the pool members to pass through the load balancer (e.g. you are not
-using Direct Server Return (DSR)), then you can use the VPC route feature to create routes in zones 2 and 3
-that will direct traffic destined for classic infrastructure (in this case, `10.171.161.0/26`)
-through the load balancer in zone 1 (`192.168.1.10`).
-
-![ClassicAccess_LB](./images/ClassicAccess_LB.png)
-
-### Load balance traffic across two VPN Gateways to create redundant connections
-
-The figure that follows shows an instance running in IBM Cloud VPC in `Zone1`, where it sends a message to the enterprise application on a private subnet. A redundant connection exists from the IBM Cloud VPC to the enterprise private subnet. The router for the VPC in `Zone1` is configured with two VPC Routes that both have equally specific destinations, but different `next_hops`.  Traffic in this situation will be round-robin distributed across both zones.
-
-![VPCRoutes_LB](./images/VPCRoutes_LB.png)
-
-### Route traffic back through an outgoing VPN gateway to create bi-directional communication between two VPCs
-
-The figure that follows shows how we've addressed a previous limitation. With a VPN connection between 2 VPCs, one could not send traffic from one zone within a VPC through a VPN in another zone to another VPC. By adding a VPC Route to the VPC in zone `us-south-2`, we are able to route traffic from `us-south-2` to `us-south-1` through the VPN to the destination VSI.
-
-![VPCRoutes_MZ_VPN](./images/VPCRoutes_MZ_VPN.png)
-
-The encrypted traffic between the VPC Gateways traverses the public Internet
-and will incur charges.
-{: note}
+You can manage your VPC routes using the user interface, CLI or API:
+- Using the [IBM cloud console](https://{DomainName}/vpc), go to the details page for a VPC and click **Routes** in the navigation.
+- Using the CLI [ibmcloud is vpc-routes](/docs/vpc-on-classic?topic=vpc-on-classic-vpc-reference#vpc-route-create) command.
+- Using the [routes API](https://{DomainName}/apidocs/vpc-on-classic#list-all-user-defined-routes-for-a-vpc).
 
 ## Limitations
 
