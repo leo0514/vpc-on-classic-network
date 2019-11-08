@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018, 2019
-lastupdated: "2019-05-14"
+lastupdated: "2019-11-01"
 
 keywords: capabilities, use cases, subnets, VPN, connections, reserved, IP, IPv4, floating, vpc, vpc network
 
@@ -33,11 +33,6 @@ As shown in the figure:
 * You can assign a Floating IP address (FIP) to any VSI to reach it from the internet, or vice versa.
 * Subnets in the IBM Cloud VPC offer private connectivity; they can talk to each other over a private link. You do not need to set up any routes.
 * For more information, see our [About VPC Infrastructure](/docs/vpc-on-classic?topic=vpc-on-classic-about).
-
-## Terminology
-{: #terminology}
-
-This [glossary](/docs/vpc-on-classic?topic=vpc-on-classic-vpc-glossary) contains definitions and information about terms used in this document for IBM Cloud VPC.
 
 ## Characteristics of subnets in the VPC
 {: #characteristics-of-subnets-in-the vpc}

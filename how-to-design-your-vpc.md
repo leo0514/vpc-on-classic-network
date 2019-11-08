@@ -31,7 +31,7 @@ The first step in designing your VPC should be to design your addressing plan. A
 
 This document gives an example of designing the addressing plan for a three-tiered web application, in which each tier is supported by multiple zones.
 
-Although each {{site.data.keyword.cloud}} VPC is deployed to a specific region, the VPC may span all of the zones within that region. {{site.data.keyword.cloud_notm}} VPC defines a default address prefix for every zone. These address prefixes enable communication between {{site.data.keyword.cloud_notm}} VPC instances in different zones, by providing the zone-related routing information the [implicit router](/docs/vpc-on-classic?topic=vpc-on-classic-vpc-glossary#implicit-router) needs.
+Although each {{site.data.keyword.cloud}} VPC is deployed to a specific region, the VPC may span all of the zones within that region. {{site.data.keyword.cloud_notm}} VPC defines a default address prefix for every zone. These address prefixes enable communication between {{site.data.keyword.cloud_notm}} VPC instances in different zones, by providing the zone-related routing information the implicit router needs. An implicit router is the inherent network connectivity between all subnets created within a VPC.
 
 The same design steps are involved, no matter whether the application is contained completely on the cloud, or whether parts of the application are running in another location.
 {: tip}

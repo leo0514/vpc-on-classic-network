@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2018, 2019
-lastupdated: "2019-08-20"
+lastupdated: "2019-11-01"
 
 keywords: vpc, vpc network, secure, region, zone, subnet, terminology, public gateway, floating IP, NAT
 
@@ -63,7 +63,7 @@ As shown in the following figure:
 ## Terminology
 {: #network-terminology}
 
-This [glossary](/docs/vpc-on-classic?topic=vpc-on-classic-vpc-glossary#vpc-glossary) contains definitions and information about terms used in this document for {{site.data.keyword.vpc_short}}. When working with your VPC, you'll need to be familiar with the basic concepts of _region_ and _zone_ as they apply to your deployment.
+When working with your VPC, you'll need to be familiar with the basic concepts of _region_ and _zone_ as they apply to your deployment.
 
 ### Regions
 {: #subnet-regions}

@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018, 2019
-lastupdated: "2019-05-29"
+lastupdated: "2019-11-01"
 
 keywords: security, ACLs, security groups, traffic, subnet, instance, VSI, firewall, encryption, vpc, vpc network
 
@@ -39,7 +39,7 @@ You can keep your VPC and workloads secure by controlling network traffic using 
 ## Definitions
 {: #definitions}
 
-This [glossary](/docs/vpc-on-classic?topic=vpc-on-classic-vpc-glossary) provides definitions and descriptions of ACLs and SGs, and the actions you can perform with them. The section that follows describes basic functionality of ACLs and security groups, and the ways in which VPC supports end-to-end encryption.
+The section that follows describes basic functionality of ACLs and security groups, and the ways in which VPC supports end-to-end encryption.
 
 ### Access Control List
 {: #access-control-list}
