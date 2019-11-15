@@ -4,7 +4,7 @@
 
 copyright:
   years: 2017,2018, 2019
-lastupdated: "2019-09-06"
+lastupdated: "2019-11-15"
 
 keywords: vpn, vpn for vpc, network, encryption, authentication, algorithm, IKE, IPsec, policies, gateway, auto-negotiation
 
@@ -337,7 +337,7 @@ VPC allows access to your service endpoint (SE) from an on-premise network, by m
 
 * **Step 1:** Get the IP of your service endpoint. IBM Cloud supports two types of service endpoints: Infrastructure as a Service (IaaS) endpoints and Cloud Service Endpoints (CSE). The IaaS endpoints are hosted in the IP address ranges 161.26.0.0/16; cloud service endpoints are hosted in the IP address ranges 166.8.0.0/14.
 * **Step 2:** Create a VPN gateway. If you already have one, you can skip this step.
-* **Step 3:** Create a VPN connection. Your local subnets should belong to the range 166.8.0.0/14 or 161.26.0.0/16.
+* **Step 3:** Create a VPN connection. In the VPN configuration, your local subnets should include the range for the service endpoints `166.8.0.0/14` or `161.26.0.0/16`.
 
 ## Limitations
 {: #vpn-limitations}

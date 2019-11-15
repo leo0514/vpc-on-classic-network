@@ -3,7 +3,7 @@
 
 copyright:
   years: 2018, 2019
-lastupdated: "2019-09-17"
+lastupdated: "2019-11-15"
 
 keywords: load balancer, public, listener, back-end, front-end, pool, round-robin, weighted, connections, methods, policies, APIs, access, ports, vpc, vpc network
 
@@ -116,7 +116,7 @@ Within each action category, the policies are evaluated in ascending order of pr
 Property  | Description
 ------------- | -------------
 Name | The name of the policy. The name must be unique within the listener.
-Action | The action to take when all policy rules match. The acceptable values are `reject`, `redirect`, and `forward`. A policy with `reject` action is always evaluated first, regardless of its priority. Policies with `redirect` actions are evaluated next, followed by policies with `redirect` action.
+Action | The action to take when all policy rules match. The acceptable values are `reject`, `redirect`, and `forward`. A policy with `reject` action is always evaluated first, regardless of its priority. Policies with `redirect` actions are evaluated next, followed by policies with `forward` action.
 Priority | Policies are evaluated based on ascending order of priority.
 URL | The URL to which the request is redirected, if the action is set to `redirect`.
 HTTP Status Code | Status code of the response returned by the load balancer when action is set to `redirect`. The acceptable values are: 301, 302, 303, 307 or 308.
