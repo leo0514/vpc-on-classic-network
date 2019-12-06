@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2018, 2019
-lastupdated: "2019-05-14"
+lastupdated: "2019-12-05"
 
 keywords: IPv4, ranges, subnets, CIDR, 1918, vpc, vpc network
 
@@ -40,6 +40,12 @@ If you use an IP range outside of those ranges defined by [RFC 1918](https://too
 When choosing IP ranges for a Classic Access VPC, remember that all subnets will be shared into the Classic Infrastructure VRF, which uses IP addresses in the `10.0.0.0/8` space. To avoid IP address conflicts, **do not use** IP addresses on the `10.0.0.0/8` space when creating subnets in a Classic Access VPC.
 {: important}
 
+In addition, in order to support new protocols and practices, the IETF, [RFC 1122](https://tools.ietf.org/html/rfc1122){: external},  reserves the following address blocks for a special purpose. Avoid using these blocks for VPC private addresses.
+
+- `0.0.0.0/8` reserves an IPv4 address block to represent the local network
+- `127.0.0.0/8` is used for loopback addresses to the local host
+- `224.0.0.0/4` is used to address all multicast hosts on the directly connected network
+
 Remember, just in case you are new to CIDR notation, the smaller the number after the slash, the **more** IP addresses you are allocating, because the number after the slash represents the number of leading 1 bits in the subnet's prefix mask.
 
 The following table lists the number of available addresses in a subnet, based on its specified CIDR block size:
@@ -54,4 +60,6 @@ The following table lists the number of available addresses in a subnet, based o
 |      /27        |          27         |
 |      /28        |          11         |
 
+
 If you need more information, a number of excellent articles regarding _Classless Inter-Domain Routing_ (CIDR) can be found online.
+

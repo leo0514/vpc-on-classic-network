@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2018, 2019
-lastupdated: "2019-11-01"
+lastupdated: "2019-12-05"
 
 keywords: vpc, vpc network, secure, region, zone, subnet, terminology, public gateway, floating IP, NAT
 
@@ -49,6 +49,7 @@ Remember:
 * Some IP ranges are reserved by IBM.
 * You must create your VPC before you create subnets within that VPC.
 * IPv6 support is not available.
+* Secondary IP addresses on a single network interface are not supported.
 
 Optionally, you can create a [Classic Access VPC](/docs/vpc-on-classic-network?topic=vpc-on-classic-setting-up-access-to-your-classic-infrastructure-from-vpc) to connect to your IBM Cloud Classic Infrastructure.
 {:note}
