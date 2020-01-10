@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2018, 2019
-lastupdated: "2019-11-01"
+  years: 2018, 2020
+lastupdated: "2020-01-06"
 
 keywords: security, ACLs, security groups, traffic, subnet, instance, VSI, firewall, encryption, vpc, vpc network
 
@@ -17,6 +17,7 @@ subcollection: vpc-on-classic-network
 {:screen: .screen}
 {:tip: .tip}
 {:download: .download}
+{:important: .important}
 
 # Security in your IBM Cloud VPC
 {: #security-in-your-ibm-cloud-vpc}
@@ -63,3 +64,6 @@ For more information about how to create a VSI that uses security groups, and mo
 Although IBM Cloud VPC does not provide end-to-end encryption, it allows for it. For example, if you have a secure endpoint on a virtual server (for example, an HTTPS server on Port 443), you can attach a floating IP to that server, and then your connection is end-to-end encrypted from the client to the server on Port 443.  Nothing in the path forces a decryption.
 
 Note, however, that if you use an insecure protocol such as HTTP on Port 80, your data is in the clear from end to end.
+
+If your application requires end-to-end encryption, then it is *your* responsibility to ensure that your connection is encrypted end-to-end.
+{:important}

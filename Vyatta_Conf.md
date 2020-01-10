@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2018, 2019
-lastupdated: "2019-05-14"
+lastupdated: "2019-12-06"
 
 keywords: peering, Vyatta, connection, secure, remote, vpc, vpc network
 
@@ -13,6 +13,7 @@ subcollection: vpc-on-classic-network
 {:shortdesc: .shortdesc}
 {:codeblock: .codeblock}
 {:screen: .screen}
+{:codeblock: .codeblock}
 {:new_window: target="_blank"}
 {:pre: .pre}
 {:tip: .tip}
@@ -20,100 +21,160 @@ subcollection: vpc-on-classic-network
 {:table: .aria-labeledby="caption"}
 {:download: .download}
 
-
 # Creating a secure connection with a remote Vyatta peer
 {: #creating-a-secure-connection-with-a-remote-vyatta-peer}
 
-This document is based on Vyatta version: AT&T vRouter 5600 1801d.
+You can connect a Vyatta peer to a VPN gateway in an existing {{site.data.keyword.cloud}} Virtual Private Cloud (VPC).
+{: shortdesc}
 
-The example steps that follow skip the prerequisite steps of using {{site.data.keyword.cloud}} API or CLI to create Virtual Private Clouds. For more information, see [Getting Started](/docs/vpc-on-classic?topic=vpc-on-classic-getting-started) and [VPC setup with APIs](/docs/vpc-on-classic?topic=vpc-on-classic-creating-a-vpc-using-the-rest-apis).
+These examples are based on the Vyatta version: AT&T vRouter 5600 1801d
+{: note}
 
-## Example steps
-{: #vyatta-example-steps}
+## Architecture
+{: #vyatta-architecture}
 
-The topology for connecting to the remote Vyatta peer is similar to creating a VPN connection between two {{site.data.keyword.cloud_notm}} VPCs. However, one side is replaced by the Vyatta unit.
+The topology for connecting to a remote Vyatta peer is similar to creating a VPN connection between two {{site.data.keyword.cloud_notm}} VPCs with one side replaced by the Vyatta.
 
 ![enter image description here](images/vpc-vpn-vy-figure.png)
 
-### To create a secure connection with the remote Vyatta peer
-{: #vyatta-to-create-a-secure-connection-with-the-remote-vyatta-peer}
+## Before you begin
+{: #vyatta-preparation}
 
-When a VPN peer receives a connection request from a remote VPN peer, it uses IPsec Phase 1 parameters to establish a secure connection and authenticate that VPN peer. Then, if the security policy permits the connection, the Vyatta unit establishes the tunnel using IPsec Phase 2 parameters and applies the IPsec security policy. Key management, authentication, and security services are negotiated dynamically through the IKE protocol.
+To set up your remote Vyatta peer, make sure that the following prerequisites are met.
 
-You can go to the Vyatta command line to configure the IPsec tunnel, or you can upload a `*.vcli` file to load your configuration.
+* A VPC
+* A subnet in the VPC
+* A VPN gateway in the VPC without connections
 
-**To support these functions, the following general configuration steps must be performed by the Vyatta unit:**
+   After the VPN gateway gets provisioned, note its public IP address.
+   {: tip}
+* The Vyatta public IP address
+* The Vyatta subnet that you want to connect using a VPN
 
-* Define the Phase 1 parameters that the Vyatta unit requires to authenticate the remote peer and establish a secure connection.
+## Configuring the Vyatta 
+{: #configure-vyatta-peer}
 
-* Define the Phase 2 parameters that the Vyatta unit requires to create a VPN tunnel with the remote peer.
+There are two ways you can run the configuration on your Vyatta:
 
-To connect to the IBM Cloud VPC's VPN capability, we recommend the following configuration:
+1. Log in to the Vyatta and run the file `create_vpn.vcli` using the commands that follow.
+2. Run the following commands in the Vyatta console. 
 
-1. Choose `IKEv2` in authentication;
-2. Enable `DH-group 2` in the Phase 1 proposal
-3. Set `lifetime = 36000` in the Phase 1 proposal
-4. Disable PFS in the Phase 2 proposal
-5. Set `lifetime = 10800` in the Phase 2 proposal
-6. Input your peers and subnets information in the Phase 2
+Remember to:
+* Choose `IKEv2` in authentication
+* Enable `DH-group 2` 
+* Set `lifetime = 36000` 
+* Disable PFS 
+* Set `lifetime = 18000`  
+
+The following commands use the following variables where:
+
+* `{{ peer_address }}` is the VPN gateway public IP address.
+* `{{ peer_cidr }}` is the VPN gateway subnet.
+* `{{ vyatta_address }}` is the Vyatta public IP address.
+* `{{ vyatta_cidr }}` is the Vyatta subnet.
 
 ```
 vim vyatta_temp/create_vpn.vcli
 #!/bin/vcli -f
 configure
 
-set security vpn ipsec ike-group 169.61.161.151_test_ike
-set security vpn ipsec ike-group 169.61.161.151_test_ike dead-peer-detection timeout 120
-set security vpn ipsec ike-group 169.61.161.151_test_ike lifetime 36000
-set security vpn ipsec ike-group 169.61.161.151_test_ike ike-version 2
+set security vpn ipsec ike-group {{ peer_address }}_{{ ike["name"] }}
+set security vpn ipsec ike-group {{ peer_address }}_{{ ike["name"] }} dead-peer-detection timeout 120
+set security vpn ipsec ike-group {{ peer_address }}_{{ ike["name"] }} lifetime {{ ike["lifetime"] }}
+set security vpn ipsec ike-group {{ peer_address }}_{{ ike["name"] }} ike-version {{ ike["version"] }}
 
-set security vpn ipsec ike-group 169.61.161.151_test_ike proposal 1
-set security vpn ipsec ike-group 169.61.161.151_test_ike proposal 1 dh-group 2
-set security vpn ipsec ike-group 169.61.161.151_test_ike proposal 1 encryption aes256
-set security vpn ipsec ike-group 169.61.161.151_test_ike proposal 1 hash sha2_256
-set security vpn ipsec esp-group 169.61.161.151_test_ipsec compression disable
-set security vpn ipsec esp-group 169.61.161.151_test_ipsec lifetime 10800
-set security vpn ipsec esp-group 169.61.161.151_test_ipsec mode tunnel
-set security vpn ipsec esp-group 169.61.161.151_test_ipsec pfs disable
+set security vpn ipsec ike-group {{ peer_address }}_{{ ike["name"] }} proposal {{ loop.index }}
+set security vpn ipsec ike-group {{ peer_address }}_{{ ike["name"] }} proposal {{ loop.index }} dh-group {{ proposal["dhgroup"] }} 
+set security vpn ipsec ike-group {{ peer_address }}_{{ ike["name"] }} proposal {{ loop.index }} encryption {{ proposal["encryption"] }}
+set security vpn ipsec ike-group {{ peer_address }}_{{ ike["name"] }} proposal {{ loop.index }} hash {{ proposal["integrity"] }}
 
 
-set security vpn ipsec esp-group 169.61.161.151_test_ipsec proposal 1 encryption aes256
-set security vpn ipsec esp-group 169.61.161.151_test_ipsec proposal 1 hash sha2_256
-set security vpn ipsec site-to-site peer 169.61.161.151 authentication mode pre-shared-secret
-set security vpn ipsec site-to-site peer 169.61.161.151 authentication pre-shared-secret ******
-set security vpn ipsec site-to-site peer 169.61.161.151 ike-group 169.61.161.151_test_ike
-set security vpn ipsec site-to-site peer 169.61.161.151 default-esp-group 169.61.161.151_test_ipsec
-set security vpn ipsec site-to-site peer 169.61.161.151 description "automation test"
-set security vpn ipsec site-to-site peer 169.61.161.151 local-address 169.45.74.119
-set security vpn ipsec site-to-site peer 169.61.161.151 connection-type initiate
+set security vpn ipsec esp-group {{ peer_address }}_{{ ipsec["name"] }} compression disable
+set security vpn ipsec esp-group {{ peer_address }}_{{ ipsec["name"] }} lifetime {{ ipsec["lifetime"] }}
+set security vpn ipsec esp-group {{ peer_address }}_{{ ipsec["name"] }} mode tunnel
+set security vpn ipsec esp-group {{ peer_address }}_{{ ipsec["name"] }} pfs {{ ipsec["proposals"][0]["dhgroup"] }}
 
+set security vpn ipsec esp-group {{ peer_address }}_{{ ipsec["name"] }} proposal {{ loop.index }} encryption {{ proposal["encryption"] }}
+set security vpn ipsec esp-group {{ peer_address }}_{{ ipsec["name"] }} proposal {{ loop.index }} hash {{ proposal["integrity"] }}
 
-set security vpn ipsec site-to-site peer 169.61.161.151 tunnel 1 local prefix 192.168.200.0/24
-set security vpn ipsec site-to-site peer 169.61.161.151 tunnel 1 remote prefix 192.168.17.0/28
+set security vpn ipsec site-to-site peer {{ peer_address }} authentication mode pre-shared-secret
+set security vpn ipsec site-to-site peer {{ peer_address }} authentication pre-shared-secret {{ psk }}
+set security vpn ipsec site-to-site peer {{ peer_address }} ike-group {{ peer_address }}_{{ ike["name"] }}
+set security vpn ipsec site-to-site peer {{ peer_address }} default-esp-group {{ peer_address }}_{{ ipsec["name"] }}
+set security vpn ipsec site-to-site peer {{ peer_address }} description "automation test"
+set security vpn ipsec site-to-site peer {{ peer_address }} local-address {{ vyatta_address }}
+set security vpn ipsec site-to-site peer {{ peer_address }} connection-type {{ connection_type }}
+set security vpn ipsec site-to-site peer {{ peer_address }} authentication remote-id {{ peer_address }}
+
+set security vpn ipsec site-to-site peer {{ peer_address }} tunnel {{ ns.tunnel_index }} local prefix {{ vyatta_cidr }}
+set security vpn ipsec site-to-site peer {{ peer_address }} tunnel {{ ns.tunnel_index }} remote prefix {{ peer_cidr }}
 
 commit
+end_configure
+```
+{: codeblock}
+
+## Example
+Commands appear similar to the following:
+
+```
+#!/bin/vcli -f
+configure
+
+set security vpn ipsec ike-group 169.61.247.167_test_ike
+set security vpn ipsec ike-group 169.61.247.167_test_ike dead-peer-detection timeout 120
+set security vpn ipsec ike-group 169.61.247.167_test_ike lifetime 36000
+set security vpn ipsec ike-group 169.61.247.167_test_ike ike-version 2
+
+set security vpn ipsec ike-group 169.61.247.167_test_ike proposal 1
+set security vpn ipsec ike-group 169.61.247.167_test_ike proposal 1 dh-group 2 
+set security vpn ipsec ike-group 169.61.247.167_test_ike proposal 1 encryption aes256
+set security vpn ipsec ike-group 169.61.247.167_test_ike proposal 1 hash sha2_256
+set security vpn ipsec esp-group 169.61.247.167_test_ipsec compression disable
+set security vpn ipsec esp-group 169.61.247.167_test_ipsec lifetime 18000
+set security vpn ipsec esp-group 169.61.247.167_test_ipsec mode tunnel
+set security vpn ipsec esp-group 169.61.247.167_test_ipsec pfs disable
+
+
+set security vpn ipsec esp-group 169.61.247.167_test_ipsec proposal 1 encryption aes256
+set security vpn ipsec esp-group 169.61.247.167_test_ipsec proposal 1 hash sha2_256
+set security vpn ipsec site-to-site peer 169.61.247.167 authentication mode pre-shared-secret
+set security vpn ipsec site-to-site peer 169.61.247.167 authentication pre-shared-secret ***YOUR-PSK***
+set security vpn ipsec site-to-site peer 169.61.247.167 ike-group 169.61.247.167_test_ike
+set security vpn ipsec site-to-site peer 169.61.247.167 default-esp-group 169.61.247.167_test_ipsec
+set security vpn ipsec site-to-site peer 169.61.247.167 description "automation test"
+set security vpn ipsec site-to-site peer 169.61.247.167 local-address 169.63.66.53
+set security vpn ipsec site-to-site peer 169.61.247.167 connection-type initiate
+set security vpn ipsec site-to-site peer 169.61.247.167 authentication remote-id 169.61.247.167
+
+
+set security vpn ipsec site-to-site peer 169.61.247.167 tunnel 1 local prefix 10.65.15.104/29
+set security vpn ipsec site-to-site peer 169.61.247.167 tunnel 1 remote prefix 10.240.0.0/24
+    
+    
+commit
+end_configure
+
 ```
 {: screen}
 
-Then, you can upload this `*.vcli` file to the Vyatta using SCP, to apply the configuration.
+Finally, make note of your `{{ psk }}` value, as you will need it to set up the VPN connection in the next step.
 
-`scp example.vcli <vyatta_username>@<vyatta_ip>`
+### Configuring the VPN gateway
+{: #configure-vpn-gateway}
 
-### To create a secure connection with the local IBM Cloud VPC
-{: #vyatta-to-create-a-secure-connection-with-the-local-ibm-cloud-vpc}
+To configure the VPN gateway side, add a new VPN connection with the following settings:
 
- To create a secure connection, you'll create the VPN connection within your VPC, which is similar to the 2 VPC example.
+* `Peer gateway address` as your Vyatta public IP address
+* `Preshared key` as the `{{ psk }}` value
+* `Local subnets` as the VPN gateway subnet
+* `Peer subnets` as your Vyatta subnet
 
-* Create a VPN gateway on your VPC subnet  along with a VPN connection between the VPC and the Vyatta unit, setting `local_cidrs` to the subnet value on the VPC, and `peer_cidrs` to the subnet value on the Vyatta unit.
+![Creat VPN connection form](images/vpc-vpn-vy-connection.png)
 
-The gateway status appears as `pending` while the VPN gateway is being created, and the status becomes `available` once creation is complete. Creation may take some time.
-{: note}
-
-![enter image description here](images/vpc-vpn-vy-connection.png)
-
-### Check the status of the secure connection
+### Checking the status of the secure connection
 {: #vyatta-check-the-status-of-the-secure-connection}
 
-You can check the status of your connection through the {{site.data.keyword.cloud_notm}} console. Also, you can try to do a `ping` from site to site using the VSIs.
+You can check the status of your connection on the {{site.data.keyword.cloud_notm}} console. You can also perform a `ping` from site to site using the virtual server instances.
 
-![enter image description here](images/vpc-vpn-vy-status.png)
+![Active connection status](images/vpc-vpn-vy-status.png)
