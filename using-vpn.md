@@ -344,11 +344,11 @@ VPC allows access to your service endpoint (SE) from an on-premise network, by m
 
 * See our [VPC Quotas](/docs/vpc-on-classic?topic=vpc-on-classic-quotas#vpn-quotas) topic for VPN quotas.
 * Only policy based routing is supported at this time (not route based). IBM VPN is following these industry standards, and all compatible devices with these RFCs should be interoperable with IBM VPN using policy based VPN mode:
-  * [RFC 4109](http://www.faqs.org/rfcs/rfc4109.html){: external}, 
-  * [RFC 7296](http://www.faqs.org/rfcs/rfc7296.html){: external}, 
-  * [RFC 3947](http://www.faqs.org/rfcs/rfc3947.html){: external}, 
-  * [RFC 7383](http://www.faqs.org/rfcs/rfc7383.html){: external}, 
-  * [RFC 3706](http://www.faqs.org/rfcs/rfc3706.html){: external}. 
+  * [RFC 4109](http://www.faqs.org/rfcs/rfc4109.html){: external},
+  * [RFC 7296](http://www.faqs.org/rfcs/rfc7296.html){: external},
+  * [RFC 3947](http://www.faqs.org/rfcs/rfc3947.html){: external},
+  * [RFC 7383](http://www.faqs.org/rfcs/rfc7383.html){: external},
+  * [RFC 3706](http://www.faqs.org/rfcs/rfc3706.html){: external}.
 
 ## Troubleshooting
 {: #vpn-troubleshooting}
@@ -365,6 +365,7 @@ Check the network ACLs of the subnet where the VPN gateway was provisioned. The 
 - A VPN gateway will initiate the VPN connection negotiation when a new connection is added and will retry up to 5 times. If the connection remains down, try initiating the connection again.
 - Make sure the peer VPN gateway is using matched IKE/IPsec policy and pre-shared key. See [IKE auto-negotiation (Phase 1)](#ike-auto-negotiation-phase-1) and [IPsec auto-negotiation (Phase 2)](#ipsec-auto-negotiation-phase-2) for options.
 - Make sure traffic is not blocked by firewall between IBM VPN gateway and peer VPN gateway. Use tools, like ping, to test the network connectivity between the gateways.
+- View the VPN logs to determine any other factors which leave the VPN connection down. See [Using LogDNA to view VPN logs](/docs/vpc-on-classic-network?topic=vpc-on-classic-network-using-logdna-to-view-vpn-logs) to find out how to view these logs.
 
 ### The connection is up but you cannot access resources in VPC from on-premise network
 
@@ -461,3 +462,7 @@ If you use IKEv1, rekey collision will delete the IKE/IPsec SA. To recreate the 
 **Is it possible to connect to route based VPNs with multiple tunnels?**
 
 Not at this time.
+
+**Is it possible to view logs from the VPN Gateway for debugging purposes?**
+
+Yes, you can find more information in [Using LogDNA to view VPN logs](/docs/vpc-on-classic-network?topic=vpc-on-classic-network-using-logdna-to-view-vpn-logs).

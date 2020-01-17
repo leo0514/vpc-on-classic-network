@@ -28,7 +28,11 @@ Networking for Virtual Private Cloud (Gen 1 compute)
 
     using-acls.md
     using-lbaas.md
-    using-vpn.md
+
+    {: .topicgroup}
+    VPN for VPC
+        using-vpn.md
+        vpc-vpn-view-logs-logdna.md
 
     {: .topicgroup}
     Setting up a VPN

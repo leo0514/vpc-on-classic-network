@@ -39,7 +39,7 @@ The topology for connecting to the remote FortiGate peer is similar to creating 
 
 Go to **VPN \> IPsec \> Tunnels** and create a new custom tunnel or edit an existing tunnel.
 
-![vpc-vpn-fg-start](./images/vpc-vpn-fg-start.JPG)
+![vpc-vpn-fg-start](./images/vpc-vpn-fg-start.jpg)
 
 When a FortiGate unit receives a connection request from a remote VPN peer, it uses IPsec Phase 1 parameters to establish a secure connection and authenticate that VPN peer. Then, if the security policy permits the connection, the FortiGate unit establishes the tunnel using IPsec Phase parameters and applies the IPsec security policy. Key management, authentication, and security services are negotiated dynamically through the IKE protocol.
 
@@ -82,4 +82,4 @@ To create a secure connection, you'll create the VPN connection within your VPC,
 
 You can check the status of your connection through the IBM Cloud console. Also, you could try to do a `ping` from site to site using the VSIs.
 
-![enter image description here](images/vpc-vpn-fg-status.JPG)
+![enter image description here](images/vpc-vpn-fg-status.jpg)
