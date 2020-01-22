@@ -72,7 +72,7 @@ You have two options when attaching an ACL to a subnet:
 
 In the example that follows, you'll be able to create two ACLs and associate them with two subnets, using the command line interface (CLI). Here's what the scenario looks like:
 
-![An example ACL scenario](images/vpc-acls.png)
+![An example ACL scenario](images/vpc-acls.svg)
 
 As the figure illustrates, you have two web servers dealing with requests from the Internet and two backend servers that you want to hide from the public. In this example, you place the servers into two separate subnets, 10.10.10.0/24 and 10.10.20.0/24 respectively, and you need to allow the web servers to exchange data with the backend servers. Also, you want to allow limited outbound traffic from the backend servers.
 
