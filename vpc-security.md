@@ -47,7 +47,7 @@ The section that follows describes basic functionality of ACLs and security grou
 
 An **Access Control List (ACL)** can manage (that is, it can allow or deny) inbound and outbound traffic for a subnet. An ACL is stateless, which means that inbound and outbound rules must be specified separately and explicitly. Each ACL consists of rules, based upon a *source IP*, *source port*, *destination IP*, *destination port*, and *protocol*.
 
-In {{site.data.keyword.cloud}} VPC, every subnet is created with a default ACL, which allows inbound and outbound traffic, but customers can create custom ACLs. Only one ACL is attached to a subnet at any time, but one ACL can be attached to multiple subnets. For more information about how to use ACLs, see our [ACL guide](/docs/vpc-on-classic-network?topic=vpc-on-classic-network-setting-up-network-acls).
+In {{site.data.keyword.cloud}} VPC, every subnet is created with a default ACL, which allows inbound and outbound traffic, but customers can create custom ACLs. Only one ACL is attached to a subnet at any time, but one ACL can be attached to multiple subnets. For more information about how to use ACLs, see [Setting up network ACLs](/docs/vpc-on-classic-network?topic=vpc-on-classic-network-setting-up-network-acls).
 
 ### Security Group
 {: #security-group}
@@ -56,7 +56,7 @@ A **security group** acts as a virtual firewall that controls the traffic for on
 
 When a customer creates a VSI, he or she can associate one or more security groups with that VSI. Given the correct permissions, customers can modify security group rules using the IBM Console, the CLI, or the API.
 
-For more information about how to create a VSI that uses security groups, and more about the capabilities of security groups, refer to our [security groups guide](/docs/vpc-on-classic-network?topic=vpc-on-classic-network-using-security-groups).
+For more information about how to create a VSI that uses security groups, and more about the capabilities of security groups, see [Using security groups](/docs/vpc-on-classic-network?topic=vpc-on-classic-network-using-security-groups).
 
 ### End-to-end encryption
 {: #end-to-end-encryption}

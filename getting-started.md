@@ -41,7 +41,7 @@ To get started with networking for {{site.data.keyword.vpc_full}} (Gen 1 compute
 
 The provisioning and managing of VPC network resources can be done through the UI, CLI or REST API.
 
-* For access through the user interface, log into the [IBM Cloud Console](https://{DomainName}/vpc){: external}. Follow the [UI guide](/docs/vpc-on-classic?topic=vpc-on-classic-creating-a-vpc-using-the-ibm-cloud-console) if you need help.
+* For access through the user interface, log into the [IBM Cloud Console](https://{DomainName}/vpc){: external}. Follow the steps in [Creating a VPC using the IBM Cloud console](/docs/vpc-on-classic?topic=vpc-on-classic-creating-a-vpc-using-the-ibm-cloud-console) if you need help.
 * To use the command line interface, follow the [Hello World](/docs/vpc-on-classic?topic=vpc-on-classic-creating-a-vpc-using-the-ibm-cloud-cli) example.
 * For more advanced users, you can call the [REST APIs](https://{DomainName}/apidocs/vpc-on-classic){: external} directly. Follow the [example code](/docs/vpc-on-classic?topic=vpc-on-classic-creating-a-vpc-using-the-rest-apis) tutorial to get started with the REST APIs.
 
