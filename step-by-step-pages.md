@@ -35,4 +35,3 @@ Use these comprehensive examples to begin building and customizing your {{site.d
 * [Deploy isolated workloads across multiple locations and zones](/docs/vpc-on-classic?topic=solution-tutorials-vpc-multi-region)
 * [Use a VPC/VPN gateway for secure and private on-premises access to cloud resources](/docs/vpc-on-classic?topic=solution-tutorials-vpc-site2site-vpn)
 * [Securely access remote instances with a bastion host](/docs/vpc-on-classic?topic=solution-tutorials-vpc-secure-management-bastion-server)
-* [Architecture Center VPC Solutions](https://www.ibm.com/cloud/garage/architectures/virtual-private-cloud-subdomain){: external}
