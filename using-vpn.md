@@ -40,8 +40,8 @@ The {{site.data.keyword.cloud}} VPN for Virtual Private Cloud allows you to conn
 * Encryption algorithms: `3des`, `aes128`, `aes256`
 * Diffie-Hellman (DH) groups: 2, 5, 14
 * IKE negotiation mode: main
-* IPSec transform protocol: ESP
-* IPSec encapsulation mode: tunnel
+* IPsec transform protocol: ESP
+* IPsec encapsulation mode: tunnel
 * Perfect Forward Secrecy (PFS)
 * Dead Peer Detection
 * Routing: Policy-based
@@ -384,9 +384,9 @@ If you use the API or CLI, VPN connections must be created after the VPN gateway
 
 The VPN connections are deleted along with the VPN gateway.
 
-**Will IKE or IPSec policies be deleted if I delete a VPN gateway or VPN connection?**
+**Will IKE or IPsec policies be deleted if I delete a VPN gateway or VPN connection?**
 
-No, IKE and IPSec policies can apply to multiple connections.
+No, IKE and IPsec policies can apply to multiple connections.
 
 **What happens to a VPN gateway if I try to delete the subnet that the gateway is located on?**
 
