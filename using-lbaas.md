@@ -3,7 +3,7 @@
 
 copyright:
   years: 2018, 2019
-lastupdated: "2019-11-15"
+lastupdated: "2020-02-05"
 
 keywords: load balancer, public, listener, back-end, front-end, pool, round-robin, weighted, connections, methods, policies, APIs, access, ports, vpc, vpc network
 
@@ -33,23 +33,23 @@ The {{site.data.keyword.cloud}} **Load Balancer for VPC** service distributes tr
 ## Public load balancer
 {: #public-load-balancer}
 
-Your load balancer service instance is assigned a publicly-accessible, fully qualified domain name (FQDN), which you must use for access to your applications that are hosted behind the IBM Cloud Load Balancer for VPC. This domain name may be registered with one or more public IP addresses.
+Your load balancer service instance is assigned a publicly accessible, fully qualified domain name (FQDN), which you must use for access to your applications that are hosted behind the IBM Cloud Load Balancer for VPC. This domain name can be registered with one or more public IP addresses.
 
-Over time, these public IP addresses and the number of public IP addresses may change, due to maintenance and scaling activities. The back-end server instances (VSIs) hosting your application must run in the same region, and under the same VPC.
+Over time, these public IP addresses and the number of public IP addresses might change, due to maintenance and scaling activities. The back-end server instances (VSIs) hosting your application must run in the same region, and under the same VPC.
 
 Remember to use the assigned FQDN to send traffic to the public load balancer to avoid connectivity problems to your applications during system maintenance or scaling down activities.
 {: important}
 
-## Private Load Balancer
+## Private load balancer
 {: #private-load-balancer}
 
 The private load balancer is accessible only to internal clients on your private subnets, within the same region and VPC. The private load balancer accepts traffic only from [RFC1918](https://tools.ietf.org/html/rfc1918){: external} address spaces.
 
 Similar to a public load balancer, your private load balancer service instance is assigned a fully qualified domain name (FQDN). However, this domain name is registered with one or more private IP addresses.
 
-IBM Cloud operations may change the number and value of your assigned private IP addresses over time, based on maintenance and scaling activities. The back-end server instances (VSIs) hosting your application must run in the same region, and under the same VPC.
+IBM Cloud operations might change the number and value of your assigned private IP addresses over time, based on maintenance and scaling activities. The back-end server instances (VSIs) hosting your application must run in the same region, and under the same VPC.
 
-See the following table for a summary comparison of features:
+See the following table for a comparison of features:
 
 | Feature | Public Load Balancer | Private Load Balancer |
 |--------|-------|-------|
@@ -64,7 +64,7 @@ Remember to use the assigned FQDN to send traffic to the private load balancer t
 ## Front-end listeners and back-end pools
 {: #front-end-listeners-and-back-end-pools}
 
-You may define up to ten (10) front-end listeners (application ports) and map them to respective back-end pools on the back-end application servers. The fully qualified domain name (FQDN) assigned to your load balancer service instance and the front-end listener ports are exposed to the public internet. Incoming user requests are received on these ports.
+You can define up to ten front-end listeners (application ports) and map them to respective back-end pools on the back-end application servers. The FQDN assigned to your load balancer service instance and the front-end listener ports are exposed to the public internet. Incoming user requests are received on these ports.
 
 The supported front-end listener protocols are:
 * HTTP
@@ -75,26 +75,26 @@ The supported back-end pool protocols are:
 * HTTP
 * TCP
 
-Incoming HTTPS traffic is terminated at the load balancer, to allow for plain-text HTTP communication with the back-end server.
+Incoming HTTPS traffic is terminated at the load balancer to allow for plain-text HTTP communication with the back-end server.
 
-You may attach up to fifty (50) server instances to a back-end pool. Each attached server instance must have a port configured. The port may or may not be the same as front-end listener port.
+You can attach up to fifty server instances to a back-end pool. Each attached server instance must have a port configured. The port might or might not be the same as front-end listener port.
 
-The port range of 56500 to 56520 is reserved for management purposes; these ports cannot be used as front-end listener ports.
+The port range of `56500` to `56520` is reserved for management purposes; these ports cannot be used as front-end listener ports.
 {: note}
 
 ## Layer-7 load balancing
 {: #layer-7-load-balancing}
 
-Public and private load balancers both support Layer-7 load balancing. Data traffic is distributed based on configured policies and rules. A _policy_ defines the action--which means how the traffic is distributed--when the incoming request matches the rules associated with the policy.
+Public and private load balancers both support Layer-7 load balancing. Data traffic is distributed based on configured policies and rules. A _policy_ defines the action, which means how the traffic is distributed when the incoming request matches the rules associated with the policy.
 
 ### Layer-7 policy
 {: #layer-7-policy}
 
 A Layer-7 policy is associated with a listener, and only an HTTP or HTTPS listener. Each policy can have a set of rules. The policy is applied **only** when all its rules are matched.
 
-You may attach more than one policy to a listener. In general, a policy with the lowest priority is evaluated first. Priority must be unique for a given policy.
+You can attach more than one policy to a listener. In general, a policy with the lowest priority is evaluated first. Priority must be unique for a given policy.
 
-If the incoming request does not match any of the policy rules, the request is redirected to the default pool of the listener, if the default pool is configured.
+If the incoming request does not match any of the policy rules, the request is redirected to the default pool of the listener if the default pool is configured.
 
 These are the supported actions for a Layer-7 policy:
 
@@ -119,7 +119,7 @@ Name | The name of the policy. The name must be unique within the listener.
 Action | The action to take when all policy rules match. The acceptable values are `reject`, `redirect`, and `forward`. A policy with `reject` action is always evaluated first, regardless of its priority. Policies with `redirect` actions are evaluated next, followed by policies with `forward` action.
 Priority | Policies are evaluated based on ascending order of priority.
 URL | The URL to which the request is redirected, if the action is set to `redirect`.
-HTTP Status Code | Status code of the response returned by the load balancer when action is set to `redirect`. The acceptable values are: 301, 302, 303, 307 or 308.
+HTTP Status Code | Status code of the response returned by the load balancer when action is set to `redirect`. The acceptable values are: `301`, `302`, `303`, `307` or `308`.
 Target | The back-end pool of server instances to which the request is forwarded, if the action is set to `forward`.
 
 ### Layer-7 rules
@@ -146,7 +146,7 @@ Condition |  Type of evaluation
 
 Property  | Description
 ------------- | -------------
-Type | Specifies the type of rule. The acceptable values are `hostname`, `header` or `path`.
+Type | Specifies the type of rule. Acceptable values are `hostname`, `header` or `path`.
 Condition | Specifies the condition with which a rule is evaluated. Condition can be: `contains`, `equals` or `matches_regex`.
 Field | Specifies the HTTP header field name. This field is applicable only to the `header` rule type. For example, to match a cookie in the HTTP header, the field can be set to `Cookie`.
 Value |  The value to be matched.
@@ -162,7 +162,7 @@ roughly an equal number of client connections.
 
 * **Weighted Round-robin:** With this method, the load balancer forwards incoming client connections to the back-end
 servers in proportion to the weight assigned to these servers. Each server is assigned a default weight of 50,
-which may be customized to any value between 0 and 100.
+which can be customized to any value between 0 and 100.
 
 As an example, if three application servers A, B and C, have weights customized to 60, 60, and 30 respectively, then servers A and B receive an equal number of connections, while server C receives half that number of connections.
 
@@ -176,9 +176,9 @@ As an example, if three application servers A, B and C, have weights customized 
 ## Horizontal scaling
 {: #horizontal-scaling}
 
-The load balancer adjusts its capacity automatically according to the load. When this adjustment occurs, you may see a change in the number of IP addresses associated with the load balancer's DNS name.
+The load balancer adjusts its capacity automatically according to the load. When this adjustment occurs, you might see a change in the number of IP addresses associated with the load balancer's DNS name.
 
-## Health Checks
+## Health checks
 {: #health-checks}
 
 Health check definitions are mandatory for back-end pools.
@@ -199,17 +199,28 @@ The default health check interval is 5 seconds, the default timeout against a he
 
 For all incoming HTTPS connections, the load balancer service terminates the SSL connection and establishes a plain-text HTTP communication with the back-end server instance. With this technique, CPU-intensive SSL handshakes and encryption or decryption tasks are shifted away from the back-end server instances, thereby allowing them to use all their CPU cycles for processing application traffic.
 
-An SSL certificate is required for the load balancer to perform SSL offloading tasks. You may manage the SSL certificates through [IBM Certificate Manager](/docs/services/certificate-manager?topic=certificate-manager-getting-started).
+An SSL certificate is required for the load balancer to perform SSL offloading tasks. You may manage the SSL certificates through [IBM Certificate Manager](/docs/certificate-manager?topic=certificate-manager-getting-started).
 
 To give a load balancer access to your SSL certificate, you must enable **service-to-service authorization**, which grants your load balancer service instance access to your certificate manager instance. You may manage such an authorization by following this documentation [Granting access between services](/docs/iam?topic=iam-serviceauth#create-auth). Make sure to choose **VPC Infrastructure** as the source service, **Load Balancer for VPC** as the resource type, **Certificate Manager** as the target service, and assign the **Writer** service access role.
 
-If the required authorization is removed, errors may occur for your load balancer.
+If the required authorization is removed, errors might occur for your load balancer.
 {: note}
+
+## Configuring ACLs for use with load balancers
+{: #configuring-acls-for-use-with-load-balancers}
+
+If you use access control lists (ACLs) to block traffic on the subnets in which the load balancer is deployed, make sure to follow the link to allow the [ACLs required for instance creation](/docs/vpc-on-classic?topic=vpc-on-classic-rias-error-messages#acl_rule_does_not_allow)
+
+In addition, allow incoming traffic to the configured listener ports and the following management ports:
+- Inbound on TCP port 56501
+- Outbound on TCP port 443, 10514, 8834
+
+
 
 ## Identity and access management (IAM)
 {: #identity-and-access-management-iam}
 
-You can configure access policies for a **Load Balancer for VPC** instance. To manage your user access policies, visit [Managing access to resource](/docs/services/iam?topic=iam-iammanidaccser#resourceaccess) for more information on Identity and access management.
+You can configure access policies for a **Load Balancer for VPC** instance. To manage your user access policies, visit [Managing access to resource](/docs/iam?topic=iam-iammanidaccser#resourceaccess) for more information on Identity and access management.
 
 ### Configuring resource group access policies for users
 {: #configuring-resource-group-access-policies-for-users}
@@ -256,7 +267,7 @@ All auditing events are recorded to "IBM Cloud Activity Tracker with LogDNA" in 
 
 To view events, you must provision an "IBM Cloud Activity Tracker with LogDNA" instance in the`us-south` region under your account. Users in your account must have an IAM policy that grants the **Viewer** platform access role and **Reader** service access role on the "IBM Cloud Activity Tracker with LogDNA" instance.
 
-More information on granting access is available at [Granting permissions to see account events](/docs/services/cloud-activity-tracker/how-to?topic=cloud-activity-tracker-grant_permissions).
+More information on granting access is available at [Granting permissions to see account events](/docs/Activity-Tracker-with-LogDNA?topic=logdnaat-iam).
 
 IBM Cloud account users can monitor account-level operations performed on the load balancer service.
 {: tip}
@@ -379,7 +390,7 @@ The following section gives details about APIs you can use for load balancers in
 ## Load balancer example
 {: #load-balancer-example}
 
-In the following example, you'll use the API to create a load balancer in front of 2 VPC server instances (`192.168.100.5` and `192.168.100.6`) running a web application listening on port `80`. The load balancer has a front-end listener, which allows access to the web application securely by means of HTTPS. Then you can use the API to get details of the load balancer instance after it is created, and to delete the load balancer instance.
+In the following example, you'll use the API to create a load balancer in front of two VPC server instances (`192.168.100.5` and `192.168.100.6`) running a web application listening on port `80`. The load balancer has a front-end listener, which allows access to the web application securely by means of HTTPS. Then you can use the API to get details of the load balancer instance after it is created, and to delete the load balancer instance.
 
 ### Example steps
 {: #lbaas-example-steps}
@@ -757,7 +768,9 @@ Yes. The load balancer automatically adjusts its capacity based on the load. Whe
 ### What should I do if I am using ACLs or security groups on the subnets that are used to deploy the load balancer?
 {: #what-should-i-do-if-i-am-using-acls-or-security-groups-on-the-subnets-that-are-used-to-deploy-the-load-balancer}
 
-You'll need to ensure that the proper ACL or security group rules are in place to allow incoming traffic for configured listener ports and management ports (ports from 56500 - 56520). Traffic between the load balancer and back-end instances also should be allowed.
+You'll need to ensure that the proper ACL or security group rules are in place to allow VPC instance creation and allow incoming traffic for configured listener ports and management ports. Traffic between the load balancer and back-end instances also should be allowed.
+
+For detailed information on the ACLs configuration required, refer to [Configuring ACLs for use with load balancers](#configuring-acls-for-use-with-load-balancers).
 
 ### Why am I receiving an error message: `certificate instance not found`?
 
@@ -825,12 +838,12 @@ Use FQDN, rather than cached IP addresses.
 ### Does the load balancer support Layer-7 switching?
 {: #does-the-load-balancer-support-layer-7-switching}
 
-Yes.
+Yes, the load balancer supports Layer-7 switching.
 
 ### Why does HTTPS listener creation or update tell me that my certificate is invalid?
 {: #why-does-https-listener-creation-or-update-tell-me-that-my-certificate-is-invalid}
 
 Check for these possibilities:
 
-* The provided certificate CRN may be invalid.
-* The certificate instance given in the Certificate Manager may not have an associated private key.
+* The provided certificate CRN might be invalid.
+* The certificate instance given in the Certificate Manager might not have an associated private key.

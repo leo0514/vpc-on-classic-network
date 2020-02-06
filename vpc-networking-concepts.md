@@ -20,7 +20,7 @@ subcollection: vpc-on-classic-network
 {:note: .note}
 {:download: .download}
 
-# VPC Behind the Curtain
+# VPC behind the curtain
 {: #vpc-behind-the-curtain}
 
 This page presents a more detailed conceptual picture of what's happening "behind the curtain" with respect to VPC networking. Readers are expected to have some networking background.

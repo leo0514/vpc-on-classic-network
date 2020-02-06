@@ -8,14 +8,14 @@ keywords: security groups, traffic, firewall, stateful, filtering, access, contr
 subcollection: vpc-on-classic-network
 ---
 
-# Comparing Security Groups and Access Control Lists
+# Comparing security groups and access control lists
 {: #compare-security-groups-and-access-control-lists}
 
-Security groups and access control lists provide ways to control the traffic across the subnets and instances in your {{site.data.keyword.cloud}} VPC, using rules that you specify.
+Security groups and access control lists (ACLs) provide ways to control the traffic across the subnets and instances in your {{site.data.keyword.cloud}} VPC, using rules that you specify.
 
 The following table summarizes some key differences between security groups and ACLs:
 
-|  | Security Groups | ACLs    |
+|  | Security groups | ACLs    |
 |-------------|-----------------|---------|
 | Control level  | VSI instance    | Subnet  |
 | State   | Stateful - Once an inbound connection is permitted, it is allowed to reply | Stateless - Both inbound and outbound connections must be explicitly allowed |

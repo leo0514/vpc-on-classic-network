@@ -84,7 +84,7 @@ A zone is an abstraction that refers to the physical data center that hosts the 
 
 A subnet consists of a specified IP address range (CIDR block). Subnets are bound to a single zone, and they cannot span multiple zones or regions. However, a subnet can span the entirety of the zone abstractions within their Virtual Private Cloud. Subnets in the same VPC are connected to each other.
 
-### Reserved IP Addresses
+### Reserved IP addresses
 {: #reserved-ip-addresses}
 
 Certain IP addresses are reserved for use by IBM when operating the Virtual Private Cloud. Here are the reserved addresses (these IP addresses assume that the subnet's CIDR block is 10.10.10.0/24):
@@ -95,10 +95,10 @@ Certain IP addresses are reserved for use by IBM when operating the Virtual Priv
   * Fourth address in the CIDR block (10.10.10.3): reserved by IBM for future use
   * Last address in the CIDR block (10.10.10.255): Network broadcast address
 
-### Use a Public Gateway for external connectivity of a subnet
+### Use a public gateway for external connectivity of a subnet
 {: #use-a-public-gateway}
 
-A **Public Gateway (PGW)** enables a subnet (with all the instances attached to the subnet) to connect to the Internet. Note that subnets are private by default; however, optionally, you can create a PGW and attach a subnet to the PGW. After a subnet is attached to the PGW, all the instances in that subnet can connect to the Internet.
+A **public gateway (PGW)** enables a subnet (with all the instances attached to the subnet) to connect to the Internet. Note that subnets are private by default; however, optionally, you can create a PGW and attach a subnet to the PGW. After a subnet is attached to the PGW, all the instances in that subnet can connect to the Internet.
 
 PGW uses _Many-to-1 NAT_, which means that thousands of instances with private addresses will use 1 public IP address to talk to the public Internet. PGW does not enable the Internet to initiate a connection with those instances. Use the API to attach and detach subnets to and from your PGW.
 
@@ -158,16 +158,16 @@ For more information about NAT operations, refer to [the related Internet RFC do
 
 Virtual Private Network (VPN) service is available for users to connect to their {{site.data.keyword.vpc_short}} from the Internet, securely.
 
-**VPN Capabilities**
+**VPN capabilities**
   * Ability to associate a VPN service to a {{site.data.keyword.vpc_short}}.
-  * Ability to CRUD (Create, Read, Update and Delete) VPN service (site-to-site IPSEC VPN) for handling data transfer.
+  * Ability to CRUD (Create, Read, Update and Delete) VPN service (site-to-site IPsec VPN) for handling data transfer.
   * Uses static routes to identify on-site subnets.
   * Support for secure ciphers such as SHA256, AES, 3DES, IKEv2.
   * Built-in service reliability and high availability.
   * Continuous monitoring of VPN connection health.
   * Support for both initiator and responder modes; that is, traffic may be initiated from either side of the tunnel.
 
-## Learn More
+## Learn more
 {: #subnets-learn-more}
    * [IBM VPC security](/docs/vpc-on-classic-network?topic=vpc-on-classic-network-security-in-your-ibm-cloud-vpc)
    * [IBM VPC addresses, regions, and subnets](/docs/vpc-on-classic-network?topic=vpc-on-classic-network-working-with-ip-address-ranges-address-prefixes-regions-and-subnets)

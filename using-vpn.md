@@ -400,7 +400,7 @@ When you create a VPN connection without referencing a policy ID (IKE or IPsec),
 
 The subnet connects the VPN gateway with other resources in your VPC. The recommended best practice is to create
 a dedicated subnet for the VPN gateway, with no other VPC instances on this subnet, to ensure there
-are enough free private IPs in the subnet. A VPN gateway needs 8 private IP addresses to accomodate HA and rolling upgrades.
+are enough free private IPs in the subnet. A VPN gateway needs 8 private IP addresses to accommodate HA and rolling upgrades.
 
 **In which zone does the VPN gateway reside?**
 

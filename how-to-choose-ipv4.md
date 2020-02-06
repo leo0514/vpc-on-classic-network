@@ -23,10 +23,10 @@ subcollection: vpc-on-classic-network
 {:external: target="_blank" .external}
 
 
-# Choosing IP Ranges for your VPC
+# Choosing IP ranges for your VPC
 {: #choosing-ip-ranges-for-your-vpc}
 
-Use CIDR notation such as:
+Use CIDR notation, such as:
 
 * `<IPv4 address>/number` (VPC address example: 10.10.0.0/16).
 
@@ -62,4 +62,3 @@ The following table lists the number of available addresses in a subnet, based o
 
 
 If you need more information, a number of excellent articles regarding _Classless Inter-Domain Routing_ (CIDR) can be found online.
-

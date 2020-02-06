@@ -21,7 +21,7 @@ subcollection: vpc-on-classic-network
 {:download: .download}
 {:DomainName: data-hd-keyref="DomainName"}
 
-# Setting Up Advanced Routing in VPC
+# Setting Up advanced routing in VPC
 {: #setting-up-advanced-routing-in-vpc}
 
 You can control the flow of network traffic in your VPC by configuring VPC routes. Use VPC routes to specify the next hop for packets, based on their destination addresses.
@@ -31,9 +31,9 @@ You can control the flow of network traffic in your VPC by configuring VPC route
 
 In the network structure of a VPC, one route table exists for each zone used by a VPC in a region. When an IP packet leaves a subnet, it is evaluated against the route table in the subnet's zone, to determine where to send the packet next. Each router has a default route, but the VPC Routes allow you to provide custom static routes to your routing tables.
 
-## VPC Route structure and behavior
+## VPC route structure and behavior
 
-A VPC Route has three main components: the destination CIDR, the next hop, and the zone. The traffic that originates in a VPC in the zone whose destination address falls within the destination CIDR will be routed to the next hop. However, if the destination address falls within the destination CIDR for two routes, the most specific one will apply. Furthermore, if there are two or more, equally specific routes, the traffic will be round-robin distributed across each of the route's next hop.
+A VPC route has three main components: the destination CIDR, the next hop, and the zone. The traffic that originates in a VPC in the zone whose destination address falls within the destination CIDR will be routed to the next hop. However, if the destination address falls within the destination CIDR for two routes, the most specific one will apply. Furthermore, if there are two or more, equally specific routes, the traffic will be round-robin distributed across each of the route's next hop.
 
 ## Managing VPC routes
 
@@ -45,4 +45,4 @@ You can manage your VPC routes using the user interface, CLI or API:
 ## Limitations
 
 1. Currently, the ability to set a custom default static route is not available.  Only non-default static routes are supported.
-2. You may only set the `next_hop` to be an `ip_address`. Today, you cannot set the `next_hop` to be a VPN connection or a load balancer.
+2. You can only set the `next_hop` to be an `ip_address`. Today, you cannot set the `next_hop` to be a VPN connection or a load balancer.

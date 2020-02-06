@@ -34,7 +34,7 @@ The topology for connecting to the remote FortiGate peer is similar to creating 
 
 ![enter image description here](./images/vpc-vpn-fg-figure.png)
 
-### To create a secure connection with the remote Fortigate peer
+### Creating a secure connection with the remote Fortigate peer
 {: #to-create-a-secure-connection-with-the-remote-fortigate-peer}
 
 Go to **VPN \> IPsec \> Tunnels** and create a new custom tunnel or edit an existing tunnel.
@@ -69,7 +69,7 @@ To connect to the IBM Cloud VPC's VPN capability, we recommend the following con
 ## To create a secure connection with the local IBM Cloud VPC
 {: #fortigate-to-create-a-secure-connection-with-the-local-ibm-cloud-vpc}
 
-To create a secure connection, you'll create the VPN connection within your VPC, which is similar to the 2 VPC example.
+To create a secure connection, you'll create the VPN connection within your VPC, which is similar to the two VPC example.
 
 * Create a VPN gateway on your VPC subnet  along with a VPN connection between the VPC and the FortiGate unit, setting `local_cidrs` to the subnet value on the VPC, and `peer_cidrs` to the subnet value on the FortiGate.
 

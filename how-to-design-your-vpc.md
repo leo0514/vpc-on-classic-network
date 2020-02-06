@@ -21,7 +21,7 @@ subcollection: vpc-on-classic-network
 {:download: .download}
 
 
-# Designing an Addressing Plan for a VPC
+# Designing an addressing plan for a VPC
 {: #vpc-addressing-plan-design}
 
 The first step in designing your VPC should be to design your addressing plan. A properly executed addressing plan has two goals:
