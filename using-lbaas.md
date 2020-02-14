@@ -25,7 +25,7 @@ subcollection: vpc-on-classic-network
 {:DomainName: data-hd-keyref="DomainName"}
 {:external: target="_blank" .external}
 
-# Using Load Balancers for VPC
+# Using load balancers for VPC
 {: #--using-load-balancers-in-ibm-cloud-vpc}
 
 The {{site.data.keyword.cloud}} **Load Balancer for VPC** service distributes traffic among multiple server instances within the same region of your VPC.
