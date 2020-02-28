@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2018, 2019
-lastupdated: "2019-12-06"
+  years: 2017, 2020
+lastupdated: "2020-02-28"
 
 keywords: peering, Vyatta, connection, secure, remote, vpc, vpc network
 
@@ -158,12 +158,125 @@ end_configure
 ```
 {: screen}
 
-Finally, make note of your `{{ psk }}` value, as you will need it to set up the VPN connection in the next step.
+Finally, make note of your `{{ psk }}` value, as you need it to set up the VPN connection in the next step.
+
+### Troubleshooting and more examples  
+{: #troubleshooting-and-more-examples}
+
+Remember to:
+* Config your ACL to allow port 500 and 4500
+
+Allow IKE and ESP traffic for IPsec:
+
+```
+# set rule 100 action 'accept' 
+# set rule 100 destination port '500'
+# set rule 100 protocol 'udp'
+# set rule 200 action 'accept'
+# set rule 200 protocol 'esp'
+```
+
+Allow L2TP over IPsec:
+
+```
+# set rule 210 action 'accept'
+# set rule 210 destination port '1701'
+# set rule 210 ipsec 'match-ipsec'
+# set rule 210 protocol 'udp'
+```
+
+Allow NAT traversal of IPsec:
+
+```
+# set rule 250 action 'accept'
+# set rule 250 destination port '4500'
+# set rule 250 protocol 'udp'
+```
+
+#### For beginners, we provide more Vyatta examples here. You can modify these examples for your own deployment.
+
+Filtering on source IP:
+
+```
+vyatta@R1# show security firewall name FWTEST-1
+rule 1 {
+	action accept
+	source {
+		address 172.16.0.26
+	}
+}
+vyatta@R1# show interfaces dataplane dp0p1p1
+address 172.16.1.1/24
+	firewall FWTEST-1 {
+	in {
+	}
+}
+```
+
+Filtering on source and destination IP:
+
+```
+vyatta@R1# show security firewall name FWTEST-2
+rule 1 {
+	action accept
+	destination {
+		address 10.10.40.101
+	}
+	source {
+		address 10.10.30.46
+	}
+}
+vyatta@R1# show interfaces dataplane dp0p1p2
+vif 40 {
+	firewall {
+	out FWTEST-2
+	}
+}
+```
+
+Filtering traffic between zones example:
+
+```
+vyatta@R1# show security zone-policy
+
+zone dmz {
+	description DMZ
+	interface dp0p1p3
+	to private {
+		firewall to_private
+	}
+	to public {
+		firewall to_public
+	}
+}
+zone private {
+	description PRIVATE
+	interface dp0p1p1
+	interface dp0p1p2
+	to dmz {
+		firewall to_dmz
+	}
+	to public {
+		firewall to_public
+	}
+}
+zone public {
+	description PUBLIC
+	interface dp0p1p4
+	to dmz{
+		firewall to_dmz
+	}
+	to private {
+		firewall to_private
+	}
+}
+```
+
 
 ### Configuring the VPN gateway
 {: #configure-vpn-gateway}
 
-To configure the VPN gateway side, add a new VPN connection with the following settings:
+To configure the VPN gateway, add a new VPN connection with the following settings:
 
 * `Peer gateway address` as your Vyatta public IP address
 * `Preshared key` as the `{{ psk }}` value
@@ -175,6 +288,6 @@ To configure the VPN gateway side, add a new VPN connection with the following s
 ### Checking the status of the secure connection
 {: #vyatta-check-the-status-of-the-secure-connection}
 
-You can check the status of your connection on the {{site.data.keyword.cloud_notm}} console. You can also perform a `ping` from site to site using the virtual server instances.
+You can check the status of your connection on the {{site.data.keyword.cloud_notm}} console. You can also perform a `ping` from site-to-site using the virtual server instances.
 
 ![Active connection status](images/vpc-vpn-vy-status.png)

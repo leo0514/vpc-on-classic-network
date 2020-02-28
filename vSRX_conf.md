@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2018, 2019
-lastupdated: "2019-05-14"
+  years: 2017, 2020
+lastupdated: "2020-02-28"
 
 keywords: peering, Juniper, vSRX, connection, secure, remote, vpc, vpc network
 
@@ -71,205 +71,65 @@ To connect to the IBM Cloud VPC's VPN capability, we recommend the following con
 {: #vsrx-here-s-an-example-of-how-to-set-up-security}
 
 ```
-
-admin@Juniper-vSRX# show security    
-
-log {
-    mode stream;
-    report;
+proposal proposal-ike1 {
+    authentication-method pre-shared-keys;
+    dh-group group2;
+    authentication-algorithm sha1;
+    encryption-algorithm aes-128-cbc;
+    lifetime-seconds 28800;
 }
-ike {
-    traceoptions {
-        file ike_log_20 size 10240000;
-        flag all;
-    }
-    proposal ike-proposal-1 {
-        authentication-method pre-shared-keys;
-        dh-group group2;
-        authentication-algorithm sha-256;
-        encryption-algorithm aes-256-cbc;
-    }
-    policy ike1 {
-        mode main;
-        proposals ike-proposal-1;
-        pre-shared-key ascii-text "$9$sO2JGjHqfQFiH0BRhrl"; ## SECRET-DATA
-    }
-    gateway gw1 {
-        ike-policy ike1;
-        address 169.45.74.119;
-        dead-peer-detection always-send;
-        no-nat-traversal;
-        local-identity inet 169.61.195.195;
-        external-interface ge-0/0/1.0;
-        local-address 169.61.195.195;
-        version v1-only;
-    }
+policy ike-policy1 {
+    mode main;
+    proposals proposal-ike1;
+    pre-shared-key ascii-text "your_psk"
 }
-ipsec {
-    proposal AES128cbc-SHA256-esp {
-        protocol esp;
-        authentication-algorithm hmac-sha-256-128;
-        encryption-algorithm aes-128-cbc;
-    }
-    policy ipsec1 {
-        perfect-forward-secrecy {
-            keys group2;
-        }
-        proposals AES128cbc-SHA256-esp;
-    }
-    vpn to-strongswan {
-        ike {
-            gateway gw1;
-            proxy-identity {
-                local 10.93.152.152/29;
-                remote 10.160.26.64/26;
-                service any;
-            }
-            ipsec-policy ipsec1;
-        }
-        establish-tunnels immediately;
-    }
+gateway ibm-vpc-vpn-gw {
+    ike-policy ike-policy1;
+    address 169.61.227.228;
+    local-identity inet 129.146.215.142;
+    remote-identity inet 169.61.227.228;
+    external-interface ge-0/0/0.0;
 }
-address-book {
-    global {
-        address SL_PRIV_MGMT 10.93.160.12/32;
-        address SL_PUB_MGMT 169.61.195.195/32;
-        }
-    }
-    local_cidr {
-        address local_cidr 10.93.160.0/26;
-        attach {
-            zone SL-PRIVATE;
-        }
-    }
-    remote_cidr {
-        address remote 10.160.26.64/26;
-        attach {
-            zone SL-PUBLIC;
-        }
-    }
+proposal ipsec-proposal1 {
+    protocol esp;
+    authentication-algorithm hmac-sha1-96;
+    encryption-algorithm aes-128-cbc;
+    lifetime-seconds 3600;
 }
-screen {
-    ids-option untrust-screen {
-        icmp {
-            ping-death;
-        }
-        ip {
-            source-route-option;
-            tear-drop;                  
-        }
-        tcp {
-            syn-flood {
-                alarm-threshold 1024;
-                attack-threshold 200;
-                source-threshold 1024;
-                destination-threshold 2048;
-                queue-size 2000; ## Warning: 'queue-size' is deprecated
-                timeout 20;
-            }
-            land;
-        }
-    }
+policy ipsec-policy1 {
+    proposals ipsec-proposal1;
 }
-policies {
-    from-zone SL-PRIVATE to-zone SL-PRIVATE {
-        policy Allow_Management {
-            match {
-                source-address any;
-                destination-address any;
-                application any;
-            }
-            then {
-                permit;
-            }
-        }
+vpn ibm_vpc {
+    bind-interface st0.1;
+    df-bit clear;
+    ike {
+        gateway ibm-vpc-vpn-gw;
+        ipsec-policy ipsec-policy1;
     }
-    from-zone SL-PUBLIC to-zone SL-PUBLIC {
-        policy pub2pub {
-            match {
-                source-address any;
-                destination-address SL_PUB_MGMT;
-                application any;
-            }
-            then {
-                permit;
-            }
-        }
-        policy Allow_Management {
-            match {
-                source-address any;     
-                destination-address SL_PUB_MGMT;
-                application [ junos-ssh junos-https junos-http junos-icmp-ping ];
-            }
-            then {
-                permit;
-            }
-        }
+    traffic-selector pair1 {
+        local-ip 172.29.6.0/23;
+        remote-ip 100.64.28.0/25;
     }
-    from-zone SL-PRIVATE to-zone SL-PUBLIC {
-        policy out {
-            match {
-                source-address any;
-                destination-address any;
-                application any;
-            }
-            then {
-                permit {
-                    tunnel {
-                        ipsec-vpn to-strongswan;
-                    }
-                }
+    traffic-selector pair2 {
+        local-ip 172.29.6.0/23;
+        remote-ip 100.64.28.128/26;
+    }
+    establish-tunnels immediately;
+}
+interfaces {
+    st0 {
+        unit 1 {
+            description Tunnel-to-IBM-VPC;
+            family inet {
             }
         }
-    }
-    from-zone SL-PUBLIC to-zone SL-PRIVATE {
-        policy in {
-            match {
-                source-address any;
-                destination-address any;
-                application any;
+}
+security {
+    flow {
+        tcp-mss {
+            ipsec-vpn {
+                mss 1350;
             }
-            then {
-                permit {
-                    tunnel {
-                        ipsec-vpn to-strongswan;
-                    }
-                }
-            }
-        }
-    }
-}                                       
-zones {
-    security-zone SL-PRIVATE {
-        interfaces {
-            ge-0/0/0.0 {
-                host-inbound-traffic {
-                    system-services {
-                        all;
-                    }
-                }
-            }
-            st0.1;
-            ge-0/0/0.986 {
-                host-inbound-traffic {
-                    system-services {
-                        all;
-                    }
-                }
-            }
-        }
-    }
-    security-zone SL-PUBLIC {
-        interfaces {
-            ge-0/0/1.0 {
-                host-inbound-traffic {
-                    system-services {
-                        all;
-                    }
-                }
-            }
-        }
-    }
 }
 
 [edit]
@@ -306,7 +166,7 @@ After the configuration file has finished executing, you may check the connectio
 ### To create a secure connection with the local IBM Cloud VPC
 {: #vsrx-to-create-a-secure-connection-with-the-local-ibm-cloud-vpc}
 
-To create a secure connection, you'll create the VPN connection within your VPC, which is similar to the 2 VPC example.
+To create a secure connection, you'll create the VPN connection within your VPC, which is similar to the two VPC example.
 
 Remember, you must enable PFS in Phase 2, so you must create a new IPsec policy before you create a connection.
 {: important}
