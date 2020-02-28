@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2018, 2019
-lastupdated: "2019-08-16"
+  years: 2018, 2020
+lastupdated: "2020-02-28"
 
 keywords: vpc, address prefix, region, subnet, zone, reserved, IP, ranges, deleting, creating, CIDR, vpc network
 
@@ -62,6 +62,9 @@ Zone         | Address Prefix
 `us-south-1`   | `10.240.0.0/18`
 `us-south-2`   | `10.240.64.0/18`
 `us-south-3`   | `10.240.128.0/18`
+`us-east-1`   | `10.241.0.0/18`
+`us-east-2`   | `10.241.64.0/18`
+`us-east-3`   | `10.241.128.0/18`
 `eu-gb-1`      | `10.242.0.0/18`
 `eu-gb-2`      | `10.242.64.0/18`
 `eu-gb-3`      | `10.242.128.0/18`
