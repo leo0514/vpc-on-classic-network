@@ -201,7 +201,7 @@ For all incoming HTTPS connections, the load balancer service terminates the SSL
 
 An SSL certificate is required for the load balancer to perform SSL offloading tasks. You may manage the SSL certificates through [IBM Certificate Manager](/docs/certificate-manager?topic=certificate-manager-getting-started).
 
-To give a load balancer access to your SSL certificate, you must enable **service-to-service authorization**, which grants your load balancer service instance access to your certificate manager instance. You may manage such an authorization by following this documentation [Granting access between services](/docs/iam?topic=iam-serviceauth#create-auth). Make sure to choose **VPC Infrastructure** as the source service, **Load Balancer for VPC** as the resource type, **Certificate Manager** as the target service, and assign the **Writer** service access role.
+To give a load balancer access to your SSL certificate, you must enable **service-to-service authorization**, which grants your load balancer service instance access to your certificate manager instance. You may manage such an authorization by following this documentation [Granting access between services](/docs/iam?topic=iam-serviceauth#create-auth). Make sure to choose **Infrastructure Service** as the source service, **Load Balancer for VPC** as the resource type, **Certificate Manager** as the target service, and assign the **Writer** service access role.
 
 If the required authorization is removed, errors might occur for your load balancer.
 {: note}
@@ -249,7 +249,7 @@ To create a load balancer, you'll need access to a resource group. The user who 
 2. Select the name of the user to whom you want to assign an access policy. If the user is not shown, click **Invite users** to add the user to your IBM Cloud account.
 3. Select **Assign access**.
 4. Select **Assign access to resources**.
-5. From the **Services** drop-down list, select **VPC Infrastructure**.
+5. From the **Services** drop-down list, select **Infrastructure Service**.
 6. From the **Resource type** drop-down list, select **Load Balancer for VPC**.
 7. From the **Load Balancer ID** drop-down list, select a Load Balancer instance ID, or use the default value, **All load balancers**.
 8. Assign a platform access role to the user.
