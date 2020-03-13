@@ -232,7 +232,7 @@ Sample output:
     "name": "vpn-connection-to-vpn-gateway-1",
     "href": "https://us-south.iaas.cloud.ibm.com/v1/vpn_gateways/f72559a3-2fac-4958-b937-54474e6a8a8d/connections/1d4dbacq-673d-2qed-hf68-858961739gf0",
     "local_cidrs": [
-        "192.168.100.0/24"
+        "192.168.0.0/24"
     ],
     "peer_cidrs": [
         "192.168.100.0/24"

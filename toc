@@ -41,6 +41,7 @@ Networking for Virtual Private Cloud (Gen 1 compute)
         Fortigate_300C_Conf.md
         vSRX_conf.md
         vpc-vpn-asav-conf.md
+        vpc-vpn-cp-conf.md
     {: .navgroup-end}
 
     {: .navgroup id="reference"}

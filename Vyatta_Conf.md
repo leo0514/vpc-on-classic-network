@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2020
-lastupdated: "2020-02-28"
+lastupdated: "2020-03-10"
 
 keywords: peering, Vyatta, connection, secure, remote, vpc, vpc network
 
@@ -27,31 +27,27 @@ subcollection: vpc-on-classic-network
 You can connect a Vyatta peer to a VPN gateway in an existing {{site.data.keyword.cloud}} Virtual Private Cloud (VPC).
 {: shortdesc}
 
-These examples are based on the Vyatta version: AT&T vRouter 5600 1801d
+These examples are based on the Vyatta version: AT&T vRouter 5600 1801d.
 {: note}
 
-## Architecture
+## Topology
 {: #vyatta-architecture}
 
-The topology for connecting to a remote Vyatta peer is similar to creating a VPN connection between two {{site.data.keyword.cloud_notm}} VPCs with one side replaced by the Vyatta.
+The following diagram shows a VPN gateway in an IBM Cloud VPC connecting to a Vyatta peer.
 
-![enter image description here](images/vpc-vpn-vy-figure.png)
+![Tunnel with Vyatta peer](images/vpc-vpn-vy-figure.png)
 
 ## Before you begin
 {: #vyatta-preparation}
 
-To set up your remote Vyatta peer, make sure that the following prerequisites are met.
+To set up your remote Vyatta peer, you need:
 
-* A VPC
-* A subnet in the VPC
-* A VPN gateway in the VPC without connections
+* The public IP address of a VPN gateway in a VPC 
+* The subnet of the VPN gateway
+* The public IP address of the Vyatta
+* The subnet of the Vyatta that you want to connect using a VPN
 
-   After the VPN gateway gets provisioned, note its public IP address.
-   {: tip}
-* The Vyatta public IP address
-* The Vyatta subnet that you want to connect using a VPN
-
-## Configuring the Vyatta 
+## Configuring the Vyatta peer
 {: #configure-vyatta-peer}
 
 There are two ways you can run the configuration on your Vyatta:
@@ -114,8 +110,7 @@ end_configure
 ```
 {: codeblock}
 
-## Example
-Commands appear similar to the following:
+For example, you can run the following commands:
 
 ```
 #!/bin/vcli -f
@@ -156,44 +151,56 @@ commit
 end_configure
 
 ```
-{: screen}
+{: codeblock}
 
 Finally, make note of your `{{ psk }}` value, as you need it to set up the VPN connection in the next step.
 
-### Troubleshooting and more examples  
+## Configuring the VPN gateway
+{: #configure-vpn-gateway}
+
+To configure the VPN gateway side, add a new VPN connection with the following settings:
+
+* `Peer gateway address` as your Vyatta public IP address
+* `Preshared key` as the `{{ psk }}` value
+* `Local subnets` as the VPN gateway subnet
+* `Peer subnets` as your Vyatta subnet
+
+![Creat VPN connection form](images/vpc-vpn-vy-connection.png)
+
+## Checking the status of the secure connection
+{: #vyatta-check-the-status-of-the-secure-connection}
+
+You can check the status of your connection on the {{site.data.keyword.cloud_notm}} console. You can also perform a `ping` from site to site using the virtual server instances.
+
+![Active connection status](images/vpc-vpn-vy-status.png)
+
+## Troubleshooting
 {: #troubleshooting-and-more-examples}
 
 Remember to:
-* Config your ACL to allow port 500 and 4500
+* Config your ACL to allow port `500` and `4500`
+* Allow IKE and ESP traffic for IPsec:
 
-Allow IKE and ESP traffic for IPsec:
+   ```
+   # set rule 100 action 'accept' 
+   # set rule 100 destination port '500'
+   # set rule 100 protocol 'udp'
+   # set rule 200 action 'accept'
+   # set rule 200 protocol 'esp'
+   ```
+   {: codeblock}
 
-```
-# set rule 100 action 'accept' 
-# set rule 100 destination port '500'
-# set rule 100 protocol 'udp'
-# set rule 200 action 'accept'
-# set rule 200 protocol 'esp'
-```
+* Allow NAT traversal of IPsec:
 
-Allow L2TP over IPsec:
+   ```
+   # set rule 250 action 'accept'
+   # set rule 250 destination port '4500'
+   # set rule 250 protocol 'udp'
+   ```
+   {: codeblock}
 
-```
-# set rule 210 action 'accept'
-# set rule 210 destination port '1701'
-# set rule 210 ipsec 'match-ipsec'
-# set rule 210 protocol 'udp'
-```
-
-Allow NAT traversal of IPsec:
-
-```
-# set rule 250 action 'accept'
-# set rule 250 destination port '4500'
-# set rule 250 protocol 'udp'
-```
-
-#### For beginners, we provide more Vyatta examples here. You can modify these examples for your own deployment.
+## Additional examples
+{: #vyatta-additional-examples}
 
 Filtering on source IP:
 
@@ -202,16 +209,17 @@ vyatta@R1# show security firewall name FWTEST-1
 rule 1 {
 	action accept
 	source {
-		address 172.16.0.26
+		address {{ IP address }}
 	}
 }
 vyatta@R1# show interfaces dataplane dp0p1p1
-address 172.16.1.1/24
+address {{ IP address }}
 	firewall FWTEST-1 {
 	in {
 	}
 }
 ```
+{: codeblock}
 
 Filtering on source and destination IP:
 
@@ -220,10 +228,10 @@ vyatta@R1# show security firewall name FWTEST-2
 rule 1 {
 	action accept
 	destination {
-		address 10.10.40.101
+		address {{ IP address }}
 	}
 	source {
-		address 10.10.30.46
+		address {{ IP address }}
 	}
 }
 vyatta@R1# show interfaces dataplane dp0p1p2
@@ -233,8 +241,9 @@ vif 40 {
 	}
 }
 ```
+{: codeblock}
 
-Filtering traffic between zones example:
+Filtering traffic between zones:
 
 ```
 vyatta@R1# show security zone-policy
@@ -271,23 +280,4 @@ zone public {
 	}
 }
 ```
-
-
-### Configuring the VPN gateway
-{: #configure-vpn-gateway}
-
-To configure the VPN gateway, add a new VPN connection with the following settings:
-
-* `Peer gateway address` as your Vyatta public IP address
-* `Preshared key` as the `{{ psk }}` value
-* `Local subnets` as the VPN gateway subnet
-* `Peer subnets` as your Vyatta subnet
-
-![Creat VPN connection form](images/vpc-vpn-vy-connection.png)
-
-### Checking the status of the secure connection
-{: #vyatta-check-the-status-of-the-secure-connection}
-
-You can check the status of your connection on the {{site.data.keyword.cloud_notm}} console. You can also perform a `ping` from site-to-site using the virtual server instances.
-
-![Active connection status](images/vpc-vpn-vy-status.png)
+{: codeblock}
