@@ -29,7 +29,7 @@ These examples are based on Cisco ASAv, Cisco Adaptive Security Appliance Softwa
 {: note}
 
 ## Topology
-{: #juniper-architecture}
+{: #juniper-architecture-topology}
 
 The following diagram shows a VPN gateway in an IBM Cloud VPC connecting to a Cisco ASAv peer.
 
@@ -52,7 +52,7 @@ When a Cisco ASAv unit receives a connection request from a remote VPN peer, it 
 * Define the Phase 1 parameters that the Cisco ASAv unit requires to authenticate the remote peer and establish a secure connection.
 * Define the Phase 2 parameters that the Cisco ASAv unit requires to create a VPN tunnel with the remote peer.
 
-### Create an Internet Key Exchange (IKE) version 2 proposal object. 
+### Create an Internet Key Exchange (IKE) version 2 proposal object.
 
 IKEv2 proposal objects contain the parameters required for creating IKEv2 proposals when defining remote access and
 site-to-site VPN policies. IKE is a key management protocol that facilitates the management of
@@ -73,7 +73,7 @@ tunnel-group 161.156.80.10 ipsec-attributes
 ```
 {: codeblock}
 
-### Create an IKEv2 policy configuration for the IPsec connection. 
+### Create an IKEv2 policy configuration for the IPsec connection.
 
 The IKEv2 policy block sets the parameters for the IKE exchange. In this block, the following parameters are set:
 * Encryption algorithm - set to AES-256 for this example.

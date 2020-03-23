@@ -20,9 +20,13 @@ subcollection: vpc-on-classic-network
 {:download: .download}
 {:DomainName: data-hd-keyref="DomainName"}
 {:external: target="_blank" .external}
+{:help: data-hd-content-type='help'}
+{:support: data-reuse='support'}
 
-# Getting started with Networking for VPC (Gen 1 compute)
+# Getting started with networking for VPC (Gen 1 compute)
 {: #getting-started}
+{: help} 
+{: support}
 
 New! Check out Virtual Private Cloud for generation 2 virtual server profiles. For more information, see [Getting started with Virtual Private Cloud](/docs/vpc?topic=vpc-getting-started).
 {:tip}

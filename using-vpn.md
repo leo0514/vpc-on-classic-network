@@ -16,6 +16,8 @@ subcollection: vpc-on-classic-network
 <!-- Common attributes used in the template are defined as follows: -->
 {:shortdesc: .shortdesc}
 {:new_window: target="_blank"}
+{:faq: data-hd-content-type='faq'}
+{:support: data-reuse='support'}
 {:codeblock: .codeblock}
 {:pre: .pre}
 {:screen: .screen}
@@ -357,10 +359,15 @@ We are sorry you are having technical problems with your VPN Gateway. If the fol
 
 ### VPN gateway goes from status of `pending` to status of `failed` after 30 minutes
 {: #vpn-ts-failed}
+{: troubleshoot}
+{: support}
 
 Check the network ACLs of the subnet where the VPN gateway was provisioned. The subnet traffic rules may be blocking the successful provision of the VPN gateway. If necessary, permit all traffic on both inbound and outbound during provisioning.
 
 ### VPN gateway is available, but the VPN connection is down
+{: #vpn-gateway-available-but-vpn-connection-down}
+{: troubleshoot}
+{: support}
 
 - A VPN gateway will initiate the VPN connection negotiation when a new connection is added and will retry up to 5 times. If the connection remains down, try initiating the connection again.
 - Make sure the peer VPN gateway is using matched IKE/IPsec policy and pre-shared key. See [IKE auto-negotiation (Phase 1)](#ike-auto-negotiation-phase-1) and [IPsec auto-negotiation (Phase 2)](#ipsec-auto-negotiation-phase-2) for options.
@@ -368,51 +375,79 @@ Check the network ACLs of the subnet where the VPN gateway was provisioned. The 
 - View the VPN logs to determine any other factors which leave the VPN connection down. See [Using LogDNA to view VPN logs](/docs/vpc-on-classic-network?topic=vpc-on-classic-network-using-logdna-to-view-vpn-logs) to find out how to view these logs.
 
 ### The connection is up but you cannot access resources in VPC from on-premise network
+{: #vpn-connection-up-but-cannot-access-resources-in-vpc-from-onpremises}
+{: troubleshoot}
+{: support}
 
 - Check the routing configuration on the on-premise network and make sure the traffic to IBM VPC is routed to peer VPN gateway properly.
 - Make sure firewall rules on the peer VPN gateway allow traffic between the subnet in IBM and on-premise network.
 - Make sure network ACLs and security group rules in IBM VPC allow traffic between subnet in IBM and on-premise network.
 
-## FAQ
+## FAQs
 {: #vpn-faq}
 
-**When I create a VPN gateway, can I create VPN connections at the same time?**
+### When I create a VPN gateway, can I create VPN connections at the same time?
+{: #when-i-create-a-vpn-gateway-can-i-create-vpn-connections}
+{: faq}
+{: support}
 
 If you use the API or CLI, VPN connections must be created after the VPN gateway is created. In the IBM Cloud console, you can create the gateway and a connection at the same time.
 
-**If I delete a VPN gateway that has VPN connections attached, what will happen to the connections?**
+### If I delete a VPN gateway that has VPN connections attached, what will happen to the connections?
+{: #if-i-delete-vpn-gateway-that-has-vpn-connections-attached}
+{: faq}
+{: support}
 
-The VPN connections are deleted along with the VPN gateway.
+If you delete a VPN gateway that has attached connections, the VPN connections are deleted along with the VPN gateway.
+ 
+### Will IKE or IPsec policies be deleted if I delete a VPN gateway or VPN connection?
+{: #will-ike-or-ipsec-policies-be-deleted}
+{: faq}
+{: support}
 
-**Will IKE or IPsec policies be deleted if I delete a VPN gateway or VPN connection?**
+IKE and IPsec policies can apply to multiple connections. Therefore, IKE or IPsec policies are not deleted if you delete a VPN gateway or VPN connection.
 
-No, IKE and IPsec policies can apply to multiple connections.
+### What happens to a VPN gateway if I try to delete the subnet that the gateway is located on?
+{: #what-happens-to-a-vpn-gateway-if-i-try-to-delete-the-subnet}
+{: faq}
+{: support}
 
-**What happens to a VPN gateway if I try to delete the subnet that the gateway is located on?**
+A subnet cannot be deleted if any instances are present, including the VPN gateway.
 
-The subnet cannot be deleted if any instances are present, including the VPN gateway.
-
-**Are there default IKE and IPsec policies?**
+### Are there default IKE and IPsec policies?
+{: #are-there-default-ike-ipsec-policies}
+{: faq}
+{: support}
 
 When you create a VPN connection without referencing a policy ID (IKE or IPsec), auto-negotiation is used.
 
-**Why do I need to choose a subnet during VPN gateway provisioning?**
+### Why do I need to choose a subnet during VPN gateway provisioning?
+{: #why-do-i-need-to-choose-a-subnet-during-provisioning}
+{: faq}
+{: support}
 
-The subnet connects the VPN gateway with other resources in your VPC. The recommended best practice is to create
+A subnet connects the VPN gateway with other resources in your VPC. The recommended best practice is to create
 a dedicated subnet for the VPN gateway, with no other VPC instances on this subnet, to ensure there
 are enough free private IPs in the subnet. A VPN gateway needs 8 private IP addresses to accommodate HA and rolling upgrades.
 
-**In which zone does the VPN gateway reside?**
+### In which zone does the VPN gateway reside?
+{: #in-which-zone-does-the-vpn-gateway-reside}
+{: faq}
+{: support}
 
 The VPN gateway resides in the zone with the subnet you chose during provisioning. Remember that the VPN gateway only serves the VPC instances in the same zone and the same VPC. Therefore, VPC instances in other zones can't leverage the VPN gateway
 to communicate with an on-premise private network. For zone fault tolerance, you must deploy one VPN gateway per zone.
 
-**What should I do if I am using ACLs on the subnet that is used to deploy the VPN gateway?**
+### What should I do if I am using ACLs on the subnet that is used to deploy the VPN gateway?
+{: #what-should-i-do-if-i-am-using-acls-on-the-subnet-used-to-deploy-the-vpn}
+{: faq}
+{: support}
 
-Make sure the following ACL rules are in place to allow management traffic and VPN tunnel traffic:
+If you are using ACLs on the subnet used to deploy the VPN gateway, make sure to follow the link to allow the [ACLs required for instance creation](/docs/vpc-on-classic?topic=vpc-on-classic-rias-error-messages#acl_rule_does_not_allow).
+
+In addition, make sure the following ACL rules are in place to allow management traffic and VPN tunnel traffic:
 
 * **Inbound rules**
-    - Allow protocol TCP source port 9091
     - Allow protocol TCP source port 10514
     - Allow protocol TCP source port 443
     - Allow protocol TCP source port 80
@@ -427,42 +462,63 @@ Make sure the following ACL rules are in place to allow management traffic and V
 * **Outbound rules**
    - Allow all traffic
 
-**What should I do if I am using ACLs or security groups on the subnets which need to communicate with on-premise private network?**
+### What should I do if I am using ACLs or security groups on the subnets that must communicate with an on-premises private network?
+{: #what-should-i-do-if-i-am-using-acls-or-security-groups-on-the-subnet}
+{: faq}
+{: support}
 
-You'll need to ensure that the ACL rules or security group rules are in place to allow traffic between instances in your VPC and your on-premise private network.
+If you are using ACLs or security groups on the subnets that must communicate with an on-premises private network, you'll need to ensure that the ACL rules or security group rules are in place to allow traffic between instances in your VPC and your on-premise private network.
 
-**Does VPN for VPC support HA configurations?**
+### Does VPN for VPC support HA configurations?
+{: #does-vpn-for-vpc-support-ha}
+{: faq} 
 
-Yes, it supports HA in an Active / Standby configuration.
+VPN for VPC supports high availability in an Active / Standby configuration.
 
-**Are there plans to support SSL VPN?**
+### Are there plans to support SSL VPN?
+{: #are-there-plans-to-support-ssl-vpn}
+{: faq} 
 
-No, only IPsec site-to-site is supported.
+Only IPsec site-to-site is supported, not SSL VPN.
 
-**Are there any caps on throughput for site-to-site VPNaaS?**
+### Are there any caps on throughput for site-to-site VPNaaS?
+{: #are-there-any-caps-on-throughput-for-site-to-site-VPNaaS}
+{: faq} 
 
-We support up to 650 Mbps of throughput.
+We support up to 650 Mbps of throughput for site-to-site VPNaaS.
 
-**Is PSK and Certificate based IKE authentication supported for VPNaaS?**
+### Is PSK and certificate-based IKE authentication supported for VPNaaS?
+{: #is-certificate-based-ike-authentication-supported-for-vpnaas}
+{: faq} 
 
-Only PSK authentication is supported.
+Only PSK authentication is supported, not certificate-based IKE.
 
-**Can you use VPN for VPC as a VPN Gateway for your IBM Cloud Infrastructure Classic?**
+### Can you use VPN for VPC as a VPN gateway for your IBM Cloud infrastructure classic?
+{: #can-you-use-vpn-for-vpc-as-a-vpn-gateway-for-infrastructure-classic]
+{: faq} 
 
-No, in order to use VPN Gateway in your IBM Cloud Infrastructure Classic environment, you must use the [IPsec VPN](https://{DomainName}/catalog/infrastructure/ipsec-vpn){: external}.
+To use a VPN gateway in an IBM Cloud infrastructure classic environment, you must use the [IPsec VPN](https://{DomainName}/catalog/infrastructure/ipsec-vpn){: external}.
 
-**Can VPN for VPC, along with a Classic Access VPC, access IBM Cloud Infrastructure Classic Resources?**
+### Can VPN for VPC, along with a Classic Access VPC, access IBM Cloud infrastructure classic resources?
+{: #can-vpn-for-vpc-with-classic-access-access-classic-resources}
+{: faq} 
 
-Not at this time.
+Currently, VPN for VPC (with a Classic Access VPC) cannot access IBM Cloud infrastructure classic resources.
 
-**What will rekey collision cause?**
+### What will rekey collision cause?
+{: #what-will-rekey-collsion-cause}
+{: faq} 
 
-If you use IKEv1, rekey collision will delete the IKE/IPsec SA. To recreate the IKE/IPsec SA, set the connection admin state to `down` and then `up` again. You can use IKEv2 to minimize rekey collisions.
+If you use IKEv1, rekey collision deletes the IKE/IPsec SA. To recreate the IKE/IPsec SA, set the connection admin state to `down` and then `up` again. You can use IKEv2 to minimize rekey collisions.
 
-**Is it possible to connect to route based VPNs with multiple tunnels?**
+### Is it possible to connect to route-based VPNs with multiple tunnels?
+{: #is-it-possible-to-connect-to-route-based-vpns-with-multiple-tunnels}
+{: faq} 
 
-Not at this time.
+Currently, it is not possible to connect to route-based VPNs with multiple tunnels.
 
-**Is it possible to view logs from the VPN Gateway for debugging purposes?**
+### Is it possible to view logs from the VPN gateway for debugging purposes?
+{: #is-it-possible-to-view-logs}
+{: faq} 
 
-Yes, you can find more information in [Using LogDNA to view VPN logs](/docs/vpc-on-classic-network?topic=vpc-on-classic-network-using-logdna-to-view-vpn-logs).
+To view VPN gateway logs for debugging purposes, see [Using LogDNA to view VPN logs](/docs/vpc-on-classic-network?topic=vpc-on-classic-network-using-logdna-to-view-vpn-logs).

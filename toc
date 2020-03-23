@@ -1,7 +1,7 @@
 {:navgroup: .navgroup}
 {:topicgroup: .topicgroup}
 
-{: .toc subcollection="vpc-on-classic-network" audience="service" arm="4135753" href="/docs/vpc-on-classic-network?topic=vpc-on-classic-network-getting-started" path="vpc-on-classic-network"}
+{: .toc subcollection="vpc-on-classic-network" category="vpc,network" audience="service" href="/docs/vpc-on-classic-network?topic=vpc-on-classic-network-getting-started" console-page="/vpc-ext/overview" path="vpc-on-classic-network"}
 Networking for Virtual Private Cloud (Gen 1 compute)
 
     {: .navgroup id="learn"}
@@ -11,6 +11,7 @@ Networking for Virtual Private Cloud (Gen 1 compute)
     vpc-security.md
     vpc-regions-and-subnets.md
     compare-sg-acl.md
+    [What is Virtual Private Cloud?](https://www.ibm.com/cloud/learn/vpc)
     {: .navgroup-end}
 
     {: .navgroup id="howto"}

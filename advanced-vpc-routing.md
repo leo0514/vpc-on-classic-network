@@ -21,7 +21,7 @@ subcollection: vpc-on-classic-network
 {:download: .download}
 {:DomainName: data-hd-keyref="DomainName"}
 
-# Setting Up advanced routing in VPC
+# Setting up advanced routing in VPC
 {: #setting-up-advanced-routing-in-vpc}
 
 You can control the flow of network traffic in your VPC by configuring VPC routes. Use VPC routes to specify the next hop for packets, based on their destination addresses.
