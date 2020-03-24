@@ -1,7 +1,7 @@
 {:navgroup: .navgroup}
 {:topicgroup: .topicgroup}
 
-{: .toc subcollection="vpc-on-classic-network" category="vpc,network" audience="service" href="/docs/vpc-on-classic-network?topic=vpc-on-classic-network-getting-started" console-page="/vpc-ext/overview" path="vpc-on-classic-network"}
+{: .toc subcollection="vpc-on-classic-network" audience="service" href="/docs/vpc-on-classic-network?topic=vpc-on-classic-network-getting-started" console-page="/vpc-ext/overview" path="vpc-on-classic-network"}
 Networking for Virtual Private Cloud (Gen 1 compute)
 
     {: .navgroup id="learn"}
