@@ -209,13 +209,16 @@ If the required authorization is removed, errors might occur for your load balan
 ## Configuring ACLs for use with load balancers
 {: #configuring-acls-for-use-with-load-balancers}
 
-If you use access control lists (ACLs) to block traffic on the subnets in which the load balancer is deployed, make sure to follow the link to allow the [ACLs required for instance creation](/docs/vpc-on-classic?topic=vpc-on-classic-rias-error-messages#acl_rule_does_not_allow)
+If you use access control lists (ACLs) to block traffic on the subnets where the load balancer is deployed, make sure to update the ACLs for ingress and egress traffic as per the rules listed:
 
-In addition, allow incoming traffic to the configured listener ports and the following management ports:
-- Inbound on TCP port 56501
-- Outbound on TCP port 443, 10514, 8834
-
-
+| Inbound/Outbound| Protocol | Source IP | Source Port | Destination IP | Destination Port |
+|--------------|------|------|------|------|------------------|
+| Inbound | UDP/TCP |161.26.0.0/16 | 53, 80, 443, 1688, 8443| AnyIP | AnyPort|
+| Inbound |TCP| AnyIP | AnyPort| AnyIP | 56501|
+| Inbound |TCP| AnyIP | 443, 10514, 8834| AnyIP | AnyPort|
+| Outbound | UDP/TCP | AnyIP | AnyPort| 161.26.0.0/16 | 53, 80, 443, 1688, 8443|
+| Outbound | TCP | AnyIP | 56501| AnyIP | AnyPort|
+| Outbound | TCP | AnyIP | AnyPort| AnyIP |443, 10514, 8834|
 
 ## Identity and access management (IAM)
 {: #identity-and-access-management-iam}
