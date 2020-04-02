@@ -2,8 +2,8 @@
 
 
 copyright:
-  years: 2018, 2019
-lastupdated: "2020-02-05"
+  years: 2018, 2020
+lastupdated: "2020-04-02"
 
 keywords: load balancer, public, listener, back-end, front-end, pool, round-robin, weighted, connections, methods, policies, APIs, access, ports, vpc, vpc network
 
@@ -45,7 +45,7 @@ Remember to use the assigned FQDN to send traffic to the public load balancer to
 
 The private load balancer is accessible only to internal clients on your private subnets, within the same region and VPC. The private load balancer accepts traffic only from [RFC1918](https://tools.ietf.org/html/rfc1918){: external} address spaces.
 
-Similar to a public load balancer, your private load balancer service instance is assigned a fully qualified domain name (FQDN). However, this domain name is registered with one or more private IP addresses.
+Similar to a public load balancer, your private load balancer service instance is assigned a FQDN. However, this domain name is registered with one or more private IP addresses.
 
 IBM Cloud operations might change the number and value of your assigned private IP addresses over time, based on maintenance and scaling activities. The back-end server instances (VSIs) hosting your application must run in the same region, and under the same VPC.
 
@@ -170,7 +170,7 @@ As an example, if three application servers A, B and C, have weights customized 
 
 **Additional characteristics of these methods:**
 
-* Re-setting a server weight to '0' means no new connections are forwarded to that server, but any existing traffic will continue to flow. Using a weight of '0' can help bring down a server gracefully and remove it from service rotation.
+* Re-setting a server weight to '0' means no new connections are forwarded to that server, but any existing traffic continues to flow. Using a weight of '0' can help bring down a server gracefully and remove it from service rotation.
 * The server weight values are applicable only with the weighted round-robin method. They are ignored with round-robin and least connections load balancing methods.
 
 ## Horizontal scaling
@@ -189,7 +189,7 @@ The health checks for HTTP and TCP ports are conducted as follows:
 
 * **HTTP:** An `HTTP GET` request against a pre-specified URL is sent to the back-end server port. The server port is marked healthy upon receiving a `200 OK` response. The default `GET` health path is "/" through the UI, and it can be customized.
 
-* **TCP:** The Load Balancer attempts to open a TCP connection with the back-end server on a specified TCP port. The server port is marked healthy if the connection attempt is successful, and the connection is closed.
+* **TCP:** The load balancer attempts to open a TCP connection with the back-end server on a specified TCP port. The server port is marked healthy if the connection attempt is successful, and the connection is closed.
 
 The default health check interval is 5 seconds, the default timeout against a health check request is 2 seconds, and the default number of retrial attempts is 2.
 {: note}
@@ -209,16 +209,12 @@ If the required authorization is removed, errors might occur for your load balan
 ## Configuring ACLs for use with load balancers
 {: #configuring-acls-for-use-with-load-balancers}
 
-If you use access control lists (ACLs) to block traffic on the subnets where the load balancer is deployed, make sure to update the ACLs for ingress and egress traffic as per the rules listed:
+If you use access control lists (ACLs) to block traffic on the subnets in which the load balancer is deployed, make sure to follow the link to allow the [ACLs required for instance creation](/docs/vpc-on-classic?topic=vpc-on-classic-rias-error-messages#acl_rule_does_not_allow)
 
-| Inbound/Outbound| Protocol | Source IP | Source Port | Destination IP | Destination Port |
-|--------------|------|------|------|------|------------------|
-| Inbound | UDP/TCP |161.26.0.0/16 | 53, 80, 443, 1688, 8443| AnyIP | AnyPort|
-| Inbound |TCP| AnyIP | AnyPort| AnyIP | 56501|
-| Inbound |TCP| AnyIP | 443, 10514, 8834| AnyIP | AnyPort|
-| Outbound | UDP/TCP | AnyIP | AnyPort| 161.26.0.0/16 | 53, 80, 443, 1688, 8443|
-| Outbound | TCP | AnyIP | 56501| AnyIP | AnyPort|
-| Outbound | TCP | AnyIP | AnyPort| AnyIP |443, 10514, 8834|
+In addition, allow incoming traffic to the configured listener ports and the following management ports:
+
+- Inbound on TCP port 56501
+- Outbound on TCP port 443, 10514, 8834
 
 ## Identity and access management (IAM)
 {: #identity-and-access-management-iam}
@@ -228,15 +224,15 @@ You can configure access policies for a **Load Balancer for VPC** instance. To m
 ### Configuring resource group access policies for users
 {: #configuring-resource-group-access-policies-for-users}
 
-To create a load balancer, you'll need access to a resource group. The user who is creating a load balancer must have proper access to the resource group provided, or to the default resource group, if none is provided.
+To create a load balancer, you need access to a resource group. The user who is creating a load balancer must have proper access to the resource group provided, or to the default resource group, if none is provided.
 
-1. Navigate to **Manage > Account > Users**. You'll see a list of the users with access to your IBM Cloud account.
+1. Navigate to **Manage > Account > Users**. A list of the users with access to your IBM Cloud account is shown.
 2. Select the name of the user to whom you want to assign an access policy. If the user is not shown, click **Invite users** to add the user to your IBM Cloud account.
 3. Select **Assign access**.
 4. Select **Assign access within a resource group**.
-5. From the **Resource group** drop-down list, select the desired resource group.
-6. From the **Assign access to a resource group** drop-down list, select the desired access.
-7. From the **Services** drop-down list, select the desired services.
+5. From the **Resource group** list, select the wanted resource group.
+6. From the **Assign access to a resource group** list, select the wanted access.
+7. From the **Services** list, select the wanted services.
 9. Select **Assign** to assign the resource group access policy to the user.
 
 ### Configuring resource access policies for users
@@ -248,13 +244,13 @@ To create a load balancer, you'll need access to a resource group. The user who 
 | Editor | Create/View/Edit/Delete load balancer |
 | Viewer | View load balancer |
 
-1. Navigate to **Manage > Account > Users**. You'll see list of the users with access to your IBM Cloud account.
+1. Navigate to **Manage > Account > Users**. A list of the users with access to your IBM Cloud account is shown.
 2. Select the name of the user to whom you want to assign an access policy. If the user is not shown, click **Invite users** to add the user to your IBM Cloud account.
 3. Select **Assign access**.
 4. Select **Assign access to resources**.
-5. From the **Services** drop-down list, select **Infrastructure Service**.
-6. From the **Resource type** drop-down list, select **Load Balancer for VPC**.
-7. From the **Load Balancer ID** drop-down list, select a Load Balancer instance ID, or use the default value, **All load balancers**.
+5. From the **Services** list, select **Infrastructure Service**.
+6. From the **Resource type** list, select **Load Balancer for VPC**.
+7. From the **Load Balancer ID** list, select a load balancer instance ID, or use the default value, **All load balancers**.
 8. Assign a platform access role to the user.
 9. Select **Assign** to assign the access policy to the user.
 
@@ -342,6 +338,13 @@ Here is the sample activity tracker message for a **Create Listener** operation:
     "saveServiceCopy": true
 }
 ```
+
+## Configure load balancers from the IBM Cloud Kubernetes Service (IKS)
+{: #configure-iks-lb}
+When you create a VPC Kubernetes cluster in {{site.data.keyword.cloud_notm}}, a VPC load balancer gets provisioned into your account with TCP listeners. This load balancer can be identified with a name prefix `kube-`. It is recommended that you perform any Kubernetes Application Load Balancer (ALB) configuration updates on the VPC load balancer from the IKS interface, **not** from the load balancer GUI page or by using load balancer APIs or CLI. For more information, see [IKS documentation](/docs/containers?topic=containers-loadbalancer-qs).
+
+Deleting the IKS load balancer or updating the load balancer configuration from VPC load balancer interfaces makes the VPC IKS cluster in error or in an unwanted state.
+{:note}
 
 ## APIs available
 {: #lbaas-apis-available}
@@ -751,7 +754,7 @@ This section contains answers to some frequently asked questions about the **Loa
 ### Can I use a different DNS name for my load balancer?
 {: #can-i-use-a-different-dns-name-for-my-load-balancer}
 
-The auto-assigned DNS name for the load balancer is not customizable. However, you can add a CNAME (Canonical Name) record that points your preferred DNS name to the auto-assigned load balancer DNS name. For example, your load balancer in `us-south` has ID `dd754295-e9e0-4c9d-bf6c-58fbc59e5727`, the auto-assigned load balancer DNS name is `dd754295-us-south.lb.appdomain.cloud`. Your preferred DNS name is `www.myapp.com`. You may add a CNAME record (through the DNS provider that you use to manage `myapp.com`) pointing `www.myapp.com` to the load balancer DNS name `dd754295-us-south.lb.appdomain.cloud`.
+The auto-assigned DNS name for the load balancer is not customizable. However, you can add a CNAME (Canonical Name) record that points your preferred DNS name to the auto-assigned load balancer DNS name. For example, your load balancer in `us-south` has ID `dd754295-e9e0-4c9d-bf6c-58fbc59e5727`, the auto-assigned load balancer DNS name is `dd754295-us-south.lb.appdomain.cloud`. Your preferred DNS name is `www.myapp.com`. You can add a CNAME record (through the DNS provider that you use to manage `myapp.com`) pointing `www.myapp.com` to the load balancer DNS name `dd754295-us-south.lb.appdomain.cloud`.
 
 ### What's the maximum number of front-end listeners I can define with my load balancer?
 {: #what-s-the-maximum-number-of-front-end-listeners-i-can-define-with-my-load-balancer}
@@ -766,12 +769,12 @@ The auto-assigned DNS name for the load balancer is not customizable. However, y
 ### Is the load balancer horizontally scalable?
 {: #is-the-load-balancer-horizontally-scalable}
 
-Yes. The load balancer automatically adjusts its capacity based on the load. When horizontal scaling takes place, the number of IP addresses associated with the load balancer's DNS name will change.
+Yes. The load balancer automatically adjusts its capacity based on the load. When horizontal scaling takes place, the number of IP addresses associated with the load balancer's DNS name changes.
 
 ### What should I do if I am using ACLs or security groups on the subnets that are used to deploy the load balancer?
 {: #what-should-i-do-if-i-am-using-acls-or-security-groups-on-the-subnets-that-are-used-to-deploy-the-load-balancer}
 
-You'll need to ensure that the proper ACL or security group rules are in place to allow VPC instance creation and allow incoming traffic for configured listener ports and management ports. Traffic between the load balancer and back-end instances also should be allowed.
+You must ensure that the proper ACL or security group rules are in place to allow VPC instance creation and allow incoming traffic for configured listener ports and management ports. Traffic between the load balancer and back-end instances also should be allowed.
 
 For detailed information on the ACLs configuration required, refer to [Configuring ACLs for use with load balancers](#configuring-acls-for-use-with-load-balancers).
 
@@ -783,13 +786,15 @@ For detailed information on the ACLs configuration required, refer to [Configuri
 ### Why am I receiving a `401 Unauthorized Error` code?
 
 Check the following access policies for your user:
+
 * The access policy for the load balancer resource type
 * The access policy for the resource group
 * If `HTTPS` listeners are used, also check the service-to-service authorization for the Certificate Manager instance.
 
 ### Why is my load balancer in `maintenance_pending` state?
 
-The load balancer will be in `maintenance_pending` state during various maintenance activities such as:
+The load balancer will be in `maintenance_pending` state during various maintenance activities, such as:
+
 * Horizontal scaling activities
 * Recovery activities
 * Rolling upgrade to address vulnerabilities and apply security patches
@@ -799,10 +804,28 @@ The load balancer will be in `maintenance_pending` state during various maintena
 
 **Load Balancer for VPC** is Multi-Zone-Region (MZR) ready. Load balancer appliances are deployed to the subnets you've selected. It is highly recommended to choose subnets from different zones, to provide you with higher availability and redundancy.
 
+### Do I need additional IPs in the subnet for load balancer operations?
+{: #do-I-need-additional-ips-in-subnet-for-load-balancer-operations}
+{: faq}
+
+Yes, additional IPs in the subnet are needed for horizontal scaling and maintenance operations.
+
 ### Why is back-end member health under my pool `unknown`?
 
 * The pool is not associated with any listeners
-* Configuration changes may have been made to the pool or its associated listener
+* Configuration changes might have been made to the pool or its associated listener
+
+### Why is back-end member health under my pool `faulted` ?
+{: #back-end-member-health-failing}
+{: faq}
+
+Verify the following configurations:
+
+* Does the port of the configured back-end protocol match the port the application is listening on?
+* Does the configured health-check have the correct protocol (TCP or HTTP), port, and URL (for HTTP) information? For HTTP, ensure your application responds with 200 OK for the configured health check URL.
+* Is security group configured on the back-end server instance? If so, ensure that the security group rules allow traffic between the load balancer and the virtual server.
+
+For more information, see the [Health checks](#health-checks) section.
 
 ### Which TLS version is supported with SSL offload?
 {: #which-tls-version-is-supported-with-ssl-offload}
@@ -810,6 +833,7 @@ The load balancer will be in `maintenance_pending` state during various maintena
 The **Load Balancer for VPC** supports TLS 1.2 with SSL termination.
 
 The following list details the supported ciphers (listed in order of precedence):
+
 * ECDHE-RSA-AES256-GCM-SHA384
 * ECDHE-RSA-AES256-SHA384
 * AES256-GCM-SHA384
@@ -822,7 +846,8 @@ The following list details the supported ciphers (listed in order of precedence)
 ### What are the default settings and allowed values for health check parameters?
 {: #what-are-the-default-settings-and-allowed-values-for-health-check-parameters}
 
-The default settings and allowed values are listed below:
+The default settings and allowed values are listed:
+
 * Health check interval: Default is 5 seconds, range is 2 to 60 seconds.
 * Health check response timeout: Default is 2 seconds, range is 1 to 59 seconds.
 * Maximum retry attempts: Default is 2 retry attempts, and the range is 1 to 10 retries.
@@ -833,7 +858,7 @@ The health check response timeout value must always be less than the health chec
 ### Are the load balancer IP addresses fixed?
 {: #are-the-load-balancer-ip-addresses-fixed}
 
-Load balancer IP addresses are not guaranteed to be fixed. During system maintenance or horizontal scaling, you will see changes in the available IPs associated with the FQDN of your load balancer.
+Load balancer IP addresses are not guaranteed to be fixed. During system maintenance or horizontal scaling, you can see changes in the available IPs associated with the FQDN of your load balancer.
 
 Use FQDN, rather than cached IP addresses.
 {:note}
