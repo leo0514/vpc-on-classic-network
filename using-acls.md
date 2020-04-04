@@ -57,7 +57,7 @@ To make your ACLs effective, you'll create rules that determine how to handle yo
 * Inbound rules are separated from outbound rules.
 * The protocols currently supported are TCP, UDP, and ICMP. You also can use the **all** option to designate _all_ or _other_ protocols (if a rule with a higher priority is specified).
 
-For relevant information about using ICMP, TCP, and UDP protocols in your ACL rules, see [Understanding Internet Communication Protocols](/docs/vpc-on-classic-network?topic=vpc-on-classic-network-understanding-icp).
+For relevant information about using ICMP, TCP, and UDP protocols in your ACL rules, see [Understanding Internet Communication Protocols](/docs/vpc-on-classic-network?topic=vpc-on-classic-network-setting-up-network-acls#understanding-icp).
 
 ### Attaching an ACL to a subnet
 {: #attaching-an-acl-to-a-subnet}
