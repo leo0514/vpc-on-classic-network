@@ -152,7 +152,7 @@ To do so, follow these steps:
 
 2. Select a region for your Sysdig instance.
 
-  If you do not have an existing load balancer, see [Using a load balancer for VPC for server load balancing](/docs/vpc-on-classic?topic=vpc-on-classic-creating-a-vpc-using-the-ibm-cloud-console#creating-a-load-balancer) to provision one.
+  If you do not have an existing load balancer, see [Creating a load balancer](/docs/vpc-on-classic?topic=vpc-on-classic-creating-a-vpc-using-the-ibm-cloud-console#creating-a-load-balancer) to provision one.
   {: tip}
 
   The region must match the location of your existing load balancer.
