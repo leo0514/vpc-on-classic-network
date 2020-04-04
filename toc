@@ -28,7 +28,17 @@ Networking for Virtual Private Cloud (Gen 1 compute)
         security-group-usage-examples.md
 
     using-acls.md
-    using-lbaas.md
+
+    {: .topicgroup}
+    Load balancers
+        lb-overview.md
+        lb-adv-traffic-mgmt.md
+        lb-layer-7-policies-rules.md
+        lb-iam.md
+        lb-activity-tracker.md
+        lb-monitoring-metrics.md
+        lb-api.md
+        lb-faqs.md
 
     {: .topicgroup}
     VPN for VPC
