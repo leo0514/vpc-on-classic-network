@@ -1,4 +1,3 @@
-
 ---
 
 copyright:
@@ -11,7 +10,6 @@ subcollection: vpc-on-classic-network
 
 ---
 
-
 {:shortdesc: .shortdesc}
 {:new_window: target="_blank_"}
 {:codeblock: .codeblock}
@@ -22,6 +20,7 @@ subcollection: vpc-on-classic-network
 {:download: .download}
 {:note: .note}
 {:important: .important}
+
 
 # Monitoring metrics using IBM Load Balancer for VPC with Sysdig
 {: #monitoring-metrics-sysdig}
@@ -152,28 +151,28 @@ To do so, follow these steps:
 
 2. Select a region for your Sysdig instance.
 
-  If you do not have an existing load balancer, see [Creating a load balancer](/docs/vpc-on-classic?topic=vpc-on-classic-creating-a-vpc-using-the-ibm-cloud-console#creating-a-load-balancer) to provision one.
-  {: tip}
+   If you do not have an existing load balancer, see [Creating a load balancer](/docs/vpc-on-classic?topic=vpc-on-classic-creating-a-vpc-using-the-ibm-cloud-console#creating-a-load-balancer) to provision one.
+   {: tip}
 
-  The region must match the location of your existing load balancer.
-  {: important}
+   The region must match the location of your existing load balancer.
+   {: important}
 
 3. Choose your pricing plan.
 
-  Pricing plan details are explained in the selection window. Select the plan that best meets your requirements.
+   Pricing plan details are explained in the selection window. Select the plan that best meets your requirements.
 
 4. Provide a service name for your instance. It can be any name that you want, and has no impact on functionality.
 
-  Do not create multiple Sysdig instances with the same name.
-  {: important}
+   Do not create multiple Sysdig instances with the same name.
+   {: important}
 
 5. Optionally, select a resource group. A resource group is a way to organize account resources in customizable groupings. Any account resource that is managed by using IBM Cloud Identity and Access Management (IAM) access control belongs to a resource group within your account.
 
-  If you do not have any pre-configured resource groups, or no reason to share this resource selectively, use the default selection.
-  {: note}
+   If you do not have any pre-configured resource groups, or no reason to share this resource selectively, use the default selection.
+   {: note}
 
-  If your account has multiple resource groups, you can choose which one has access to this Sysdig instance. This allows you to have metrics available to some resource groups and not to others.
-  {: tip}
+   If your account has multiple resource groups, you can choose which one has access to this Sysdig instance. This allows you to have metrics available to some resource groups and not to others.
+   {: tip}
 
 6. Select the **Enable Platform Metrics** checkbox. You must select this to receive metrics from your load balancer.
 
@@ -189,17 +188,17 @@ To view and work with your Sysdig metrics, follow these steps:
 
 2. Click **View Sysdig** next to the service name of the Sysdig instance you want to work with.
 
-  The first time that you access your Sysdig instance, several windows display as part of the internal setup. Leave these selections with their default entries, and click through the pages until you reach the Sysdig main page.
-  {: note}
+   The first time that you access your Sysdig instance, several windows display as part of the internal setup. Leave these selections with their default entries, and click through the pages until you reach the Sysdig main page.
+   {: note}
 
 3. Select **Dashboards** on the left sidebar to open the IBM Load Balancer Monitoring Metrics dashboard. Then, click **Default Dashboards > IBM > Load Balancer Monitoring Metrics**. The default dashboard is not editable.
 
 4. Three main metrics in the dashboard are shown: Throughput, Active Connections, and Connection Rate. To modify parameters and segment your metrics by load balancer ID or listener port, you must create a custom dashboard.
 
-  ![Sysdig dashboard](images/metrics_3.png "Sysdig dashboard")
+   ![Sysdig dashboard](images/metrics_3.png "Sysdig dashboard")
 
-  You can choose what time window you'd like to see your metrics displayed for, using the bar on the bottom.
-  {: tip}
+   You can choose what time window you'd like to see your metrics displayed for, using the bar on the bottom.
+   {: tip}
 
 ## Creating a custom metrics dashboard
 
@@ -213,30 +212,30 @@ To customize your dashboard, follow these steps:
 
 3. On the left sidebar, select **Dashboards**. Then, click the green **+** sign in the panel.
 
-  ![Add dashboard](images/metrics_custom_db.png "Add dashboard")
+   ![Add dashboard](images/metrics_custom_db.png "Add dashboard")
 
 4. Select **Blank dashboard**, then select the type of visual representation you want.
 
-  Sysdig offers eight different visualizations for your dashboard. Read the description for each visualization, then choose the one that best meets your requirements.
+   Sysdig offers eight different visualizations for your dashboard. Read the description for each visualization, then choose the one that best meets your requirements.
 
-  **Line** ("View trends over time") is the easiest and most basic option. It is also the most frequently selected option. The examples in this topic show a Line-based visualization.
-  {: note}
+   **Line** ("View trends over time") is the easiest and most basic option. It is also the most frequently selected option. The examples in this topic show a Line-based visualization.
+   {: note}
 
 5. Configure your custom dashboard.
 
-  * In the **Metrics** field, enter `ibm_is` to display the three IBM Sysdig load balancer metrics: `ibm_is_load_balancer_active_connections`, `ibm_is_load_balancer_connection_rate`, and `ibm_is_load_balancer_throughput`.
+   * In the **Metrics** field, enter `ibm_is` to display the three IBM Sysdig load balancer metrics: `ibm_is_load_balancer_active_connections`, `ibm_is_load_balancer_connection_rate`, and `ibm_is_load_balancer_throughput`.
 
-  You can monitor listener port traffic by enabling the `ibm_cloud_load_balancer_listener_port` metric.
-  {: tip}
+   You can monitor listener port traffic by enabling the `ibm_cloud_load_balancer_listener_port` metric.
+   {: tip}
 
-  * You can choose a scope to display in your dashboard by clicking **Override Dashboard Scope**. For example, you can display the metrics for a particular load balancer.
+   * You can choose a scope to display in your dashboard by clicking **Override Dashboard Scope**. For example, you can display the metrics for a particular load balancer.
 
-  * You can also set a segment to compare metrics across the scope you have defined. For example, you can look at throughput for a particular load balancer segmented by listener port.
+   * You can also set a segment to compare metrics across the scope you have defined. For example, you can look at throughput for a particular load balancer segmented by listener port.
 
 6. Click **Save** for your new custom dashboard to be accessible.
 
-  By default, the dashboard begins with the name "blank dashboard". You can change the name by selecting **Dashboards** from the sidebar, then clicking the Pencil icon next to the name.
-  {: tip}
+   By default, the dashboard begins with the name "blank dashboard". You can change the name by selecting **Dashboards** from the sidebar, then clicking the Pencil icon next to the name.
+   {: tip}
 
 To return to the default Sysdig dashboard at any time, select **Dashboards > Default Dashboards > IBM > Load Balancer Monitoring Metrics**.
 
@@ -275,55 +274,55 @@ To collect this information and start working with your Sysdig instance using me
   * The endpoint of your Sysdig instance.
   * The value for `ibm_resource` (this is the load balancer ID you want to see metrics for).
 
-     If you want to see this metric for all of your load balancers, do not enter a value for the `scope` attribute. For example, use `"scope” : “”`.
-     {: note}
+   If you want to see this metric for all of your load balancers, do not enter a value for the `scope` attribute. For example, use `"scope” : “”`.
+   {: note}
 
   * The metric type that you want to see the results for. This example uses `ibm_is_load_balancer_throughput`, but `ibm_is_load_balancer_active_connections` and `ibm_is_load_balancer_connection_rate` are also valid options.
   * The `from` and `to` attributes define the times to focus the scan, set in Epoch Time and in microseconds.
   * The `sampling` and `value` attributes set the granularity of which data is returned in the POST request.
 
-      Because a large volume of data is stored in Sysdig, choosing the specific level of granularity is important. Sysdig can return only 600 data points at any time with a given request. As a result, the `sampling` and `value` attributes are important. Leaving these two lines out of your request will return an aggregate sum over that time period instead.
+   Because a large volume of data is stored in Sysdig, choosing the specific level of granularity is important. Sysdig can return only 600 data points at any time with a given request. As a result, the `sampling` and `value` attributes are important. Leaving these two lines out of your request will return an aggregate sum over that time period instead.
 
-      If the time range specified by `from` and `to` is large (for example, 4 days), but you define a `sampling` and `value` of 10 seconds, this means that you receive 4 days worth of data that is split into 10-second chunks. This is not a useful sampling due to the large amount of data returned. Specifying a larger chunk is recommended (for example, 1 hour instead of 10 seconds).
-      {: tip}
+   If the time range specified by `from` and `to` is large (for example, 4 days), but you define a `sampling` and `value` of 10 seconds, this means that you receive 4 days worth of data that is split into 10-second chunks. This is not a useful sampling due to the large amount of data returned. Specifying a larger chunk is recommended (for example, 1 hour instead of 10 seconds).
+   {: tip}
 
 
-  ```
-  curl \
-  -H 'Authorization: Bearer <API_TOKEN>’ \
-  -H 'Content-Type: application/json' \
-  https://us-south.monitoring.cloud.ibm.com/api/data/batch  \
-  -d '{
-    "requests": [
-        {
-            "format": {
-                "type": "data"
-            },
-            "scope": "ibm_resource=\"908461\"",
-            "metrics": {
-                "k0": "timestamp",
-                “v1”: "ibm_is_load_balancer_throughput"
-            },
-            "time": {
-                "from": 1584396900000000,
-                "to": 1584402600000000,
-	              “sampling”: 600000000
-            },
-            "group": {
-                "by": [
-                    {
+   ```
+   curl \
+   -H 'Authorization: Bearer <API_TOKEN>’ \
+   -H 'Content-Type: application/json' \
+   https://us-south.monitoring.cloud.ibm.com/api/data/batch  \
+   -d '{
+     "requests": [
+         {
+             "format": {
+                 "type": "data"
+             },
+             "scope": "ibm_resource=\"908461\"",
+             "metrics": {
+                 "k0": "timestamp",
+                 “v1”: "ibm_is_load_balancer_throughput"
+             },
+             "time": {
+                 "from": 1584396900000000,
+                 "to": 1584402600000000,
+	               “sampling”: 600000000
+             },
+             "group": {
+                 "by": [
+                     {
                         "metric": "k0",
-                        “value” : 600000000
-                    }
-                ],
-                "aggregations": {
-                    “v1”: "sum"
-                },
-                "groupAggregations": {
-                    “v1”: "sum"
-                }
-            }
-        }
-    ]
-}'
+                         “value” : 600000000
+                     }
+                 ],
+                 "aggregations": {
+                     “v1”: "sum"
+                 },
+                 "groupAggregations": {
+                     “v1”: "sum"
+                 }
+             }
+         }
+     ]
+ }'
 ```
