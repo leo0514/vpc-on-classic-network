@@ -23,7 +23,7 @@ subcollection: vpc-on-classic-network
 {:DomainName: data-hd-keyref="DomainName"}
 {:external: target="_blank" .external}
 
-# FAQs
+# FAQs for load balancers
 {: #load-balancer-faqs}
 
 This section contains answers to some frequently asked questions about the **Load Balancer for VPC** service.
