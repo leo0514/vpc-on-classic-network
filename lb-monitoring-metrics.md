@@ -25,7 +25,9 @@ subcollection: vpc-on-classic-network
 # Monitoring metrics using IBM Load Balancer for VPC with Sysdig
 {: #monitoring-metrics-sysdig}
 
-{{site.data.keyword.cloud}} load balancer for VPC monitoring metrics are provided with {{site.data.keyword.cloud}} Monitoring with Sysdig. Sysdig is a third-party monitoring tool that specializes in data aggregation, usage alerts, and in-depth visualizations. For more information, see [IBM Cloud Monitoring with Sysdig](https://www.ibm.com/cloud/sysdig). Load balancers calculate the metrics and send those metrics to your Sysdig instance, which reflects different types of use and traffic. You can visualize and analyze metrics from either the {{site.data.keyword.cloud}} Monitoring with Sysdig dashboard, or its API.
+{{site.data.keyword.cloud}} Load Balancer for VPC monitoring metrics are provided with {{site.data.keyword.cloud}} Monitoring with Sysdig, a third-party monitoring tool that specializes in data aggregation, usage alerts, and in-depth visualizations. For more information, see [IBM Cloud Monitoring with Sysdig](https://www.ibm.com/cloud/sysdig).
+
+Load balancers calculate the metrics and send those metrics to your Sysdig instance, which reflects different types of use and traffic. You can visualize and analyze metrics from either the {{site.data.keyword.cloud}} Monitoring with Sysdig dashboard, or its API.
 
 ## Metrics available by service plan
 {: metrics-by-plan}
@@ -48,7 +50,7 @@ Each metric is composed of the following metadata types:
 ### Active connections
 {: #ibm_is_load_balancer_active_connections}
 
-_Active connections_ are the number of connections established on a load balancer at a specific time.
+Active connections are the number of connections established on a load balancer at a specific time.
 
 The active connection metric contains the following metadata:
 
@@ -64,7 +66,7 @@ The active connection metric contains the following metadata:
 ### Connection rate
 {: #ibm_is_load_balancer_connection_rate}
 
-_Connection rate_ is number of new, incoming active connections per second to your load balancer.
+Connection rate is number of new, incoming active connections per second to your load balancer.
 
 | Metadata | Description |
 |----------|-------------|
@@ -78,7 +80,7 @@ _Connection rate_ is number of new, incoming active connections per second to yo
 ### Throughput
 {: #ibm_is_load_balancer_throughput}
 
-_Throughput_ is the amount of data that passes in and out of a load balancer over a period of time.
+Throughput is the amount of data that passes in and out of a load balancer over a period of time.
 
 | Metadata | Description |
 |----------|-------------|
@@ -325,4 +327,4 @@ To collect this information and start working with your Sysdig instance using me
          }
      ]
  }'
-```
+   ```
