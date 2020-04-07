@@ -137,8 +137,7 @@ To give a load balancer access to your SSL certificate, you must enable **servic
 If the required authorization is removed, errors might occur for your load balancer.
 {: note}
 
-
-{{site.data.keyword.cloud_notm}} Load Balancer for VPC supports TLS 1.2 with SSL termination. The following list details the supported ciphers (in order of precedence):
+Only TLS 1.2 is supported. The following list details the supported ciphers (listed in order of precedence):
 
 * TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384
 * TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256
@@ -146,8 +145,6 @@ If the required authorization is removed, errors might occur for your load balan
 * TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
 * TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
 * TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305_SHA256
-
-If your load balancer has one or more HTTPS front-end application ports (protocols) configured, by default, these predefined SSL ciphers are enabled for your load balancer.
 
 ## Configuring ACLs for use with load balancers
 {: #configuring-acls-for-use-with-load-balancers}
