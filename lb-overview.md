@@ -3,7 +3,7 @@
 
 copyright:
   years: 2018, 2020
-  lastupdated: "2020-04-02"
+  lastupdated: "2020-04-07"
 
 keywords: load balancer, public, listener, back-end, front-end, pool, round-robin, weighted, connections, methods, policies, APIs, access, ports, vpc, vpc network, advanced traffic, advanced traffic management
 
@@ -28,7 +28,7 @@ subcollection: vpc
 # Using load balancers for VPC
 {: #--using-load-balancers-in-ibm-cloud-vpc}
 
-The {{site.data.keyword.cloud}} **Load Balancer for VPC** service distributes traffic among multiple server instances within the same region of your VPC.
+The {{site.data.keyword.cloud}} Load Balancer for VPC service distributes traffic among multiple server instances within the same region of your VPC.
 
 ## Public load balancer
 {: #public-load-balancer}
@@ -136,6 +136,18 @@ To give a load balancer access to your SSL certificate, you must enable **servic
 
 If the required authorization is removed, errors might occur for your load balancer.
 {: note}
+
+
+{{site.data.keyword.cloud_notm}} Load Balancer for VPC supports TLS 1.2 with SSL termination. The following list details the supported ciphers (in order of precedence):
+
+* TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384
+* TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256
+* TLS_ECDHE_ECDSA_WITH_CHACHA20_POLY1305_SHA256
+* TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+* TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+* TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305_SHA256
+
+If your load balancer has one or more HTTPS front-end application ports (protocols) configured, by default, these predefined SSL ciphers are enabled for your load balancer.
 
 ## Configuring ACLs for use with load balancers
 {: #configuring-acls-for-use-with-load-balancers}

@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018, 2020
-lastupdated: "2020-04-02"
+lastupdated: "2020-04-07"
 
 keywords: load balancer, public, listener, back-end, front-end, pool, round-robin, weighted, connections, methods, policies, APIs, access, ports, vpc, vpc network, layer-7
 
@@ -26,7 +26,7 @@ subcollection: vpc-on-classic-network
 # FAQs for load balancers
 {: #load-balancer-faqs}
 
-This section contains answers to some frequently asked questions about the **Load Balancer for VPC** service.
+This section contains answers to some frequently asked questions about the {{site.data.keyword.cloud}} Load Balancer for VPC service.
 
 ## Can I use a different DNS name for my load balancer?
 {: #can-i-use-a-different-dns-name-for-my-load-balancer}
@@ -92,7 +92,7 @@ The load balancer will be in `maintenance_pending` state during various maintena
 {: #why-do-I-need-to-choose-multiple-subnets-during-provisioning}
 {: faq}
 
-**Load Balancer for VPC** is Multi-Zone-Region (MZR) ready. Load balancer appliances are deployed to the subnets you've selected. It is highly recommended to choose subnets from different zones, to provide you with higher availability and redundancy.
+{{site.data.keyword.cloud_notm}} Load Balancer for VPC is Multi-Zone-Region (MZR) ready. Load balancer appliances are deployed to the subnets you've selected. It is highly recommended to choose subnets from different zones, to provide you with higher availability and redundancy.
 
 ## Do I need additional IPs in the subnet for load balancer operations?
 {: #do-I-need-additional-ips-in-subnet-for-load-balancer-operations}
@@ -118,23 +118,6 @@ Verify the following configurations:
 * Is security group configured on the back-end server instance? If so, ensure that the security group rules allow traffic between the load balancer and the virtual server.
 
 For more information, see the [Health checks](#health-checks) section.
-
-## Which TLS version is supported with SSL offload?
-{: #which-tls-version-is-supported-with-ssl-offload}
-{: faq}	   
-
-The **Load Balancer for VPC** supports TLS 1.2 with SSL termination.
-
-The following list details the supported ciphers (listed in order of precedence):												 
-
-* ECDHE-RSA-AES256-GCM-SHA384
-* ECDHE-RSA-AES256-SHA384
-* AES256-GCM-SHA384
-* AES256-SHA256
-* ECDHE-RSA-AES128-GCM-SHA256
-* ECDHE-RSA-AES128-SHA256
-* AES128-GCM-SHA256
-* AES128-SHA256
 
 ## What are the default settings and allowed values for health check parameters?
 {: #what-are-the-default-settings-and-allowed-values-for-health-check-parameters}
