@@ -73,6 +73,14 @@ Six different types of VSI data packet flows occur in a VPC. In ascending order 
 
 After NAT translation, the implicit router forwards these Internet-destined packets to the Internet, using the cloud backbone.
 
+## Life cycle of external IPs associated with public gateway functions
+{: #pgw-external-IP-lifecycle}
+
+As external IPs are bound to an availability zone, the public gateway function can have as many external IPs as there are availability zones in the region where the VPC was created. Each of these external IPs has the following lifecycle:
+
+  * The external IP is allocated when the first subnet of an availability zone is attached to the public gateway function.
+  * The external IP is released when the public gateway is deleted.
+
 ## Classic access
 {: #classic-access}
 

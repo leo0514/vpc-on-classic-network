@@ -25,7 +25,7 @@ subcollection: vpc-on-classic-network
 # Monitoring metrics using IBM Load Balancer for VPC with Sysdig
 {: #monitoring-metrics-sysdig}
 
-{{site.data.keyword.cloud}} Load Balancer for VPC monitoring metrics are provided with {{site.data.keyword.cloud}} Monitoring with Sysdig, a third-party monitoring tool that specializes in data aggregation, usage alerts, and in-depth visualizations. For more information, see [IBM Cloud Monitoring with Sysdig](/docs/vpc-on-classic-network?topic=vpc-on-classic-network-monitoring-metrics-sysdig).
+{{site.data.keyword.cloud}} Load Balancer for VPC monitoring metrics are provided with {{site.data.keyword.cloud}} Monitoring with Sysdig, a third-party monitoring tool that specializes in data aggregation, usage alerts, and in-depth visualizations. For more information, see [IBM Cloud Monitoring with Sysdig](/docs/Monitoring-with-Sysdig).
 
 Load balancers calculate the metrics and send those metrics to your Sysdig instance, which reflects different types of use and traffic. You can visualize and analyze metrics from either the {{site.data.keyword.cloud}} Monitoring with Sysdig dashboard, or its API.
 
@@ -331,4 +331,5 @@ To collect this information and start working with your Sysdig instance using me
          }
      ]
  }'
-   ```
+```
+{: codeblock}
