@@ -4,7 +4,7 @@ copyright:
   years: 2018, 2020
 lastupdated: "2020-04-02"
 
-keywords: load balancer, public, listener, back-end, front-end, pool, round-robin, weighted, connections, methods, policies, APIs, access, ports, vpc, vpc network, layer-7
+keywords:
 
 subcollection: vpc-on-classic-network
 
@@ -23,10 +23,11 @@ subcollection: vpc-on-classic-network
 {:DomainName: data-hd-keyref="DomainName"}
 {:external: target="_blank" .external}
 
+
 # Identity and access management
 {: #identity-and-access-management-iam}
 
-You can configure access policies for an {{site.data.keyword.cloud} Load Balancer for VPC instance. For more information about managing user access policies, see [Managing access to resources](/docs/iam?topic=iam-iammanidaccser#resourceaccess).
+You can configure access policies for an {{site.data.keyword.cloud}} Load Balancer for VPC instance. For more information about managing user access policies, see [Managing access to resources](/docs/iam?topic=iam-iammanidaccser#resourceaccess).
 
 ## Configuring resource group access policies for users
 {: #configuring-resource-group-access-policies-for-users}

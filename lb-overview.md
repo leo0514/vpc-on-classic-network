@@ -3,11 +3,11 @@
 
 copyright:
   years: 2018, 2020
-  lastupdated: "2020-04-07"
+lastupdated: "2020-04-07"
 
-keywords: load balancer, public, listener, back-end, front-end, pool, round-robin, weighted, connections, methods, policies, APIs, access, ports, vpc, vpc network, advanced traffic, advanced traffic management
+keywords:
 
-subcollection: vpc
+subcollection: vpc-on-classic-network
 
 ---
 
@@ -73,14 +73,52 @@ The supported front-end listener protocols are:
 
 The supported back-end pool protocols are:
 * HTTP
+* HTTPS
 * TCP
 
-Incoming HTTPS traffic is terminated at the load balancer to allow for plain-text HTTP communication with the back-end server.
+You may configure an HTTP/HTTPS protocol front-end listener with an HTTP/HTTPS back-end pool. HTTP and HTTPS protocol listeners and pools are interchangeable. A TCP protocol front-end listener can only be configured with a TCP protocol back-end pool.
 
 You can attach up to fifty server instances to a back-end pool. Each attached server instance must have a port configured. The port might or might not be the same as front-end listener port.
 
 The port range of `56500` to `56520` is reserved for management purposes; these ports cannot be used as front-end listener ports.
 {: note}
+
+## SSL offloading and required authorizations
+{: #ssl-offloading-and-required-authorizations}
+
+SSL offloading allows the load balancer service to terminate all incoming HTTPS connections.
+
+When an HTTPS listener is configured with an HTTP pool, the HTTPS request is terminated at the front-end and the load balancer establishes a plain-text HTTP communication with the back-end server instance. With this technique, CPU-intensive SSL handshakes and encryption or decryption tasks are shifted away from the back-end server instances, allowing them to use all their CPU cycles for processing application traffic.
+
+SSL offloading requires you to provide an SSL certificate for the load balancer to perform SSL offloading tasks. You can manage the SSL certificates through [IBM Certificate Manager](/docs/certificate-manager?topic=certificate-manager-getting-started).
+
+To give a load balancer access to your SSL certificate, you must enable **service-to-service authorization**, which grants your load balancer service instance access to your certificate manager instance. For more information, see [Granting access between services](/docs/iam?topic=iam-serviceauth#create-auth). Make sure to choose **Infrastructure Service** as the source service, **Load Balancer for VPC** as the resource type, **Certificate Manager** as the target service, and assign the **Writer** service access role.
+
+The required authorization between the load balancer and certificate manager must be set to prevent errors in your load balancer.
+{: important}
+
+Only TLS 1.2 is supported. The following is a list of the supported ciphers (listed in order of precedence):
+
+* TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384
+* TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256
+* TLS_ECDHE_ECDSA_WITH_CHACHA20_POLY1305_SHA256
+* TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+* TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+* TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305_SHA256
+
+## End-to-End SSL Encryption
+{: #end-to-end-ssl-encryption}
+
+Configuring an HTTPS listener with an HTTPS pool enables end-to-end SSL encryption. The load balancer service terminates the incoming HTTPS request at the front-end listener and establishes an HTTPS connection with the back-end instances. End-to-end encryption allows all traffic going through the load balancer to the back-end members to be encrypted over HTTPS protocol.
+
+To configure end-to-end SSL encryption:
+1. Configure an HTTPS protocol front-end listener with your desired SSL certificate as you would when configuring SSL offloading.
+2. Configure an HTTPS protocol back-end pool.
+3. Add your back-end member instance to the HTTPS protocol back-end pool. Your back-end member instances should be configured to handle HTTPS traffic.
+4. Configure health checks with type HTTPS to perform encrypted health checks with your back-end members.
+
+The load balancer will not verify the SSL certificates of the back-end member instances.
+{: important}
 
 ## Load balancing methods
 {: #load-balancing-methods}
@@ -114,37 +152,18 @@ The load balancer adjusts its capacity automatically according to the load. When
 
 Health check definitions are mandatory for back-end pools.
 
-The load balancer conducts periodic health checks to monitor the health of the back-end ports, and it forwards client traffic to them accordingly. If a given back-end server port is found to be unhealthy, no new connections are forwarded to it. The load balancer continues to monitor health of unhealthy ports, and it resumes their use if they become healthy again, which means that they successfully pass two consecutive health check attempts.
+The load balancer conducts periodic health checks to monitor the health of the back-end ports and it forwards client traffic to them accordingly. If a given back-end server port is found to be unhealthy, no new connections are forwarded to it. The load balancer continues to monitor health of unhealthy ports, and it resumes their use if they become healthy again, which means that they successfully pass two consecutive health check attempts.
 
-The health checks for HTTP and TCP ports are conducted as follows:
+The health checks for HTTP, HTTPS, and TCP ports are conducted as follows:
 
-* **HTTP:** An `HTTP GET` request against a pre-specified URL is sent to the back-end server port. The server port is marked healthy upon receiving a `200 OK` response. The default `GET` health path is "/" through the UI, and it can be customized.
+* **HTTP:** An `HTTP GET` request against a pre-specified URL is sent to the health check port. The server port is marked healthy upon receiving a `200 OK` response. The default `GET` health path is "/".
+
+* **HTTPS:** Similar to an HTTP health check, an `HTTPS GET` request is sent to the configured health check port and URL path. Health checks will utilize HTTPS protocol to encrypt traffic to back-end servers. A back-end server is deemed healthy upon receiving a `200 OK` response. The default `GET` health path is "/".
 
 * **TCP:** The load balancer attempts to open a TCP connection with the back-end server on a specified TCP port. The server port is marked healthy if the connection attempt is successful, and the connection is closed.
 
 The default health check interval is 5 seconds, the default timeout against a health check request is 2 seconds, and the default number of retrial attempts is 2.
 {: note}
-
-## SSL offloading and required authorizations
-{: #ssl-offloading-and-required-authorizations}
-
-For all incoming HTTPS connections, the load balancer service terminates the SSL connection and establishes a plain-text HTTP communication with the back-end server instance. With this technique, CPU-intensive SSL handshakes and encryption or decryption tasks are shifted away from the back-end server instances, thereby allowing them to use all their CPU cycles for processing application traffic.
-
-An SSL certificate is required for the load balancer to perform SSL offloading tasks. You may manage the SSL certificates through [IBM Certificate Manager](/docs/certificate-manager?topic=certificate-manager-getting-started).
-
-To give a load balancer access to your SSL certificate, you must enable **service-to-service authorization**, which grants your load balancer service instance access to your certificate manager instance. You may manage such an authorization by following this documentation [Granting access between services](/docs/iam?topic=iam-serviceauth#create-auth). Make sure to choose **Infrastructure Service** as the source service, **Load Balancer for VPC** as the resource type, **Certificate Manager** as the target service, and assign the **Writer** service access role.
-
-If the required authorization is removed, errors might occur for your load balancer.
-{: note}
-
-Only TLS 1.2 is supported. The following list details the supported ciphers (listed in order of precedence):
-
-* TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384
-* TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256
-* TLS_ECDHE_ECDSA_WITH_CHACHA20_POLY1305_SHA256
-* TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-* TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
-* TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305_SHA256
 
 ## Configuring ACLs for use with load balancers
 {: #configuring-acls-for-use-with-load-balancers}
