@@ -4,7 +4,7 @@ copyright:
   years: 2018, 2020
 lastupdated: "2020-02-28"
 
-keywords: vpc, address prefix, region, subnet, zone, reserved, IP, ranges, deleting, creating, CIDR, vpc network
+keywords:
 
 subcollection: vpc-on-classic-network
 

@@ -1,10 +1,10 @@
 ---
 
 copyright:
-  years: 2017, 2018, 2019
-lastupdated: "2019-12-05"
+  years: 2017, 2018, 2019, 2020
+lastupdated: "2020-05-06"
 
-keywords: vpc, vpc network, secure, region, zone, subnet, terminology, public gateway, floating IP, NAT
+keywords:
 
 subcollection: vpc-on-classic-network
 
@@ -25,6 +25,10 @@ subcollection: vpc-on-classic-network
 {: #about-networking-for-vpc}
 
 A Virtual Private Cloud (VPC) is a virtual network that's tied to your customer account. It gives you cloud security, with the ability to scale dynamically, by providing fine-grained control over your virtual infrastructure and your network traffic segmentation.
+{:shortdesc}
+
+Newer generation available. For more information, see [About Networking for VPC](/docs/vpc?topic=vpc-about-networking-for-vpc) for generation 2 compute resources.
+{:important}
 
 This document covers some networking concepts as they are applied within {{site.data.keyword.vpc_full}}. The use cases and characteristics described include:
 

@@ -4,7 +4,7 @@ copyright:
   years: 2019
 lastupdated: "2019-11-01"
 
-keywords: vpc, secure, region, zone, subnet, routing, terminology, public gateway, floating IP, NAT, API
+keywords:
 
 subcollection: vpc-on-classic-network
 
@@ -21,11 +21,14 @@ subcollection: vpc-on-classic-network
 {:download: .download}
 {:DomainName: data-hd-keyref="DomainName"}
 
-# Setting up advanced routing in VPC
+# Setting up advanced routing
 {: #setting-up-advanced-routing-in-vpc}
 
-You can control the flow of network traffic in your VPC by configuring VPC routes. Use VPC routes to specify the next hop for packets, based on their destination addresses.
+You can control the flow of network traffic by configuring VPC routes. Use routes to specify the next hop for packets, based on their destination addresses.
 {:shortdesc}
+
+Newer generation available. For more information, see [Setting up advanced routing in VPC](/docs/vpc?topic=vpc-advanced-routing) for generation 2 compute resources.
+{:important}
 
 ## Routing structure
 

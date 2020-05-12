@@ -3,15 +3,17 @@
 copyright:
   years: 2019, 2020
 
-lastupdated: "2020-04-04"
+lastupdated: "2020-05-06"
 
-keywords: ACLs, network, CLI, example, tutorial, firewall, subnet, inbound, outbound, rule, vpc, vpc network
+keywords:
 
 subcollection: vpc-on-classic-network
 
 ---
 
 {:shortdesc: .shortdesc}
+{:important: .important}
+{:note: .note}
 {:new_window: target="_blank"}
 {:codeblock: .codeblock}
 {:pre: .pre}
@@ -27,8 +29,13 @@ subcollection: vpc-on-classic-network
 [comment]: # (linked help topic)
 
 With the ACL functionality available in {{site.data.keyword.cloud}} Virtual Private Cloud, you can control all incoming and outgoing traffic related to your critical business workloads on the cloud. An ACL is a built-in, virtual firewall, similar to a security group. In contrast to security groups, ACL rules control traffic to and from the _subnets_, rather than to and from the _instances_.
+{:shortdesc}
+
+Newer generation available. For more information, see [Setting up network ACLs](/docs/vpc?topic=vpc-using-acls) for generation 2 compute resources.
+{:important}
 
 For a comparison of the characteristics of security groups and ACLs, see the [comparison table](/docs/vpc-on-classic-network?topic=vpc-on-classic-network-compare-security-groups-and-access-control-lists).
+{:note}
 
 The example given in this document shows how to create network ACLs in your VPC using the CLI, which will protect your subnets.
 

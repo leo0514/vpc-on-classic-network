@@ -4,7 +4,7 @@ copyright:
   years: 2017, 2018, 2019
 lastupdated: "2019-05-29"
 
-keywords: vpc, vpc network, VRF, router, hypervisor, address prefixes, classic access, implicit router, packet flows, NAT, data flows
+keywords:
 
 subcollection: vpc-on-classic-network
 

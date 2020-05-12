@@ -4,7 +4,7 @@ copyright:
   years: 2017, 2018, 2019
 lastupdated: "2019-07-22"
 
-keywords: vpc, vpc network, provisioning, resources, permissions
+keywords:
 
 subcollection: vpc-on-classic-network
 
@@ -28,8 +28,8 @@ subcollection: vpc-on-classic-network
 {: help} 
 {: support}
 
-New! Check out Virtual Private Cloud for generation 2 virtual server profiles. For more information, see [Getting started with Virtual Private Cloud](/docs/vpc?topic=vpc-getting-started).
-{:tip}
+Newer generation available. For more information, see [Getting started with Virtual Private Cloud](/docs/vpc?topic=vpc-getting-started) for generation 2 compute resources.
+{:important}
 
 To get started with networking for {{site.data.keyword.vpc_full}} (Gen 1 compute):
 

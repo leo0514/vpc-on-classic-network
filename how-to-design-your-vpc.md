@@ -4,7 +4,7 @@ copyright:
   years: 2017, 2018, 2019
 lastupdated: "2019-05-14"
 
-keywords: VPC, subnet, address prefixes, design, addressing, vpc network
+keywords:
 
 subcollection: vpc-on-classic-network
 

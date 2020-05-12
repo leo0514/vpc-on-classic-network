@@ -4,7 +4,7 @@ copyright:
   years: 2020
 lastupdated: "2020-03-10"
 
-keywords: peering, Check Point, Security Gateway, connection, secure, remote, vpc, vpc network
+keywords:
 
 subcollection: vpc-on-classic-network
 

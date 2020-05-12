@@ -2,9 +2,9 @@
 
 copyright:
   years: 2017, 2020
-lastupdated: "2020-04-01"
+lastupdated: "2020-05-06"
 
-keywords: l7, Layer-7, monitor, metrics, throughput, connection
+keywords:
 
 subcollection: vpc-on-classic-network
 
@@ -26,6 +26,7 @@ subcollection: vpc-on-classic-network
 {: #monitoring-metrics-sysdig}
 
 {{site.data.keyword.cloud}} Load Balancer for VPC monitoring metrics are provided with {{site.data.keyword.cloud}} Monitoring with Sysdig, a third-party monitoring tool that specializes in data aggregation, usage alerts, and in-depth visualizations. For more information, see [IBM Cloud Monitoring with Sysdig](/docs/Monitoring-with-Sysdig).
+{:shortdesc}
 
 Load balancers calculate the metrics and send those metrics to your Sysdig instance, which reflects different types of use and traffic. You can visualize and analyze metrics from either the {{site.data.keyword.cloud}} Monitoring with Sysdig dashboard, or its API.
 

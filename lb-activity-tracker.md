@@ -2,9 +2,9 @@
 
 copyright:
   years: 2018, 2020
-lastupdated: "2020-04-02"
+lastupdated: "2020-05-06"
 
-keywords: load balancer, public, listener, back-end, front-end, pool, round-robin, weighted, connections, methods, policies, APIs, access, ports, vpc, vpc network, layer-7
+keywords:
 
 subcollection: vpc-on-classic-network
 
@@ -27,6 +27,7 @@ subcollection: vpc-on-classic-network
 {: #activity-tracker-integration}
 
 The load balancer service is integrated with IBM Cloud Activity Tracker with LogDNA, which records events, in a manner compliant with the CADF standard, as triggered by user-initiated activities that change the state of the service in the cloud.
+{:shortdesc}
 
 For a list of actions that are recorded as auditing events on the load balancer service instances, see [Activity tracker with LogDNA events](/docs/vpc-on-classic?topic=vpc-on-classic-at-events#events-load-balancers).
 

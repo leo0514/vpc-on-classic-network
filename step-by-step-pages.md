@@ -6,7 +6,7 @@ copyright:
   years: 2017, 2018, 2019
 lastupdated: "2019-08-23"
 
-keywords: vpc, examples, guidelines, customizing, tutorials
+keywords:
 
 subcollection: vpc-on-classic-network
 

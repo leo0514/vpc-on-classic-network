@@ -3,10 +3,10 @@
 
 
 copyright:
-  years: 2017,2018, 2019
-lastupdated: "2019-11-15"
+  years: 2017,2018, 2019, 2020
+lastupdated: "2020-05-06"
 
-keywords: vpn, vpn for vpc, network, encryption, authentication, algorithm, IKE, IPsec, policies, gateway, auto-negotiation
+keywords:
 
 subcollection: vpc-on-classic-network
 
@@ -15,6 +15,7 @@ subcollection: vpc-on-classic-network
 
 <!-- Common attributes used in the template are defined as follows: -->
 {:shortdesc: .shortdesc}
+{:important: .important}
 {:new_window: target="_blank"}
 {:faq: data-hd-content-type='faq'}
 {:support: data-reuse='support'}
@@ -33,6 +34,9 @@ subcollection: vpc-on-classic-network
 
 The {{site.data.keyword.cloud}} VPN for Virtual Private Cloud allows you to connect private networks in a secure fashion. You can use VPN to set up an IPsec site-to-site tunnel between your VPC and your on-premise private network or another VPC.
 {: shortdesc}
+
+Newer generation available. For more information, see [Using VPN](/docs/vpc?topic=vpc-using-vpn) for generation 2 compute resources.
+{:important}
 
 ## Features
 {: #vpn-features}

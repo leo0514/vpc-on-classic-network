@@ -4,7 +4,7 @@ copyright:
   years: 2017, 2020
 lastupdated: "2020-03-10"
 
-keywords: peering, Juniper, vSRX, connection, secure, remote, vpc, vpc network
+keywords:
 
 subcollection: vpc-on-classic-network
 

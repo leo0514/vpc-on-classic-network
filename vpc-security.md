@@ -2,15 +2,16 @@
 
 copyright:
   years: 2018, 2020
-lastupdated: "2020-01-06"
+lastupdated: "2020-05-06"
 
-keywords: security, ACLs, security groups, traffic, subnet, instance, VSI, firewall, encryption, vpc, vpc network
+keywords:
 
 subcollection: vpc-on-classic-network
 
 ---
 
 {:shortdesc: .shortdesc}
+{:important: .important}
 {:new_window: target="_blank"}
 {:codeblock: .codeblock}
 {:pre: .pre}
@@ -26,6 +27,9 @@ You can keep your VPC and workloads secure by controlling network traffic using 
 
 * Security groups control traffic on a per-instance (VSI) basis.
 * Access control lists control traffic on a per-subnet basis.
+
+Newer generation available. For more information, see [Security in your VPC](/docs/vpc?topic=vpc-security-in-your-vpc) for generation 2 compute resources.
+{:important}
 
 ## Security overview
 {: #security-overview}

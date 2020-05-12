@@ -4,7 +4,7 @@ copyright:
   years: 2018, 2020
 lastupdated: "2020-03-10"
 
-keywords: peering, Cisco, ASAv, connection, secure, remote, vpc, vpc network
+keywords:
 
 subcollection: vpc-on-classic-network
 

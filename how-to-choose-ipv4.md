@@ -4,7 +4,7 @@ copyright:
   years: 2017, 2018, 2019
 lastupdated: "2019-12-05"
 
-keywords: IPv4, ranges, subnets, CIDR, 1918, vpc, vpc network
+keywords:
 
 subcollection: vpc-on-classic-network
 
