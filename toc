@@ -44,7 +44,6 @@ Networking for Virtual Private Cloud (Gen 1 compute)
     VPN for VPC
         using-vpn.md
         vpc-vpn-view-logs-logdna.md
-        vpc-vpn-sysdig-monitoring-metrics.md
 
     {: .topicgroup}
     Setting up a VPN
