@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2020
-lastupdated: "2020-03-10"
+lastupdated: "2020-05-26"
 
 keywords:
 
@@ -60,7 +60,7 @@ Remember to:
 * Enable `DH-group 2` 
 * Set `lifetime = 36000` 
 * Disable PFS 
-* Set `lifetime = 18000`  
+* Set `lifetime = 10800`  
 
 The following commands use the following variables where:
 
@@ -126,7 +126,7 @@ set security vpn ipsec ike-group 169.61.247.167_test_ike proposal 1 dh-group 2
 set security vpn ipsec ike-group 169.61.247.167_test_ike proposal 1 encryption aes256
 set security vpn ipsec ike-group 169.61.247.167_test_ike proposal 1 hash sha2_256
 set security vpn ipsec esp-group 169.61.247.167_test_ipsec compression disable
-set security vpn ipsec esp-group 169.61.247.167_test_ipsec lifetime 18000
+set security vpn ipsec esp-group 169.61.247.167_test_ipsec lifetime 10800
 set security vpn ipsec esp-group 169.61.247.167_test_ipsec mode tunnel
 set security vpn ipsec esp-group 169.61.247.167_test_ipsec pfs disable
 
@@ -178,106 +178,29 @@ You can check the status of your connection on the {{site.data.keyword.cloud_not
 {: #troubleshooting-and-more-examples}
 
 Remember to:
-* Config your ACL to allow port `500` and `4500`
-* Allow IKE and ESP traffic for IPsec:
+
+* if you enable CPP firewall on Vyatta, you have to configure the rules to allow traffic from IBM gateway. For example, if your CPP firewall name is `GATEWAY_CPP`, add these rules to the firewall:
 
    ```
-   # set rule 100 action 'accept' 
-   # set rule 100 destination port '500'
-   # set rule 100 protocol 'udp'
-   # set rule 200 action 'accept'
-   # set rule 200 protocol 'esp'
+   # set security firewall name GATEWAY_CPP rule 250 source address 169.61.247.167
+   # set security firewall name GATEWAY_CPP rule 250 action accept
    ```
    {: codeblock}
 
-* Allow NAT traversal of IPsec:
+* If you are applying the firewall to the interface, you have to permit the traffic from IBM VPC. For example:
 
    ```
-   # set rule 250 action 'accept'
-   # set rule 250 destination port '4500'
-   # set rule 250 protocol 'udp'
+   # set security firewall name to-vpc rule 20 destination address 10.240.0.0/24
+   # set security firewall name to-vpc rule 20 action accept
+   # set security firewall name from-vpc rule 20 source address 10.240.0.0/24
+   # set security firewall name from-vpc rule 20 action accept
+   # set interfaces bonding dp0bond0 vif 862 firewall out to-vpc
+   # set interfaces bonding dp0bond0 vif 862 firewall in from-vpc
    ```
    {: codeblock}
+ 
+ 	You might need to add other rules according to your network requirement to allow other traffic. 
 
-## Additional examples
-{: #vyatta-additional-examples}
+* If you are using a zone firewall with IPsec, see [Setting Up an IPsec tunnel that works with zone firewalls](https://cloud.ibm.com/docs/virtual-router-appliance?topic=virtual-router-appliance-setting-up-an-ipsec-tunnel-that-works-with-zone-firewalls).
 
-Filtering on source IP:
 
-```
-vyatta@R1# show security firewall name FWTEST-1
-rule 1 {
-	action accept
-	source {
-		address {{ IP address }}
-	}
-}
-vyatta@R1# show interfaces dataplane dp0p1p1
-address {{ IP address }}
-	firewall FWTEST-1 {
-	in {
-	}
-}
-```
-{: codeblock}
-
-Filtering on source and destination IP:
-
-```
-vyatta@R1# show security firewall name FWTEST-2
-rule 1 {
-	action accept
-	destination {
-		address {{ IP address }}
-	}
-	source {
-		address {{ IP address }}
-	}
-}
-vyatta@R1# show interfaces dataplane dp0p1p2
-vif 40 {
-	firewall {
-	out FWTEST-2
-	}
-}
-```
-{: codeblock}
-
-Filtering traffic between zones:
-
-```
-vyatta@R1# show security zone-policy
-
-zone dmz {
-	description DMZ
-	interface dp0p1p3
-	to private {
-		firewall to_private
-	}
-	to public {
-		firewall to_public
-	}
-}
-zone private {
-	description PRIVATE
-	interface dp0p1p1
-	interface dp0p1p2
-	to dmz {
-		firewall to_dmz
-	}
-	to public {
-		firewall to_public
-	}
-}
-zone public {
-	description PUBLIC
-	interface dp0p1p4
-	to dmz{
-		firewall to_dmz
-	}
-	to private {
-		firewall to_private
-	}
-}
-```
-{: codeblock}
