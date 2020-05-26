@@ -42,7 +42,7 @@ The following diagram shows a VPN gateway in an IBM Cloud VPC connecting to a Vy
 
 To set up your remote Vyatta peer, you need:
 
-* The public IP address of a VPN gateway in a VPC 
+* The public IP address of a VPN gateway in a VPC
 * The subnet of the VPN gateway
 * The public IP address of the Vyatta
 * The subnet of the Vyatta that you want to connect using a VPN
@@ -53,13 +53,13 @@ To set up your remote Vyatta peer, you need:
 There are two ways you can run the configuration on your Vyatta:
 
 1. Log in to the Vyatta and run the file `create_vpn.vcli` using the commands that follow.
-2. Run the following commands in the Vyatta console. 
+2. Run the following commands in the Vyatta console.
 
 Remember to:
 * Choose `IKEv2` in authentication
-* Enable `DH-group 2` 
-* Set `lifetime = 36000` 
-* Disable PFS 
+* Enable `DH-group 2`
+* Set `lifetime = 36000`
+* Disable PFS
 * Set `lifetime = 10800`  
 
 The following commands use the following variables where:
@@ -80,7 +80,7 @@ set security vpn ipsec ike-group {{ peer_address }}_{{ ike["name"] }} lifetime {
 set security vpn ipsec ike-group {{ peer_address }}_{{ ike["name"] }} ike-version {{ ike["version"] }}
 
 set security vpn ipsec ike-group {{ peer_address }}_{{ ike["name"] }} proposal {{ loop.index }}
-set security vpn ipsec ike-group {{ peer_address }}_{{ ike["name"] }} proposal {{ loop.index }} dh-group {{ proposal["dhgroup"] }} 
+set security vpn ipsec ike-group {{ peer_address }}_{{ ike["name"] }} proposal {{ loop.index }} dh-group {{ proposal["dhgroup"] }}
 set security vpn ipsec ike-group {{ peer_address }}_{{ ike["name"] }} proposal {{ loop.index }} encryption {{ proposal["encryption"] }}
 set security vpn ipsec ike-group {{ peer_address }}_{{ ike["name"] }} proposal {{ loop.index }} hash {{ proposal["integrity"] }}
 
@@ -122,7 +122,7 @@ set security vpn ipsec ike-group 169.61.247.167_test_ike lifetime 36000
 set security vpn ipsec ike-group 169.61.247.167_test_ike ike-version 2
 
 set security vpn ipsec ike-group 169.61.247.167_test_ike proposal 1
-set security vpn ipsec ike-group 169.61.247.167_test_ike proposal 1 dh-group 2 
+set security vpn ipsec ike-group 169.61.247.167_test_ike proposal 1 dh-group 2
 set security vpn ipsec ike-group 169.61.247.167_test_ike proposal 1 encryption aes256
 set security vpn ipsec ike-group 169.61.247.167_test_ike proposal 1 hash sha2_256
 set security vpn ipsec esp-group 169.61.247.167_test_ipsec compression disable
@@ -145,8 +145,8 @@ set security vpn ipsec site-to-site peer 169.61.247.167 authentication remote-id
 
 set security vpn ipsec site-to-site peer 169.61.247.167 tunnel 1 local prefix 10.65.15.104/29
 set security vpn ipsec site-to-site peer 169.61.247.167 tunnel 1 remote prefix 10.240.0.0/24
-    
-    
+
+
 commit
 end_configure
 
@@ -198,9 +198,7 @@ Remember to:
    # set interfaces bonding dp0bond0 vif 862 firewall in from-vpc
    ```
    {: codeblock}
- 
- 	You might need to add other rules according to your network requirement to allow other traffic. 
 
-* If you are using a zone firewall with IPsec, see [Setting Up an IPsec tunnel that works with zone firewalls](https://cloud.ibm.com/docs/virtual-router-appliance?topic=virtual-router-appliance-setting-up-an-ipsec-tunnel-that-works-with-zone-firewalls).
+ 	You might need to add other rules according to your network requirement to allow other traffic.
 
-
+* If you are using a zone firewall with IPsec, see [Setting up an IPsec tunnel that works with zone firewalls](/docs/virtual-router-appliance?topic=virtual-router-appliance-setting-up-an-ipsec-tunnel-that-works-with-zone-firewalls).
