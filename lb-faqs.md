@@ -155,3 +155,13 @@ Check for these possibilities:
 
 * The provided certificate CRN might be invalid.
 * The certificate instance given in the Certificate Manager might not have an associated private key.
+
+## What is the role of Load balancer front end listeners?
+{: #what-is-the-role-for-load-balancer-front-end-listeners}
+
+Load Balancer front end listeners are the application listening ports. They act as proxies for backend pools.
+
+## Why are there only 2 IPs instead of 3?
+{: #why-are-there-only-2-ips-instead-of-3-at-instantionation}
+
+Load Balancer for VPC operates in ACTIVE-ACTIVE mode, a configuration that makes it highly available. Horizontal scaling may further add extra appliances when your load increases. It's recommended that you choose subnets in different zones to make your load balancers support MZR. This way, if a zone is negatively impacted, a new load balancer will be provisioned in a different zone.

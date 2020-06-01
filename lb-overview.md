@@ -169,7 +169,7 @@ The default health check interval is 5 seconds, the default timeout against a he
 ## Configuring ACLs for use with load balancers
 {: #configuring-acls-for-use-with-load-balancers}
 
-If you use access control lists (ACLs) to block traffic on the subnets in which a load balancer is deployed, make sure the following ACL rules are configured.
+If you use access control lists (ACLs) to block traffic on the subnets where you deploy your load balancer, make sure you configure the ACL rules listed below.
 
 | Inbound/Outbound| Protocol | Source IP | Source Port | Destination IP | Destination Port |
 |--------------|------|------|------|------|------------------|
@@ -180,7 +180,7 @@ If you use access control lists (ACLs) to block traffic on the subnets in which 
 | Outbound | TCP | AnyIP | 56501| AnyIP | AnyPort|
 | Outbound | TCP | AnyIP | AnyPort| AnyIP |443, 10514, 8834|
 
-Additionally, if a load balancer has listeners configured, then the corresponding inbound and outbound ACL rules should be configured for traffic to go through.
+Additionally, if you configure your load balancer listeners, then you must also configure the corresponding inbound and outbound ACL rules for load balancer traffic to pass through.
 
 ## Configuring load balancers from the IBM Cloud Kubernetes Service (IKS)
 {: #configure-iks-lb}
