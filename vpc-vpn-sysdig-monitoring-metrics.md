@@ -30,7 +30,7 @@ subcollection: vpc_vpn
 ## Platform metrics overview
 {: platform-metrics-overview}
 
-You can view platform metrics when you enable {{site.data.keyword.mon_full_notm}} on your {{site.data.keyword.cloud_notm}} platform. A Sysdig instance must be configured in a region to monitor these metrics. For more information, see [Enabling platform metrics](/docs/Monitoring-with-Sysdig?topic=Sysdig-platform_metrics_enabling).
+You can view platform metrics when you enable {{site.data.keyword.mon_full_notm}} on your {{site.data.keyword.cloud_notm}} platform. A Sysdig instance must be configured in a region to monitor these metrics. For more information, see [Enabling platform metrics](/docs/Monitoring-with-Sysdig?topic=Monitoring-with-Sysdig-platform_metrics_enabling).
 
 Before you enable {{site.data.keyword.mon_full_notm}} on your platform, keep the following information in mind:
 
@@ -196,7 +196,7 @@ Status for a given VPN gateway's connection (for example, `1`=up, `0`=down)
 {: attributes}
 
 ### Global attributes
-{: global-attributes}
+{: global-attributes-sysdig}
 
 The following attributes are available for segmenting all of the VPN metrics:
 
@@ -212,7 +212,7 @@ The following attributes are available for segmenting all of the VPN metrics:
 {: caption="Table 12: VPN metric attributes" caption-side="top"}
 
 ### Additional attributes
-{: additional-attributes}
+{: #additional-attributes-sysdig}
 
 The following attributes are available for segmenting one or more attributes as described in the previous reference. See the individual metrics for segmentation options.
 

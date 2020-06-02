@@ -31,7 +31,7 @@ subcollection: vpc-on-classic-network
 Load balancers calculate the metrics and send those metrics to your Sysdig instance, which reflects different types of use and traffic. You can visualize and analyze metrics from either the {{site.data.keyword.cloud}} Monitoring with Sysdig dashboard, or its API.
 
 ## Metrics available by service plan
-{: metrics-by-plan}
+{: #metrics-by-plan-load-balancer}
 
 The supported monitoring metrics include:
 
@@ -92,14 +92,14 @@ Throughput is the amount of data that passes in and out of a load balancer over 
 {: caption="Table 3: IBM Load Balancer for VPC throughput metric metadata" caption-side="top"}
 
 ## Metric segmentation
-{: attributes}
+{: #attributes}
 
 You can split the data that Sysdig presents into various visualizations in the Sysdig dashboard, allowing views of different metrics based on your preferences. For example, if you have multiple load balancers or accounts with different load balancers in each account, you might want to focus on a particular listener port.
 
 As an example, you can segment the `active connections` by `IBM Load Balancer for VPC listener port` to show how many active users are connected to the load balancer through each listener type. To illustrate this, let's assume that your load balancer has two different listener protocols one HTTP on port 80 and another for TCP on port 8080. The dashboard would contain different lines showing 10 users who are connected through HTTP on Port 80 in one color, and 6 users connected through TCP on port 8080 in another color.
 
 ### Global attributes
-{: global-attributes}
+{: #global-attributes}
 
 The following attributes are available for segmenting the three Sysdig metrics.
 
@@ -111,7 +111,7 @@ The following attributes are available for segmenting the three Sysdig metrics.
 {: caption="Table 4: Sysdig global attributes" caption-side="top"}
 
 ### Additional attributes
-{: additional-attributes}
+{: #additional-attributes-monitoring-metrics}
 
 The following attributes are available to segment one or more of the global attributes. See the individual metrics for any segmentation options.
 
