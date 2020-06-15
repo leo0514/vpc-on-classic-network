@@ -91,7 +91,7 @@ Sample output:
 ```
 {
     "id": "7fd72524-6e2d-49a6-b975-0071efccd89a",
-    "crn": "crn:v1:bluemix:public:is:us-south:a/b668aa2600ac21c890aef16a6210b2fd::vpn:7fd72524-6e2d-49a6-b975-0071efccd89a",
+    "crn": "crn:v1:staging:public:cloudcerts:us-south:a/b668aa2600ac21c890aef16a6210b2fd::vpn:7fd72524-6e2d-49a6-b975-0071efccd89a",
     "name": "vpn-gateway-1",
     "href": "https://us-south.iaas.cloud.ibm.com/v1/vpn_gateways/7fd72524-6e2d-49a6-b975-0071efccd89a",
     "created_at": "2018-07-06T19:19:28.694388Z",
@@ -106,7 +106,7 @@ Sample output:
     },
     "resource_group": {
         "id": "d28a2jsiw1pl2g22q8462tyr321416z2",
-        "href": "https://resource-manager.bluemix.net/v1/resource_groups/d28a2jsiw1pl2g22q8462tyr321416z2"
+        "href": "https://resource-manager.cloud.ibm.com/v1/resource_groups/d28a2jsiw1pl2g22q8462tyr321416z2"
     }
 }
 ```
@@ -143,7 +143,7 @@ Sample output:
 ```
 {
     "id": "f72559a3-2fac-4958-b937-54474e6a8a8d",
-    "crn": "crn:v1:bluemix:public:is:us-south:a/b668aa2600ac21c890aef16a6210b2fd::vpn:f72559a3-2fac-4958-b937-54474e6a8a8d",
+    "crn": "crn:v1:staging:public:cloudcerts:us-south:a/b668aa2600ac21c890aef16a6210b2fd::vpn:f72559a3-2fac-4958-b937-54474e6a8a8d",
     "name": "vpn-gateway-2",
     "href": "https://us-south.iaas.cloud.ibm.com/v1/vpn_gateways/f72559a3-2fac-4958-b937-54474e6a8a8d",
     "created_at": "2018-07-06T19:33:23.789675Z",
@@ -158,7 +158,7 @@ Sample output:
     },
     "resource_group": {
         "id": "d28a2jsiw1pl2g22q8462tyr321416z2",
-        "href": "https://resource-manager.bluemix.net/v1/resource_groups/d28a2jsiw1pl2g22q8462tyr321416z2"
+        "href": "https://resource-manager.cloud.ibm.com/v1/resource_groups/d28a2jsiw1pl2g22q8462tyr321416z2"
     }
 }
 ```
@@ -403,7 +403,7 @@ If you use the API or CLI, VPN connections must be created after the VPN gateway
 {: support}
 
 If you delete a VPN gateway that has attached connections, the VPN connections are deleted along with the VPN gateway.
- 
+
 ### Will IKE or IPsec policies be deleted if I delete a VPN gateway or VPN connection?
 {: #will-ike-or-ipsec-policies-be-deleted}
 {: faq}
@@ -475,54 +475,54 @@ If you are using ACLs or security groups on the subnets that must communicate wi
 
 ### Does VPN for VPC support HA configurations?
 {: #does-vpn-for-vpc-support-ha}
-{: faq} 
+{: faq}
 
 VPN for VPC supports high availability in an Active / Standby configuration.
 
 ### Are there plans to support SSL VPN?
 {: #are-there-plans-to-support-ssl-vpn}
-{: faq} 
+{: faq}
 
 Only IPsec site-to-site is supported, not SSL VPN.
 
 ### Are there any caps on throughput for site-to-site VPNaaS?
 {: #are-there-any-caps-on-throughput-for-site-to-site-VPNaaS}
-{: faq} 
+{: faq}
 
 We support up to 650 Mbps of throughput for site-to-site VPNaaS.
 
 ### Is PSK and certificate-based IKE authentication supported for VPNaaS?
 {: #is-certificate-based-ike-authentication-supported-for-vpnaas}
-{: faq} 
+{: faq}
 
 Only PSK authentication is supported, not certificate-based IKE.
 
 ### Can you use VPN for VPC as a VPN gateway for your IBM Cloud infrastructure classic?
 {: #can-you-use-vpn-for-vpc-as-a-vpn-gateway-for-infrastructure-classic]
-{: faq} 
+{: faq}
 
 To use a VPN gateway in an IBM Cloud infrastructure classic environment, you must use the [IPsec VPN](https://{DomainName}/catalog/infrastructure/ipsec-vpn){: external}.
 
 ### Can VPN for VPC, along with a Classic Access VPC, access IBM Cloud infrastructure classic resources?
 {: #can-vpn-for-vpc-with-classic-access-access-classic-resources}
-{: faq} 
+{: faq}
 
 Currently, VPN for VPC (with a Classic Access VPC) cannot access IBM Cloud infrastructure classic resources.
 
 ### What will rekey collision cause?
 {: #what-will-rekey-collsion-cause}
-{: faq} 
+{: faq}
 
 If you use IKEv1, rekey collision deletes the IKE/IPsec SA. To recreate the IKE/IPsec SA, set the connection admin state to `down` and then `up` again. You can use IKEv2 to minimize rekey collisions.
 
 ### Is it possible to connect to route-based VPNs with multiple tunnels?
 {: #is-it-possible-to-connect-to-route-based-vpns-with-multiple-tunnels}
-{: faq} 
+{: faq}
 
 Currently, it is not possible to connect to route-based VPNs with multiple tunnels.
 
 ### Is it possible to view logs from the VPN gateway for debugging purposes?
 {: #is-it-possible-to-view-logs}
-{: faq} 
+{: faq}
 
 To view VPN gateway logs for debugging purposes, see [Using LogDNA to view VPN logs](/docs/vpc-on-classic-network?topic=vpc-on-classic-network-using-logdna-to-view-vpn-logs).

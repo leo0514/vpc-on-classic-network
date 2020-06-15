@@ -196,7 +196,7 @@ Status for a given VPN gateway's connection (for example, `1`=up, `0`=down)
 {: attributes}
 
 ### Global attributes
-{: global-attributes-sysdig}
+{: global-attributes-sysdig-vpn}
 
 The following attributes are available for segmenting all of the VPN metrics:
 

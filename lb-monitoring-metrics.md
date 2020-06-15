@@ -99,7 +99,7 @@ You can split the data that Sysdig presents into various visualizations in the S
 As an example, you can segment the `active connections` by `IBM Load Balancer for VPC listener port` to show how many active users are connected to the load balancer through each listener type. To illustrate this, let's assume that your load balancer has two different listener protocols one HTTP on port 80 and another for TCP on port 8080. The dashboard would contain different lines showing 10 users who are connected through HTTP on Port 80 in one color, and 6 users connected through TCP on port 8080 in another color.
 
 ### Global attributes
-{: #global-attributes}
+{: #global-attributes-monitoring-lb}
 
 The following attributes are available for segmenting the three Sysdig metrics.
 
