@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018, 2020
-lastupdated: "2020-04-02"
+lastupdated: "2020-06-16"
 
 keywords:
 
@@ -55,7 +55,11 @@ The following timeout values are used by the load balancer. You cannot customize
 | Server-side idle connection | The maximum time the load balancer will wait on an idle server connection before terminating the connection. With the back-end protocol configuration of HTTP, if the load balancer fails to receive a response to its HTTP request within the idle timeout window, it will return an error message to the client.  | 50 seconds |
 {: caption="Table 1. Load Balancer timeout values" caption-side="top"}
 
-## Preserving end-client IP address
+## Preserving end-client IP address (HTTP/HTTPS only)
 {: #preserving-end-client-ip-address}
 
-Load Balancer for VPC works as a reverse proxy which terminates incoming traffic from the client. The load balancer establishes a separate connection to the back-end server instance, using its own IP address. For HTTP connections with the backend servers (against front-end HTTP or HTTPS connections), the load balancer preserves the original client IP address by including it inside the `X-Forwarded-For` HTTP header. For TCP connections, the original client IP information is not preserved.
+Load balancer for VPC works as a reverse proxy that terminates incoming traffic from the client. The load balancer establishes a separate connection to the back-end server instance, using its own IP address. For HTTP connections with the backend servers (against front-end HTTP or HTTPS connections), the load balancer preserves the original client IP address by including it inside the `X-Forwarded-For` HTTP header. For TCP connections, the original client IP information is not preserved.
+
+## Preserving end-client protocol (HTTP/HTTPS only)
+{: #preserving-end-client-protocol}
+Load balancer for VPC preserves the original protocol used by the client for front-end HTTP and HTTPS connections. It does this by including it inside the `X-Forwarded-Proto` HTTP header. This does not apply to TCP protocols, since the load balancer does not look at Layer-7 traffic when the TCP protocol is used.
