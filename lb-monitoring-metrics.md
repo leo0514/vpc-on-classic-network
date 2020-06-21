@@ -144,7 +144,7 @@ You can also specify the time interval over which to report your metrics. Time i
 The number of data points you can report is roughly the same for each time interval. For example, if the interval is 1 hour, then each data point represents 5 minutes of data. If the interval is 2 weeks, then each data point represents 24 hours of data.
 
 ## Enabling metrics monitoring
-{: #enable-metrics-monitoring}
+{: #enable-metrics-monitoring-lb}
 
 To receive monitoring metrics, you must set up your {{site.data.keyword.cloud}} Monitoring with Sysdig instance.
 
@@ -188,6 +188,7 @@ To do so, follow these steps:
 Within a few minutes, your new Sysdig instance is displayed with several configurations. You might have to refresh your browser to see it.  
 
 ## Working with the Sysdig dashboard
+{: #lb-working-with-sysdig-dashboard}
 
 To view and work with your Sysdig metrics, follow these steps:
 
@@ -208,6 +209,7 @@ To view and work with your Sysdig metrics, follow these steps:
    {: tip}
 
 ## Creating a custom metrics dashboard
+{: #lb-creating-custom-metrics-dashboard}
 
 You can create your own dashboard to customize your monitoring metrics, such as viewing information about particular load balancers, or only seeing traffic that comes through particular listeners.
 
@@ -247,7 +249,7 @@ To customize your dashboard, follow these steps:
 To return to the default Sysdig dashboard at any time, select **Dashboards > Default Dashboards > IBM > Load Balancer Monitoring Metrics**.
 
 ## Working with Sysdig using the APIs
-{: #metric-query-api}
+{: #metric-query-api-lb}
 
 You can also work with the Sysdig instance by using the metric query APIs. You might want to do this if you need raw data points or want to consume your metrics from a command-line interface rather than using the Sysdig dashboard.
 
