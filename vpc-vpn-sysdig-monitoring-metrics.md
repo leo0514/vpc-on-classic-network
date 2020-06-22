@@ -38,8 +38,6 @@ Before you enable {{site.data.keyword.mon_full_notm}} on your platform, keep the
 * Platform metrics are regional. Metrics are monitored only from {{site.data.keyword.mon_full_notm}} services, which are in the same region of the instance that you want to monitor.
 * Metrics are collected automatically and are available for monitoring through the {{site.data.keyword.mon_full_notm}}-enabled instance.
 
-For more information about {{site.data.keyword.mon_full_notm}} platform metrics, see [Sysdig monitoring metrics](/docs/virtual-servers?topic=virtual-servers-sysdig-monitoring-metrics).
-
 ## Metrics available by service plan
 {: metrics-by-plan}
 
@@ -345,7 +343,7 @@ To customize your dashboard, use the following steps:
 
    * You can choose a scope to display in your dashboard by clicking **Override Dashboard Scope**. For example, you can display the metrics for a particular VPN gateway.
 
-   * You can also set a segment to compare metrics across the scope that you define. For example, you can look at the connection status for a particular VPN gateway that is segmented by gateway, name, and connection name.
+   * You can also set a segment to compare metrics across the scope that you define. For example, you can look at the connection status for a particular VPN gateway that is segmented by gateway name and connection name.
 
 6. Click **Save**.
 
