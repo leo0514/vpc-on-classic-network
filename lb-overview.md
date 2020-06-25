@@ -30,6 +30,12 @@ subcollection: vpc-on-classic-network
 
 The {{site.data.keyword.cloud}} Load Balancer for VPC service distributes traffic among multiple server instances within the same region of your VPC.
 
+Here is the deployment architecture of the {{site.data.keyword.cloud}} Load Balancer for VPC service:
+
+![L{{site.data.keyword.cloud}} Load Balancer for VPC](images/VPC-LBaaS-Architecture.png "{{site.data.keyword.cloud}} Load Balancer for VPC")
+
+{: caption="Figure: {{site.data.keyword.cloud}} Load Balancer for VPC" caption-side="top"}
+
 ## Public load balancer
 {: #public-load-balancer}
 
