@@ -60,7 +60,7 @@ You must ensure that the proper ACL or security group rules are in place to allo
 
 For detailed information on the ACLs configuration required, refer to [Configuring ACLs for use with load balancers](#configuring-acls-for-use-with-load-balancers).
 
-## Why am I receiving an error message: `certificate instance not found`?
+## Why am I receiving this error message: `certificate instance not found`?
 {: #why-am-i-receiving-an-error-message}
 {: faq}
 
