@@ -6,7 +6,7 @@ lastupdated: "2020-07-08"
 
 keywords: Sysdig, IBM Cloud, monitoring, platform metrics, metrics, VPN metrics
 
-subcollection: vpc_vpn
+subcollection: vpc-on-classic-network
 
 ---
 
@@ -305,7 +305,7 @@ To view and work with your Sysdig metrics, follow these steps:
    The first time that you access your Sysdig instance, several windows display as part of the internal setup. Keep the default entries, and click through the pages until you reach the main Sysdig page.
    {: note}
 
-3. Open the IBM VPN for VPC Monitoring Metrics dashboard by selecting **Dashboards**. 
+3. Open the IBM VPN for VPC Monitoring Metrics dashboard by selecting **Dashboards**.
 
 4. Click **Default Dashboards > IBM > VPC Gen 1 VPN**. The default dashboard is not editable.
 
@@ -364,9 +364,9 @@ After you create your {{site.data.keyword.mon_full_notm}} instance, you must col
 
 To collect this information and work with your Sysdig instance by using metric query API, follow these steps:
 
-1. Access the [Monitoring home page](https://cloud.ibm.com/observe/monitoring). 
+1. Access the [Monitoring home page](https://cloud.ibm.com/observe/monitoring).
 
-2. Click **View Sysdig** next to the instance that you want to work with. 
+2. Click **View Sysdig** next to the instance that you want to work with.
 
 3. After the Sysdig dashboard is displayed, select your Account Profile icon on the sidebar and select **Settings**. You now see your account settings.
 
@@ -465,4 +465,3 @@ You can view individual VPN gateway metrics and launch the Sysdig dashboard from
    ![VPN Monitoring](images/vpn_monitoring.png "VPN Monitoring")
 
    Similarly, you can also launch the VPN gateway's default Sysdig dashboard by clicking **Launch monitoring**
-
