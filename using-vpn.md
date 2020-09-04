@@ -4,7 +4,7 @@
 
 copyright:
   years: 2017,2018, 2019, 2020
-lastupdated: "2020-05-06"
+lastupdated: "2020-09-05"
 
 keywords:
 
@@ -452,16 +452,19 @@ If you are using ACLs on the subnet used to deploy the VPN gateway, make sure to
 In addition, make sure the following ACL rules are in place to allow management traffic and VPN tunnel traffic:
 
 * **Inbound rules**
-    - Allow protocol TCP source port 10514
-    - Allow protocol TCP source port 443
-    - Allow protocol TCP source port 80
-    - Allow protocol TCP source port 53
-    - Allow protocol UDP source port 53
-    - Allow protocol ALL source IP is VPN peer gateway public IP
-    - Allow protocol TCP destination port 443
-    - Allow protocol TCP destination port 56500
-    - Allow traffic between instances in VPC and your on-premise private network
-    - Allow ICMP traffic
+   - Allow source CIDR 161.26.0.0/16 and protocol UDP/TCP source port 1688
+   - Allow source CIDR 161.26.0.0/16 and protocol UDP/TCP source port 80
+   - Allow source CIDR 161.26.0.0/16 and protocol UDP/TCP source port 8443
+   - Allow source CIDR 161.26.0.0/16 and protocol UDP source port 443
+   - Allow protocol TCP source port 443
+   - Allow protocol TCP source port 10514
+   - Allow protocol TCP source port 53
+   - Allow protocol UDP source port 53
+   - Allow protocol ALL source IP is VPN peer gateway public IP
+   - Allow protocol TCP destination port 443
+   - Allow protocol TCP destination port 56500
+   - Allow traffic between instances in VPC and your on-premise private network
+   - Allow ICMP traffic
 
 * **Outbound rules**
    - Allow all traffic
