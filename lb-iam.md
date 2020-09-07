@@ -27,7 +27,7 @@ subcollection: vpc-on-classic-network
 # Identity and access management
 {: #identity-and-access-management-iam}
 
-You can configure access policies for an {{site.data.keyword.cloud}} Load Balancer for VPC instance. For more information about managing user access policies, see [Managing access to resources](/docs/iam?topic=iam-iammanidaccser#resourceaccess).
+You can configure access policies for an {{site.data.keyword.cloud}} Load Balancer for VPC instance. For more information about managing user access policies, see [Managing access to resources](/docs/account?topic=account-assign-access-resources#resourceaccess).
 
 ## Configuring resource group access policies for users
 {: #configuring-resource-group-access-policies-for-users}
