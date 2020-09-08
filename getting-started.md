@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2018, 2019
-lastupdated: "2019-07-22"
+lastupdated: "2020-09-08"
 
 keywords:
 
@@ -28,14 +28,17 @@ subcollection: vpc-on-classic-network
 {: help} 
 {: support}
 
-Newer generation available. For more information, see [Getting started with Virtual Private Cloud](/docs/vpc?topic=vpc-getting-started) for generation 2 compute resources.
-{:important}
+As IBM continues to invest and innovate on the IBM Cloud Virtual Private Cloud (gen 2 compute) infrastructure, we're focusing on delivering maximum value in a single VPC Infrastructure platform. To support this effort, generation 1 compute infrastructure is being deprecated. The end of service date is 26 February 2021. For more information, see the [Start your migration](https://www.ibm.com/cloud/blog/announcements/start-your-vpc-gen1-to-vpc-gen2-migration){:external} blog.
+{:deprecated}
 
 To get started with networking for {{site.data.keyword.vpc_full}} (Gen 1 compute):
 
 1. Create a Virtual Private Cloud.
 2. Create one or more subnets in the Virtual Private Cloud in one or more zones.
 3. Create a public gateway (PGW) on a subnet if you want resources on your subnet to have access to the internet or vice-versa.
+
+Explore our latest generation of compute resources. For more information, see [Getting started with Virtual Private Cloud](/docs/vpc?topic=vpc-getting-started).
+{:important}
 
 ## Before you begin
 
