@@ -15,6 +15,7 @@ subcollection: vpc-on-classic-network
 {:codeblock: .codeblock}
 {:pre: .pre}
 {:screen: .screen}
+{:deprecated .deprecated}
 {:tip: .tip}
 {:note: .note}
 {:important: .important}
