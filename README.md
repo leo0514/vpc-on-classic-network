@@ -1,1 +1,0 @@
-# vpc-on-classic-network
